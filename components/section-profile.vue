@@ -1,10 +1,12 @@
 <template>
   <div
-    class="bg-white h-screen w-screen text-white p-40 bg-gradient-to-tl from-gray-900 to-black relative"
+    class="h-screen w-screen text-white bg-gradient-to-tl from-gray-900 to-black relative"
   >
-    <div class="container mx-auto">
+    <div class="container mx-auto pt-40">
       <div class="text-4xl font-bold mb-5 grid grid-cols-4">
-        <div class="col-start-2">Who am I?</div>
+        <div class="col-start-2 col-span-3">
+          My Journey as a Software Engineer
+        </div>
       </div>
       <div class="grid grid-cols-4">
         <div>
@@ -27,18 +29,29 @@
           many developers nowadays even have heard about it (lmao). Since the
           desktop app is not separated by a frontend and backend like a web app,
           I have a requirement to understand SQL queries too. I learn queries
-          from databases like SQL Server and PostgreSQL which actually have a
+          from databases like MS SQL Server and PostgreSQL which actually have a
           lot of similarities in between. In this company, I get experience to
           make apps for retail, warehouse, and manufacturing.<br /><br />
           After a few years of wandering around desktop programming, I realized
           that the programming world is already shifting to the web app and
-          mobile app, I felt like being left behind (╥﹏╥). Then I got my first
+          mobile app. I felt like being left behind (╥﹏╥). Then I got my first
           experience with the web app from an Angular 4 project, it feels like a
           different world to me.<br /><br />
           Since then I fell in love with web app development, I switch my career
-          to a Frontend Web Developer and I work mainly on Vue.js and Nuxt.
+          to a Frontend Web Developer and I work daily on Vue.js and Nuxt.
         </div>
       </div>
+    </div>
+    <div class="relative z-[1] mt-24 w-[25em] ml-auto">
+      <div
+        class="absolute right-0 top-0 h-[25em] w-[25em] border-8 border-blue-950 rounded-full"
+      ></div>
+      <div
+        class="absolute right-0 top-0 h-[10em] w-[10em] border-8 border-sky-950 rounded-full"
+      ></div>
+      <div
+        class="absolute left-0 top-0 translate-y-[160%] h-[10em] w-[10em] border-8 border-sky-950 rounded-full"
+      ></div>
     </div>
   </div>
 </template>

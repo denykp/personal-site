@@ -7,7 +7,26 @@ defineProps({
 });
 const classImage = ref("!-translate-x-[13vw]");
 const classDesc = ref("!translate-y-[0vh]");
-const classImage2 = ref("translate-x-[5vw]");
+const classImage2 = ref("!translate-x-[5vw]");
+const classSocial = ref("!translate-y-[0vh]");
+
+const listSocialMedia = [
+  {
+    name: "Instagram",
+    url: "https://www.instagram.com/deny_kp/",
+    icon: "mdi:instagram",
+  },
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/denykpamuji/",
+    icon: "mdi:linkedin",
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/denykp",
+    icon: "mdi:github",
+  },
+];
 </script>
 
 <template>
@@ -26,12 +45,36 @@ const classImage2 = ref("translate-x-[5vw]");
           class="mt-2 text-lg translate-y-[100vh] transition-transform duration-300"
           :class="mounted ? classDesc : ''"
         >
-          Used to be a Desktop App Developer, but now I'm merely a Frontend Web
+          I used to be a Desktop App Developer, now I'm merely a Frontend Web
           Developer <br />
           (cz i like it more...<span class="italic">hehe</span>)
         </div>
       </div>
-      <div class="flex"></div>
+      <div class="h-full text-white flex justify-end">
+        <div
+          class="mt-auto mb-10 translate-y-[30vh] transition-transform duration-300"
+          :class="mounted ? classSocial : ''"
+        >
+          <div v-for="item in listSocialMedia" class="group">
+            <nuxt-link
+              class="mb-2 flex items-center justify-end gap-3"
+              :to="item.url"
+              target="_blank"
+            >
+              <div
+                class="text-lg w-0 group-hover:!w-20 text-right overflow-hidden transition-[width]"
+              >
+                {{ item.name }}
+              </div>
+              <Icon
+                :name="item.icon"
+                size="35"
+                class="transition-transform duration-200 group-hover:scale-150"
+              />
+            </nuxt-link>
+          </div>
+        </div>
+      </div>
     </div>
     <div
       ref="elPicture"
@@ -44,14 +87,14 @@ const classImage2 = ref("translate-x-[5vw]");
     </div>
 
     <div
-      class="absolute -left-20 -top-[20%] transition-transform -translate-x-[60em] duration-300 z-[1] rotate-[30deg] -skew-x-[25deg]"
+      class="absolute -left-20 -top-[8%] transition-transform -translate-x-[70em] duration-300 z-[1] rotate-[20deg] -skew-x-[40deg]"
       :class="mounted ? classImage2 : ''"
     >
       <div
-        class="h-[70em] w-[70em] bg-blue-950 absolute top-0 flex rounded-3xl shadow-lg"
+        class="h-[80em] w-[80em] bg-blue-950 absolute top-0 flex rounded-3xl shadow-lg"
       >
         <div
-          class="h-[50em] w-[50em] bg-sky-950 m-auto rounded-3xl drop-shadow-[35px_35px_35px_black]"
+          class="h-[70em] w-[70em] bg-sky-950 mt-12 rounded-3xl drop-shadow-[35px_35px_35px_black]"
         ></div>
       </div>
     </div>

@@ -49,7 +49,6 @@ const scrollToView = (sectionId: string) => {
       >
         Brief Introduction
       </div>
-      <!-- <a href="/"></a> -->
       <div
         class="section"
         :class="activeSection == 'experience' ? 'active-section' : ''"
