@@ -5,7 +5,7 @@ defineProps({
     default: false,
   },
 });
-const classImage = ref("!-translate-x-[13vw]");
+const classImage = ref("!-translate-x-[5vw]");
 const classDesc = ref("!translate-y-[0vh]");
 const classImage2 = ref("!translate-x-[5vw]");
 const classSocial = ref("!translate-y-[0vh]");
@@ -50,9 +50,9 @@ const listSocialMedia = [
           (cz i like it more...<span class="italic">hehe</span>)
         </div>
       </div>
-      <div class="h-full text-white flex justify-end">
+      <div class="h-full text-white flex justify-end py-10">
         <div
-          class="mt-auto mb-10 translate-y-[30vh] transition-transform duration-300"
+          class="mt-auto translate-y-[30vh] transition-transform duration-300 flex"
           :class="mounted ? classSocial : ''"
         >
           <div v-for="item in listSocialMedia" class="group">
@@ -78,7 +78,7 @@ const listSocialMedia = [
     </div>
     <div
       ref="elPicture"
-      class="hidden absolute right-0 top-[50%] -translate-y-[50%] transition-transform duration-300 translate-x-[100vw]"
+      class="hidden absolute right-0 top-[5vh] transition-transform duration-300 translate-x-[100vw]"
       :class="mounted ? classImage : ''"
     >
       <div
@@ -87,7 +87,7 @@ const listSocialMedia = [
     </div>
 
     <div
-      class="absolute -left-20 -top-[8%] transition-transform -translate-x-[70em] duration-300 z-[1] rotate-[20deg] -skew-x-[40deg]"
+      class="absolute -left-20 -top-[4%] transition-transform -translate-x-[70em] duration-300 z-[1] rotate-[20deg] -skew-x-[42deg]"
       :class="mounted ? classImage2 : ''"
     >
       <div
@@ -103,11 +103,11 @@ const listSocialMedia = [
 
 <style lang="postcss">
 .section-main::before {
-  @apply text-[15vw] font-extrabold text-black;
+  @apply text-[5vw] font-extrabold text-black;
   /* @apply text-transparent bg-clip-text bg-gradient-to-r from-gray-950 to-black; */
 }
 .section-main {
-  transform: perspective(100px) rotateY(-5deg) scale(1.9, 1);
+  transform: perspective(50px) rotateY(-5deg) scale(1.9, 1);
   &::before {
     content: "PA\aMU\aJI";
     white-space: pre-wrap;
