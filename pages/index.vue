@@ -9,14 +9,6 @@ const handleScroll = (e: any) => {
 
 onMounted(() => {
   mounted.value = true;
-  console.log("mounted");
-
-  document.addEventListener("scroll", handleScroll);
-});
-onUnmounted(() => {
-  console.log("onUnmounted");
-
-  document.removeEventListener("scroll", handleScroll);
 });
 
 const activeSection = computed(() => {
@@ -32,7 +24,7 @@ const scrollToView = (sectionId: string) => {
 <template>
   <div class="fixed mx-auto z-[2] w-full">
     <div
-      class="container mx-auto flex justify-end gap-4 font-bold text-lg text-white rounded-lg py-2 opacity-0 transition-opacity duration-300"
+      class="container mx-auto flex justify-end gap-4 font-bold text-base text-white rounded-lg py-2 opacity-0 transition-opacity duration-300"
       :class="[mounted ? 'opacity-100' : '']"
     >
       <div
@@ -62,6 +54,7 @@ const scrollToView = (sectionId: string) => {
     class="snap-y snap-mandatory overflow-y-auto max-h-screen"
     @scroll="handleScroll"
   >
+    <!-- <div @scroll="handleScroll"> -->
     <section-main
       id="section-main"
       class="snap-start snap-always"
@@ -70,19 +63,21 @@ const scrollToView = (sectionId: string) => {
     <section-profile
       id="section-profile"
       class="snap-start snap-always"
+      :is-visible="sectionIdx > 0"
     ></section-profile>
     <section-experience
       id="section-experience"
       class="snap-start snap-always"
     ></section-experience>
+    <section-footer class="snap-start snap-always"></section-footer>
   </div>
 </template>
 
 <style lang="postcss">
 .section {
-  @apply cursor-pointer hover:outline rounded-lg px-4;
+  @apply cursor-pointer hover:outline rounded-lg px-4 py-1;
 }
 .active-section {
-  @apply bg-gray-600 px-4 rounded-lg !outline-none;
+  @apply bg-gradient-to-tr from-gray-800 to-gray-600 rounded-lg !outline-none;
 }
 </style>

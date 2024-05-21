@@ -11,8 +11,13 @@
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/tailwindcss": "^6.8.0",
-    "@types/node": "^18.16.19",
-    "nuxt": "^3.6.5",
-    "nuxt-icon": "^0.4.2"
+    "@types/aos": "^3.0.7",
+    "@types/node": "^20.12.12",
+    "nuxt": "^3.11.2",
+    "nuxt-icon": "^0.6.10"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "nuxt-aos": "^1.2.4"
   }
 }

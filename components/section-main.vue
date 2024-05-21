@@ -8,7 +8,7 @@ defineProps({
 const classImage = ref("!-translate-x-[5vw]");
 const classDesc = ref("!translate-y-[0vh]");
 const classImage2 = ref("!translate-x-[5vw]");
-const classSocial = ref("!translate-y-[0vh]");
+const classSocial = ref("translate-y-0 bounce2");
 
 const listSocialMedia = [
   {
@@ -52,7 +52,7 @@ const listSocialMedia = [
       </div>
       <div class="h-full text-white flex justify-end py-10">
         <div
-          class="mt-auto translate-y-[30vh] transition-transform duration-300 flex"
+          class="mt-auto translate-y-[30vh] transition-transform duration-500 delay-300 flex"
           :class="mounted ? classSocial : ''"
         >
           <div v-for="item in listSocialMedia" class="group">
@@ -76,25 +76,25 @@ const listSocialMedia = [
         </div>
       </div>
     </div>
-    <div
+    <!-- <div
       ref="elPicture"
       class="hidden absolute right-0 top-[5vh] transition-transform duration-300 translate-x-[100vw]"
-      :class="mounted ? classImage : ''"
     >
       <div
         class="section-main font-mono drop-shadow-[10px_10px_0_#00000066]"
       ></div>
-    </div>
+    </div> -->
 
     <div
-      class="absolute -left-20 -top-[4%] transition-transform -translate-x-[70em] duration-300 z-[1] rotate-[20deg] -skew-x-[42deg]"
-      :class="mounted ? classImage2 : ''"
+      class="absolute -left-20 -top-[4%] transition-transform !translate-x-[5vw] z-[1] rotate-[20deg] -skew-x-[42deg]"
     >
       <div
-        class="h-[80em] w-[80em] bg-blue-950 absolute top-0 flex rounded-3xl shadow-lg"
+        class="h-[80em] w-[80em] bg-blue-950 absolute top-0 flex rounded-3xl shadow-lg transition-transform translate-x-[-80em] duration-300"
+        :class="mounted ? '!translate-x-0' : ''"
       >
         <div
-          class="h-[70em] w-[70em] bg-sky-950 mt-12 rounded-3xl drop-shadow-[35px_35px_35px_black]"
+          class="h-[70em] w-[70em] bg-sky-950 mt-12 rounded-3xl drop-shadow-[35px_35px_35px_black] flex transition-transform translate-x-[-70em] duration-300 delay-150"
+          :class="mounted ? '!translate-x-0' : ''"
         ></div>
       </div>
     </div>
@@ -102,9 +102,9 @@ const listSocialMedia = [
 </template>
 
 <style lang="postcss">
-.section-main::before {
+/* .section-main::before {
   @apply text-[5vw] font-extrabold text-black;
-  /* @apply text-transparent bg-clip-text bg-gradient-to-r from-gray-950 to-black; */
+  @apply text-transparent bg-clip-text bg-gradient-to-r from-gray-950 to-black;
 }
 .section-main {
   transform: perspective(50px) rotateY(-5deg) scale(1.9, 1);
@@ -112,6 +112,24 @@ const listSocialMedia = [
     content: "PA\aMU\aJI";
     white-space: pre-wrap;
     line-height: 0.75;
+  }
+} */
+.bounce2 {
+  animation: bounce2 2s ease infinite;
+}
+@keyframes bounce2 {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0) !important;
+  }
+  40% {
+    transform: translateY(-30px) !important;
+  }
+  60% {
+    transform: translateY(-15px) !important;
   }
 }
 </style>
