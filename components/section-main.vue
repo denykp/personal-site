@@ -8,7 +8,7 @@ defineProps({
 const classImage = ref("!-translate-x-[5vw]");
 const classDesc = ref("!translate-y-[0vh]");
 const classImage2 = ref("!translate-x-[5vw]");
-const classSocial = ref("translate-y-0 bounce2");
+const classSocial = ref("!translate-y-0");
 
 const listSocialMedia = [
   {
@@ -31,12 +31,12 @@ const listSocialMedia = [
 
 <template>
   <div
-    class="h-screen w-screen bg-gradient-to-tr from-black to-gray-900 relative"
+    class="flex h-screen w-screen bg-gradient-to-tr from-black to-gray-900 relative"
   >
-    <div class="h-full flex justify-between items-center container mx-auto">
+    <div class="h-full flex items-center container mx-auto">
       <div class="text-white z-[2] px-5 md:px-0">
         <div
-          class="text-5xl font-bold -translate-y-[100vh] transition-transform duration-300"
+          class="text-4xl font-bold -translate-y-[100vh] transition-transform duration-300"
           :class="mounted ? classDesc : ''"
         >
           Hi, I'm Deny Kristianto Pamuji
@@ -50,29 +50,31 @@ const listSocialMedia = [
           (cz i like it more...<span class="italic">hehe</span>)
         </div>
       </div>
-      <div class="h-full text-white flex justify-end py-10">
-        <div
-          class="mt-auto translate-y-[30vh] transition-transform duration-500 delay-300 flex"
-          :class="mounted ? classSocial : ''"
-        >
-          <div v-for="item in listSocialMedia" class="group">
-            <nuxt-link
-              class="mb-2 flex items-center justify-end gap-3"
-              :to="item.url"
-              target="_blank"
+    </div>
+    <div
+      class="text-white absolute right-5 bottom-5 lg:right-10 lg:bottom-10 z-[2]"
+    >
+      <div
+        class="mt-auto translate-y-[30vh] transition-transform duration-500 delay-300 flex gap-2 p-3 bg-gray-800 rounded-xl bg-opacity-70"
+        :class="mounted ? classSocial : ''"
+      >
+        <div v-for="item in listSocialMedia" class="group">
+          <nuxt-link
+            class="flex items-center justify-end group-hover:gap-3"
+            :to="item.url"
+            target="_blank"
+          >
+            <div
+              class="text-lg w-0 group-hover:!w-20 text-right overflow-hidden transition-[width]"
             >
-              <div
-                class="text-lg w-0 group-hover:!w-20 text-right overflow-hidden transition-[width]"
-              >
-                {{ item.name }}
-              </div>
-              <Icon
-                :name="item.icon"
-                size="35"
-                class="transition-transform duration-200 group-hover:scale-150"
-              />
-            </nuxt-link>
-          </div>
+              {{ item.name }}
+            </div>
+            <Icon
+              :name="item.icon"
+              size="35"
+              class="transition-transform duration-200 group-hover:scale-150"
+            />
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -85,15 +87,16 @@ const listSocialMedia = [
       ></div>
     </div> -->
 
+    <!-- main triangle -->
     <div
       class="absolute -left-20 -top-[4%] transition-transform !translate-x-[5vw] z-[1] rotate-[20deg] -skew-x-[42deg]"
     >
       <div
-        class="h-[80em] w-[80em] bg-blue-950 absolute top-0 flex rounded-3xl shadow-lg transition-transform translate-x-[-80em] duration-300"
+        class="h-[150vh] w-[150vh] bg-blue-950 absolute top-0 flex rounded-3xl shadow-lg transition-transform translate-x-[-80em] duration-300"
         :class="mounted ? '!translate-x-0' : ''"
       >
         <div
-          class="h-[70em] w-[70em] bg-sky-950 mt-12 rounded-3xl drop-shadow-[35px_35px_35px_black] flex transition-transform translate-x-[-70em] duration-300 delay-150"
+          class="h-[135vh] w-[135vh] bg-sky-950 mt-12 rounded-3xl drop-shadow-[35px_35px_35px_black] flex transition-transform translate-x-[-70em] duration-300 delay-150"
           :class="mounted ? '!translate-x-0' : ''"
         ></div>
       </div>
@@ -114,22 +117,4 @@ const listSocialMedia = [
     line-height: 0.75;
   }
 } */
-.bounce2 {
-  animation: bounce2 2s ease infinite;
-}
-@keyframes bounce2 {
-  0%,
-  20%,
-  50%,
-  80%,
-  100% {
-    transform: translateY(0) !important;
-  }
-  40% {
-    transform: translateY(-30px) !important;
-  }
-  60% {
-    transform: translateY(-15px) !important;
-  }
-}
 </style>

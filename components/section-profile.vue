@@ -8,21 +8,23 @@ defineProps({
   <div
     class="h-screen w-screen text-white bg-gradient-to-tl from-gray-900 to-black relative"
   >
-    <div class="container mx-auto pt-40">
-      <div class="text-4xl font-bold mb-5 grid grid-cols-4">
+    <div class="container mx-auto pt-24 lg:pt-40 px-5 z-[2]">
+      <div
+        class="text-3xl font-bold mb-5 text-center lg:grid lg:grid-cols-4 lg:text-left"
+      >
         <div class="col-start-2 col-span-3">
           My Journey as a Software Engineer {{ isVisible }}
         </div>
       </div>
-      <div class="grid grid-cols-4">
-        <div>
+      <div class="lg:grid lg:grid-cols-4">
+        <div class="hidden lg:block">
           <div
             class="h-64 w-52 bg-gray-800 text-white flex justify-center items-center rounded-xl px-6 text-center"
           >
             Imagine this as a picture of me (lol)
           </div>
         </div>
-        <div class="col-span-3 text-justify">
+        <div class="lg:col-span-3 text-justify leading-4 lg:leading-normal">
           <!-- I have 3 years of experience in Frontend Web Programming, I have a few
           experiences on Angular and React.js projects, but I work mainly on
           Vue.js/NuxtJS. Previously I work in Desktop Programming for 6 years. I
@@ -49,11 +51,12 @@ defineProps({
       </div>
     </div>
     <div
-      class="relative z-[1] mt-72 w-[25em] ml-auto transition-all duration-700 delay-150"
+      class="relative z-[1] mt-72 w-[25em] ml-auto transition-all duration-700 delay-150 hidden lg:block animate-spin"
       :class="isVisible ? '!mt-20' : ''"
+      style="animation-duration: 5s"
     >
       <div
-        class="absolute right-0 top-0 h-[25em] w-[25em] border-8 border-blue-950 rounded-full"
+        class="h-[25em] w-[25em] border-8 border-blue-950 rounded-full"
       ></div>
       <div
         class="absolute right-0 top-0 h-[10em] w-[10em] border-8 border-sky-950 rounded-full"

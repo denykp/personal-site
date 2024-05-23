@@ -31,9 +31,9 @@ const listCompany = [
 
 <template>
   <div
-    class="bg-black h-screen w-screen text-white py-10 bg-gradient-to-bl from-gray-900 to-black relative"
+    class="bg-black h-screen w-screen text-white bg-gradient-to-bl from-gray-900 to-black relative px-5"
   >
-    <div class="container mx-auto pt-32">
+    <div class="container mx-auto pt-24 lg:pt-40">
       <div class="text-4xl font-bold mb-10">
         Companies I've been working for
       </div>
@@ -45,14 +45,51 @@ const listCompany = [
           target="_blank"
         >
           <div>
-            <div class="text-xl font-bold flex w-fit">
-              <span>{{ item.name }}&nbsp;</span>
-              <span>({{ item.years }})</span>
+            <div class="font-bold lg:flex w-fit">
+              <div class="text-xl">{{ item.name }}&nbsp;</div>
+              <div class="text-md md:text-xl">({{ item.years }})</div>
             </div>
             <div>Stacks: {{ item.stacks.join(", ") }}</div>
           </div>
         </nuxt-link>
       </div>
     </div>
+    <marquee
+      direction="right"
+      class="absolute bottom-0 -mx-5 h-64 pt-24 hidden lg:flex"
+    >
+      <div class="animate-bounce">
+        <div
+          class="relative h-[10em] w-[10em] animate-[spin_3.5s_linear_infinite]"
+        >
+          <div
+            class="absolute right-0 top-0 h-[10em] w-[10em] border-4 border-blue-950 rounded-full"
+          ></div>
+          <div
+            class="absolute right-0 top-0 h-[3em] w-[3em] border-4 border-sky-950 rounded-full"
+          ></div>
+          <div
+            class="absolute left-0 top-0 translate-y-[230%] h-[3em] w-[3em] border-4 border-sky-950 rounded-full"
+          ></div>
+        </div>
+      </div>
+    </marquee>
   </div>
 </template>
+
+<style lang="postcss">
+/* .bounce2 {
+  animation: bounce2 1s linear infinite;
+}
+@keyframes bounce2 {
+  0%,
+  100% {
+    transform: translateY(-45%);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+} */
+</style>
