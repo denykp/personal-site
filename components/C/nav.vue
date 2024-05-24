@@ -4,9 +4,7 @@ defineProps({
   listMenu: Array(Object),
   activeMenu: String,
 });
-const scrollToView = (sectionId: string) => {
-  document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
-};
+defineEmits(["scrollTo"]);
 </script>
 
 <template>
@@ -29,7 +27,7 @@ const scrollToView = (sectionId: string) => {
         :key="idx"
         class="section whitespace-nowrap"
         :class="activeMenu == item.name ? 'active-section' : ''"
-        @click="scrollToView(`section-${item.name}`)"
+        @click="$emit('scrollTo', `section-${item.name}`)"
       >
         {{ item.label }}
       </div>
@@ -44,7 +42,7 @@ const scrollToView = (sectionId: string) => {
         :key="idx"
         class="section"
         :class="activeMenu == item.name ? 'active-section' : ''"
-        @click="scrollToView(`section-${item.name}`)"
+        @click="$emit('scrollTo', `section-${item.name}`)"
       >
         {{ item.label }}
       </div>

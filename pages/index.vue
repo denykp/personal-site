@@ -16,7 +16,7 @@ const activeSection = computed(() => {
   return listSection[sectionIdx.value];
 });
 
-const listMenu = ref([
+const listMenu = [
   {
     name: "main",
     label: "Main",
@@ -29,11 +29,18 @@ const listMenu = ref([
     name: "experience",
     label: "Work Experience",
   },
-]);
+];
+const scrollToView = (sectionId: string) => {
+  document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
+};
 </script>
 
 <template>
-  <c-nav :list-menu="listMenu" :active-menu="activeSection"></c-nav>
+  <c-nav
+    :list-menu="listMenu"
+    :active-menu="activeSection"
+    @scroll-to="scrollToView"
+  ></c-nav>
   <div
     class="snap-y snap-mandatory overflow-y-auto max-h-screen"
     @scroll="handleScroll"

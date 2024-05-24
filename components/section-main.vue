@@ -5,9 +5,9 @@ defineProps({
     default: false,
   },
 });
-const classImage = ref("!-translate-x-[5vw]");
+// const classImage = ref("!-translate-x-[5vw]");
 const classDesc = ref("!translate-y-[0vh]");
-const classImage2 = ref("!translate-x-[5vw]");
+// const classImage2 = ref("!translate-x-[5vw]");
 const classSocial = ref("!translate-y-0");
 
 const listSocialMedia = [
@@ -31,7 +31,7 @@ const listSocialMedia = [
 
 <template>
   <div
-    class="flex h-screen w-screen bg-gradient-to-tr from-black to-gray-900 relative"
+    class="flex h-screen w-screen bg-gradient-to-tr from-black to-gray-900 relative overflow-x-clip"
   >
     <div class="h-full flex items-center container mx-auto">
       <div class="text-white z-[2] px-5 md:px-0">
@@ -49,10 +49,33 @@ const listSocialMedia = [
           Developer <br />
           (cz i like it more...<span class="italic">hehe</span>)
         </div>
+        <div
+          class="lg:hidden mt-5 w-[fit-content] transition-opacity duration-500 delay-300 flex gap-2 p-3 bg-gray-800 rounded-xl bg-opacity-70 opacity-0"
+          :class="mounted ? 'opacity-100' : ''"
+        >
+          <div v-for="item in listSocialMedia" class="group">
+            <nuxt-link
+              class="flex items-center justify-end group-hover:gap-3"
+              :to="item.url"
+              target="_blank"
+            >
+              <div
+                class="text-lg w-0 group-hover:!w-20 text-right overflow-hidden transition-[width]"
+              >
+                {{ item.name }}
+              </div>
+              <Icon
+                :name="item.icon"
+                size="35"
+                class="transition-transform duration-200 group-hover:scale-150"
+              />
+            </nuxt-link>
+          </div>
+        </div>
       </div>
     </div>
     <div
-      class="text-white absolute right-5 bottom-5 lg:right-10 lg:bottom-10 z-[2]"
+      class="text-white absolute right-5 bottom-[5vh] lg:right-10 lg:bottom-10 z-[2] hidden lg:block"
     >
       <div
         class="mt-auto translate-y-[30vh] transition-transform duration-500 delay-300 flex gap-2 p-3 bg-gray-800 rounded-xl bg-opacity-70"
@@ -88,6 +111,9 @@ const listSocialMedia = [
     </div> -->
 
     <!-- main triangle -->
+    <!-- <div class="absolute right-0 bottom-0 z-[1] bg">
+      <img src="/assets/images/sendiri.jpg" alt="" class="h-[100vh] bg-child" />
+    </div> -->
     <div
       class="absolute -left-20 -top-[4%] transition-transform -translate-x-[20vw] lg:translate-x-[5vw] z-[1] rotate-[20deg] -skew-x-[42deg]"
     >
@@ -117,4 +143,25 @@ const listSocialMedia = [
     line-height: 0.75;
   }
 } */
+
+/* .bg {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+} */
+.bg-child {
+  /* background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent; */
+  -webkit-mask-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(0, 0, 0, 1)),
+    to(rgba(0, 0, 0, 0))
+  );
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
 </style>

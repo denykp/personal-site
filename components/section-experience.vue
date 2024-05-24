@@ -54,26 +54,25 @@ const listCompany = [
         </nuxt-link>
       </div>
     </div>
-    <marquee
-      direction="right"
-      class="absolute bottom-0 -mx-5 h-64 pt-24 hidden lg:flex"
-    >
-      <div class="animate-bounce">
-        <div
-          class="relative h-[10em] w-[10em] animate-[spin_3.5s_linear_infinite]"
-        >
+    <div class="absolute bottom-0 -mx-5 h-64 pt-24 hidden lg:block w-full">
+      <div class="animate-marquee-right flex">
+        <div class="animate-bounce flex">
           <div
-            class="absolute right-0 top-0 h-[10em] w-[10em] border-4 border-blue-950 rounded-full"
-          ></div>
-          <div
-            class="absolute right-0 top-0 h-[3em] w-[3em] border-4 border-sky-950 rounded-full"
-          ></div>
-          <div
-            class="absolute left-0 top-0 translate-y-[230%] h-[3em] w-[3em] border-4 border-sky-950 rounded-full"
-          ></div>
+            class="relative h-[10em] w-[10em] animate-[spin_3.5s_linear_infinite]"
+          >
+            <div
+              class="absolute right-0 top-0 h-[10em] w-[10em] border-4 border-blue-950 rounded-full"
+            ></div>
+            <div
+              class="absolute right-0 top-0 h-[3em] w-[3em] border-4 border-sky-950 rounded-full"
+            ></div>
+            <div
+              class="absolute left-0 top-0 translate-y-[230%] h-[3em] w-[3em] border-4 border-sky-950 rounded-full"
+            ></div>
+          </div>
         </div>
       </div>
-    </marquee>
+    </div>
   </div>
 </template>
 
