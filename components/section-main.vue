@@ -89,7 +89,7 @@ const listSocialMedia = [
 
     <!-- main triangle -->
     <div
-      class="absolute -left-20 -top-[4%] transition-transform !translate-x-[5vw] z-[1] rotate-[20deg] -skew-x-[42deg]"
+      class="absolute -left-20 -top-[4%] transition-transform -translate-x-[20vw] lg:translate-x-[5vw] z-[1] rotate-[20deg] -skew-x-[42deg]"
     >
       <div
         class="h-[150vh] w-[150vh] bg-blue-950 absolute top-0 flex rounded-3xl shadow-lg transition-transform translate-x-[-80em] duration-300"
