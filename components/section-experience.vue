@@ -31,7 +31,7 @@ const listCompany = [
 
 <template>
   <div
-    class="bg-black h-screen w-screen text-white bg-gradient-to-bl from-gray-900 to-black relative px-5"
+    class="bg-black h-screen w-full text-white bg-gradient-to-bl from-gray-900 to-black relative overflow-x-clip"
   >
     <div class="container mx-auto pt-24 lg:pt-40">
       <div class="text-4xl font-bold mb-10">

@@ -6,9 +6,9 @@ defineProps({
 
 <template>
   <div
-    class="h-screen w-screen text-white bg-gradient-to-tl from-gray-900 to-black relative"
+    class="h-screen w-full text-white bg-gradient-to-tl from-gray-900 to-black relative overflow-x-clip"
   >
-    <div class="container mx-auto pt-24 lg:pt-40 px-5 z-[2]">
+    <div class="container mx-auto pt-24 lg:pt-40 z-[2]">
       <div
         class="text-3xl font-bold mb-5 text-center lg:grid lg:grid-cols-4 lg:text-left"
       >

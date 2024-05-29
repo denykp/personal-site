@@ -31,7 +31,7 @@ const listSocialMedia = [
 
 <template>
   <div
-    class="flex h-screen w-screen bg-gradient-to-tr from-black to-gray-900 relative overflow-x-clip"
+    class="flex h-screen w-full bg-gradient-to-tr from-black to-gray-900 relative overflow-x-clip"
   >
     <div class="h-full flex items-center container mx-auto">
       <div class="text-white z-[2] px-5 md:px-0">
