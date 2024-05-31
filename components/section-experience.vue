@@ -33,7 +33,7 @@ const listCompany = [
   <div
     class="bg-black h-screen w-full text-white bg-gradient-to-bl from-gray-900 to-black relative overflow-x-clip"
   >
-    <div class="container mx-auto pt-24 lg:pt-40">
+    <div class="container mx-auto pt-24 lg:pt-40 px-5">
       <div class="text-4xl font-bold mb-10">
         Companies I've been working for
       </div>

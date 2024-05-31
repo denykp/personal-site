@@ -33,8 +33,8 @@ const listSocialMedia = [
   <div
     class="flex h-screen w-full bg-gradient-to-tr from-black to-gray-900 relative overflow-x-clip"
   >
-    <div class="h-full flex items-center container mx-auto">
-      <div class="text-white z-[2] px-5 md:px-0">
+    <div class="h-full flex items-center container mx-auto px-5">
+      <div class="text-white z-[2]">
         <div
           class="text-4xl font-bold -translate-y-[100vh] transition-transform duration-300"
           :class="mounted ? classDesc : ''"

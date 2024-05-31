@@ -35,7 +35,7 @@ defineEmits(["scrollTo"]);
   </div>
   <div class="hidden lg:block fixed mx-auto z-[2] w-full">
     <div
-      class="container mx-auto flex justify-end gap-4 font-bold text-base text-white rounded-lg py-2"
+      class="container mx-auto flex justify-end gap-4 font-bold text-base text-white rounded-lg py-2 px-5"
     >
       <div
         v-for="(item, idx) in listMenu"
