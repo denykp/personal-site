@@ -8,7 +8,7 @@ defineProps({
   <div
     class="h-screen w-full text-white bg-gradient-to-tl from-gray-900 to-black relative overflow-x-clip"
   >
-    <div class="container mx-auto pt-24 lg:pt-40 z-[2] px-5">
+    <UContainer class="pt-24 lg:pt-40 z-[2]">
       <div
         class="text-3xl font-bold mb-5 text-center lg:grid lg:grid-cols-4 lg:text-left"
       >
@@ -49,7 +49,7 @@ defineProps({
           to a Frontend Web Developer and I work daily on Vue.js and Nuxt.
         </div>
       </div>
-    </div>
+    </UContainer>
     <div
       class="relative z-[1] mt-72 w-[25em] ml-auto transition-all duration-700 delay-150 hidden lg:block animate-spin"
       :class="isVisible ? '!mt-20' : ''"

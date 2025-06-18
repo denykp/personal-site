@@ -2,8 +2,14 @@
 const mounted = ref(false);
 
 const sectionIdx = ref(0);
+const isScrolled = ref(false);
 const handleScroll = (e: any) => {
   const { scrollTop, offsetHeight } = e.target;
+  if (scrollTop > 300) {
+    isScrolled.value = true;
+  } else {
+    isScrolled.value = false;
+  }
   sectionIdx.value = Math.round(scrollTop / offsetHeight);
 };
 
@@ -39,6 +45,7 @@ const scrollToView = (sectionId: string) => {
   <c-nav
     :list-menu="listMenu"
     :active-menu="activeSection"
+    :is-scrolled="isScrolled"
     @scroll-to="scrollToView"
   ></c-nav>
   <div

@@ -9,7 +9,9 @@
 
 <template>
   <!-- <NuxtWelcome /> -->
-  <NuxtLayout>
-    <NuxtPage></NuxtPage>
-  </NuxtLayout>
+  <UApp>
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+  </UApp>
 </template>

@@ -23,7 +23,13 @@ const listCompany = [
   {
     name: "Privy Identitas Digital",
     url: "https://privy.id/",
-    years: "2022 - Now",
+    years: "2022 - 2024",
+    stacks: ["Vue.js", "Nuxt", "Javascript", "Typescript"],
+  },
+  {
+    name: "PT. Kita Semua Satu (Meda Technology)",
+    url: "https://www.meda.technology/",
+    years: "2024 - Now",
     stacks: ["Vue.js", "Nuxt", "Javascript", "Typescript"],
   },
 ];
@@ -33,29 +39,31 @@ const listCompany = [
   <div
     class="bg-black h-screen w-full text-white bg-gradient-to-bl from-gray-900 to-black relative overflow-x-clip"
   >
-    <div class="container mx-auto pt-24 lg:pt-40 px-5">
-      <div class="text-4xl font-bold mb-10">
-        Companies I've been working for
-      </div>
-      <div class="-ml-4">
-        <nuxt-link
-          v-for="item in listCompany"
-          class="mb-5 flex transition-[padding] duration-300 hover:outline hover:py-3 px-4 outline-gray-800 hover:bg-gradient-to-tl from-black to-gray-800 rounded-xl cursor-pointer"
-          :to="item.url"
-          target="_blank"
-        >
-          <div>
-            <div class="font-bold lg:flex w-fit">
-              <div class="text-xl">{{ item.name }}&nbsp;</div>
-              <div class="text-md md:text-xl">({{ item.years }})</div>
+    <UContainer class="z[2]">
+      <div class="pt-24 lg:pt-40 px-5">
+        <div class="text-4xl font-bold mb-10">
+          Companies I've been working for
+        </div>
+        <div class="-ml-4">
+          <nuxt-link
+            v-for="item in listCompany.reverse()"
+            class="mb-5 flex transition-[padding] duration-300 hover:outline py-2 px-4 outline-gray-800 hover:bg-gradient-to-tl from-black to-gray-800 rounded-xl cursor-pointer"
+            :to="item.url"
+            target="_blank"
+          >
+            <div>
+              <div class="font-bold lg:flex w-fit">
+                <div class="text-xl">{{ item.name }}&nbsp;</div>
+                <div class="text-md md:text-xl">({{ item.years }})</div>
+              </div>
+              <div>Stacks: {{ item.stacks.join(", ") }}</div>
             </div>
-            <div>Stacks: {{ item.stacks.join(", ") }}</div>
-          </div>
-        </nuxt-link>
+          </nuxt-link>
+        </div>
       </div>
-    </div>
-    <div class="absolute bottom-0 -mx-5 h-64 pt-24 hidden lg:block w-full">
-      <div class="animate-marquee-right flex">
+    </UContainer>
+    <div class="absolute bottom-0 -mx-5 h-52 hidden lg:block w-full">
+      <div class="animate-marquee-right flex mt-14">
         <div class="animate-bounce flex">
           <div
             class="relative h-[10em] w-[10em] animate-[spin_3.5s_linear_infinite]"
@@ -73,6 +81,7 @@ const listCompany = [
         </div>
       </div>
     </div>
+    <!-- <c-footer class="absolute bottom-0"></c-footer> -->
   </div>
 </template>
 
