@@ -13,7 +13,7 @@ defineProps({
         class="text-3xl font-bold mb-5 text-center lg:grid lg:grid-cols-4 lg:text-left"
       >
         <div class="col-start-2 col-span-3">
-          My Journey as a Software Engineer {{ isVisible }}
+          My Journey as a Software Engineer
         </div>
       </div>
       <div class="lg:grid lg:grid-cols-4">
@@ -50,7 +50,7 @@ defineProps({
         </div>
       </div>
     </UContainer>
-    <div
+    <!-- <div
       class="relative z-[1] mt-72 w-[25em] ml-auto transition-all duration-700 delay-150 hidden lg:block animate-spin"
       :class="isVisible ? '!mt-20' : ''"
       style="animation-duration: 5s"
@@ -64,6 +64,6 @@ defineProps({
       <div
         class="absolute left-0 top-0 translate-y-[160%] h-[10em] w-[10em] border-8 border-sky-950 rounded-full"
       ></div>
-    </div>
+    </div> -->
   </div>
 </template>

@@ -17,11 +17,6 @@ onMounted(() => {
   mounted.value = true;
 });
 
-const activeSection = computed(() => {
-  const listSection = ["main", "profile", "experience"];
-  return listSection[sectionIdx.value];
-});
-
 const listMenu = [
   {
     name: "main",
@@ -32,10 +27,15 @@ const listMenu = [
     label: "Brief Introduction",
   },
   {
-    name: "experience",
-    label: "Work Experience",
+    name: "portfolio",
+    label: "Portfolio",
   },
 ];
+
+const activeSection = computed(() => {
+  const listSection = listMenu.map((item) => item.name);
+  return listSection[sectionIdx.value];
+});
 const scrollToView = (sectionId: string) => {
   document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
 };
@@ -52,21 +52,18 @@ const scrollToView = (sectionId: string) => {
     class="snap-y snap-mandatory overflow-y-auto max-h-screen"
     @scroll="handleScroll"
   >
-    <section-main
-      id="section-main"
-      class="snap-start snap-always"
-      :mounted="mounted"
-    ></section-main>
+    <section-main id="section-main" class="" :mounted="mounted"></section-main>
     <section-profile
       id="section-profile"
-      class="snap-start snap-always"
+      class=""
       :is-visible="sectionIdx > 0"
     ></section-profile>
-    <section-experience
+    <!-- <section-experience
       id="section-experience"
       class="snap-start snap-always"
-    ></section-experience>
-    <c-footer class="snap-start snap-always"></c-footer>
+    ></section-experience> -->
+    <section-portfolio id="section-portfolio" class=""></section-portfolio>
+    <c-footer class=""></c-footer>
   </div>
 </template>
 

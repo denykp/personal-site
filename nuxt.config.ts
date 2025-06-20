@@ -7,8 +7,13 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/css/main.css"],
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@nuxt/icon", "nuxt-aos"],
+  modules: ["@nuxt/ui", "@nuxt/icon", "nuxt-aos", "@nuxt/image"],
   future: {
     compatibilityVersion: 4,
+  },
+  colorMode: {
+    preference: "dark",
+    fallback: "dark",
+    classSuffix: "",
   },
 });

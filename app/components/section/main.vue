@@ -32,6 +32,12 @@ const listSocialMedia = [
     icon: "mdi:github",
   },
 ];
+
+const listRole = [
+  "Frontend Engineer",
+  "Fullstack Node.js Engineer",
+  // "Desktop App Developer",
+];
 </script>
 
 <template>
@@ -51,12 +57,13 @@ const listSocialMedia = [
             class="mt-2 text-lg translate-y-[100vh] transition-transform duration-300"
             :class="mounted ? classDesc : ''"
           >
-            I used to be a Desktop App Developer, now I'm merely a Frontend Web
+            <!-- I used to be a Desktop App Developer, now I'm merely a Frontend Web
             Developer <br />
-            (cz i like it more...<span class="italic">hehe</span>)
+            (cz i like it more...<span class="italic">hehe</span>) -->
+            <TypingAnimation :strings="listRole" leading="I'm a" />
           </div>
           <div
-            class="lg:hidden mt-5 w-[fit-content] transition-opacity duration-500 delay-300 flex gap-2 p-3 bg-gray-800 rounded-xl bg-opacity-70 opacity-0"
+            class="mt-5 w-[fit-content] transition-opacity duration-500 delay-300 flex gap-2 p-3 bg-gray-800 rounded-xl bg-opacity-70 opacity-0"
             :class="mounted ? 'opacity-100' : ''"
           >
             <div v-for="item in listSocialMedia" class="group">
@@ -80,7 +87,7 @@ const listSocialMedia = [
           </div>
         </div>
       </div>
-      <div
+      <!-- <div
         class="text-white absolute right-5 bottom-[5vh] lg:right-10 lg:bottom-10 z-[2] hidden lg:block"
       >
         <div
@@ -106,7 +113,7 @@ const listSocialMedia = [
             </nuxt-link>
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- <div
       ref="elPicture"
       class="hidden absolute right-0 top-[5vh] transition-transform duration-300 translate-x-[100vw]"
