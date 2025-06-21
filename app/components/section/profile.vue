@@ -44,9 +44,15 @@ defineProps({
           that the programming world is already shifting to the web app and
           mobile app. I felt like being left behind (╥﹏╥). Then I got my first
           experience with the web app from an Angular 4 project, it feels like a
-          different world to me.<br /><br />
-          Since then I fell in love with web app development, I switch my career
-          to a Frontend Web Developer and I work daily on Vue.js and Nuxt.
+          different world to me. Since then I fell in love with web app
+          development, I switch my career to a Frontend Engineer and I work
+          daily on Nuxt and Vue.<br /><br />
+          But as we all know, technology never fall asleep. We shall never stop
+          learning to stay relevant with the latest technology. So I jump up
+          into another framework and learning Next and React. For the backend
+          environment I learn ExpressJS, it kind of old tech for some people but
+          I think it's a good start to learn on backend stuff since it also
+          based on javascript.
         </div>
       </div>
     </UContainer>

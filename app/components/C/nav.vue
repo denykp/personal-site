@@ -9,7 +9,7 @@ defineEmits(["scrollTo"]);
 </script>
 
 <template>
-  <div class="block md:hidden fixed right-4 top-4 z-[3]">
+  <div class="block md:hidden fixed right-4 top-4 z-[9]">
     <div
       class="text-4xl text-white font-bold p-1 bg-gray-800 rounded-lg cursor-pointer"
       @click="showMenu = !showMenu"
@@ -20,7 +20,7 @@ defineEmits(["scrollTo"]);
     </div>
     <div
       v-if="showMenu"
-      class="absolute text-white right-0 bg-gray-900 rounded-lg z-[3] outline-1"
+      class="absolute text-white right-0 bg-gray-900 rounded-lg z-[9] outline-1"
       :class="showMenu ? 'h-auto' : ''"
     >
       <div
