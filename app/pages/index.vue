@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import type { Menu } from "~/types";
+
 const mounted = ref(false);
 
 const sectionIdx = ref(0);
@@ -17,7 +19,7 @@ onMounted(() => {
   mounted.value = true;
 });
 
-const listMenu = [
+const listMenu: Menu[] = [
   {
     name: "main",
     label: "Main",

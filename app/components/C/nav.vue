@@ -1,17 +1,26 @@
 <script setup lang="ts">
+import type { Menu } from "~/types";
+
 const showMenu = ref(false);
 defineProps({
-  listMenu: Array(Object),
+  listMenu: Array(Object) as PropType<Menu[]>,
   activeMenu: String,
   isScrolled: Boolean,
 });
-defineEmits(["scrollTo"]);
+const emit = defineEmits(["scrollTo"]);
+
+const handleMobileClick = (item: Menu) => {
+  emit("scrollTo", `section-${item.name}`);
+  setTimeout(() => {
+    showMenu.value = false;
+  }, 800);
+};
 </script>
 
 <template>
   <div class="block md:hidden fixed right-4 top-4 z-[9]">
     <div
-      class="text-4xl text-white font-bold p-1 bg-gray-800 rounded-lg cursor-pointer"
+      class="text-4xl text-white font-bold p-1 bg-gray-800 rounded-lg cursor-pointer transition-all"
       @click="showMenu = !showMenu"
     >
       <div class="flex">
@@ -28,7 +37,7 @@ defineEmits(["scrollTo"]);
         :key="idx"
         class="section whitespace-nowrap m-2"
         :class="activeMenu == item.name ? 'active-section' : ''"
-        @click="$emit('scrollTo', `section-${item.name}`)"
+        @click="handleMobileClick(item)"
       >
         {{ item.label }}
       </div>

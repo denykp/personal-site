@@ -138,11 +138,11 @@ const listRole = [
             class="h-[145vh] w-[145vh] bg-sky-950 mt-12 rounded-3xl drop-shadow-[35px_35px_35px_black] flex transition-transform translate-x-[-70em] duration-300 delay-150 relative"
             :class="mounted ? '!translate-x-0' : ''"
           >
-            <div class="absolute top-20 -right-10 rotate-270 text-neutral-500">
+            <div class="absolute top-20 -right-10 rotate-270 text-neutral-600">
               Nuxt|Vue|Next|React
             </div>
           </div>
-          <div class="absolute top-40 -right-30 rotate-270 text-neutral-500">
+          <div class="absolute top-40 -right-30 rotate-270 text-neutral-600">
             ExpressJS|MS SQL Server|MySQL|PostgreSQL
           </div>
         </div>

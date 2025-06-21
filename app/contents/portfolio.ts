@@ -28,6 +28,7 @@ export const listPortfolio: Portfolio[] = [
       "Tanstack Query",
       "Tanstack Table",
       "React Hook Form",
+      "Zod",
     ],
     project_type: "company",
   },
@@ -111,7 +112,17 @@ export const listPortfolio: Portfolio[] = [
   },
   {
     name: "Grocery Planning App",
-    images: [],
+    images: [
+      "/images/my-grocery/Screenshot 2025-05-11 173631.png",
+      "/images/my-grocery/Screenshot 2025-05-11 173733.png",
+      "/images/my-grocery/Screenshot 2025-05-11 173915.png",
+      "/images/my-grocery/Screenshot 2025-05-11 174057.png",
+      "/images/my-grocery/Screenshot 2025-05-11 174222.png",
+      "/images/my-grocery/Screenshot 2025-05-11 174553.png",
+      "/images/my-grocery/Screenshot 2025-05-11 174749.png",
+      "/images/my-grocery/Screenshot 2025-05-11 174815.png",
+      "/images/my-grocery/Screenshot 2025-05-11 174859.png",
+    ],
     description:
       "This web application helps you create grocery shopping lists effortlessly. Start by inputting menus and their ingredients as master data. Then, plan your meals, such as for the next few days, by assigning menus to each specific day. The app will automatically generate a comprehensive list of needed ingredients, ensuring you don’t overlook anything during your grocery shopping. It also has a PWA feature, so you can install it on your phone to make it easier for you to access the app. This app was developed using Nuxt 3 as the frontend, ExpressJS as the backend, and MySQL as the database.",
     url: "",
@@ -122,14 +133,33 @@ export const listPortfolio: Portfolio[] = [
       "Express.js",
       "MySQL",
       "Vee-Validate",
+      "Yup",
     ],
     project_type: "independent",
   },
   {
-    name: "Ayodya Dashboard Reporting",
-    images: [],
+    name: "BRILife Digital Platform",
+    images: [
+      "/images/brilife/Landing page Default.png",
+      "/images/brilife/Pembelian Produk - Langkah 1 Filled.png",
+      "/images/brilife/Pembelian Produk - Langkah 2 OTP Filled.png",
+      "/images/brilife/Pembelian Produk - Langkah 3 Filled.png",
+      "/images/brilife/Buy Insurance - Payment Page EWallet.png",
+    ],
     description:
-      "This is an extension of the existing Ayodya program, specifically designed to generate reports. Developed as a full-stack solution with Nuxt 3, it integrates seamlessly with the existing SQL Server database.",
+      "This is a site that provides information about BRILife’s insurance. We can also do a simulation inside it to better understand the amount we have to pay. After we decided which premium we chose, we can also continue to submit our data and make a payment on this site.",
+    url: "https://digital.brilife.co.id/",
+    stacks: ["Vue", "Nuxt", "TypeScript", "Vee-Validate", "Yup"],
+    project_type: "independent",
+  },
+  {
+    name: "Ayodya Dashboard Reporting",
+    images: [
+      "/images/ayodya-dashboard/Screenshot 2025-05-11 192229.png",
+      "/images/ayodya-dashboard/Screenshot 2025-05-11 192533.png",
+    ],
+    description:
+      "This is an extension of the existing desktop based Ayodya program, specifically designed to generate reports. Developed as a full-stack solution with Nuxt 3, it integrates seamlessly with the existing SQL Server database.",
     url: "",
     stacks: ["Vue", "Nuxt", "TypeScript", "MS SQL Server"],
     project_type: "independent",
