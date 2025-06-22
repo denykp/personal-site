@@ -130,7 +130,7 @@ export const listPortfolio: Portfolio[] = [
       "Vue",
       "Nuxt",
       "TypeScript",
-      "Express.js",
+      "Express",
       "MySQL",
       "Vee-Validate",
       "Yup",

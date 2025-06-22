@@ -18,8 +18,8 @@ const handleMobileClick = (item: Menu) => {
 </script>
 
 <template>
-  <div class="block md:hidden fixed right-4 top-4 z-[9]">
-    <div
+  <div class="hidden fixed right-4 top-4 z-[9]">
+    <!-- <div
       class="text-4xl text-white font-bold p-1 bg-gray-800 rounded-lg cursor-pointer transition-all"
       @click="showMenu = !showMenu"
     >
@@ -41,12 +41,37 @@ const handleMobileClick = (item: Menu) => {
       >
         {{ item.label }}
       </div>
-    </div>
+    </div> -->
+
+    <UPopover :content="{ align: 'center', side: 'bottom' }" class="relative">
+      <UButton
+        icon="mdi:menu"
+        color="neutral"
+        variant="subtle"
+        size="xl"
+        class="text-white bg-gray-800 rounded-lg cursor-pointer transition-all"
+        @click="showMenu = !showMenu"
+      />
+
+      <template #content>
+        <div class="p-1">
+          <div
+            v-for="(item, idx) in listMenu"
+            :key="idx"
+            class="section whitespace-nowrap m-2"
+            :class="activeMenu == item.name ? 'active-section' : ''"
+            @click="handleMobileClick(item)"
+          >
+            {{ item.label }}
+          </div>
+        </div>
+      </template>
+    </UPopover>
   </div>
   <div class="hidden md:block fixed z-[2] w-full top-3">
     <UContainer>
       <div
-        class="flex justify-end gap-4 font-bold text-base text-white rounded-lg py-2 px-5"
+        class="flex justify-end gap-4 font-bold text-base text-white rounded-lg py-2 px-2"
       >
         <div class="flex p-3" :class="isScrolled ? 'bg-black rounded-xl' : ''">
           <div

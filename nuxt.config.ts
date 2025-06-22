@@ -7,7 +7,13 @@ export default defineNuxtConfig({
   },
   css: ["~/assets/css/main.css"],
   devtools: { enabled: true },
-  modules: ["@nuxt/ui", "@nuxt/icon", "nuxt-aos", "@nuxt/image"],
+  modules: [
+    "@nuxt/ui",
+    "@nuxt/icon",
+    "nuxt-aos",
+    "@nuxt/image",
+    "@vueuse/nuxt",
+  ],
   future: {
     compatibilityVersion: 4,
   },

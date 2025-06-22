@@ -49,22 +49,22 @@ const scrollToView = (sectionId: string) => {
     :active-menu="activeSection"
     :is-scrolled="isScrolled"
     @scroll-to="scrollToView"
-  ></c-nav>
+  />
   <div
     class="snap-y snap-mandatory overflow-y-auto max-h-screen"
     @scroll="handleScroll"
   >
-    <section-main id="section-main" class="" :mounted="mounted"></section-main>
+    <section-main id="section-main" class="" :mounted="mounted" />
     <section-profile
       id="section-profile"
       class=""
       :is-visible="sectionIdx > 0"
-    ></section-profile>
+    />
     <!-- <section-experience
       id="section-experience"
       class="snap-start snap-always"
     ></section-experience> -->
-    <section-portfolio id="section-portfolio" class=""></section-portfolio>
+    <section-portfolio id="section-portfolio" :active-menu="activeSection" />
     <c-footer class=""></c-footer>
   </div>
 </template>
