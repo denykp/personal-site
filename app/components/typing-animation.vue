@@ -144,7 +144,7 @@ watch(
 <template>
   <div class="space-y-0">
     <div class="min-h-[2rem] flex items-center">
-      <span class="text-lg lg:text-2xl font-mono flex items-center">
+      <span class="text-base lg:text-2xl font-mono flex items-center">
         <div class="flex gap-2">
           <span v-if="leading">{{ leading }}</span>
           <span class="text-primary">{{ displayText }}</span>
