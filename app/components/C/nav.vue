@@ -73,7 +73,10 @@ const handleMobileClick = (item: Menu) => {
       <div
         class="flex justify-end gap-4 font-bold text-base text-white rounded-lg py-2 px-2"
       >
-        <div class="flex p-3" :class="isScrolled ? 'bg-black rounded-xl' : ''">
+        <div
+          class="flex p-3 gap-1"
+          :class="isScrolled ? 'bg-black rounded-xl' : ''"
+        >
           <div
             v-for="(item, idx) in listMenu"
             :key="idx"

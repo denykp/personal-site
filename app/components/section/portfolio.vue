@@ -179,20 +179,19 @@ const openDetail = (item: Portfolio) => {
     </UContainer>
     <!-- <c-footer class="absolute bottom-0"></c-footer> -->
 
-    <UModal v-model:open="displayModal" size="lg">
+    <UModal v-model:open="displayModal">
       <template #content>
-        <div class="p-5">
-          <div class="text-2xl font-bold mb-4 flex items-center gap-2">
-            <div>{{ selectedDetail?.name }}</div>
-            <UButton
-              v-if="selectedDetail?.url"
-              icon="i-line-md-external-link"
-              :to="selectedDetail?.url"
-              target="_blank"
-              variant="link"
-            />
-          </div>
-
+        <div class="text-2xl font-bold mb-4 flex items-center gap-2 p-5">
+          <div>{{ selectedDetail?.name }}</div>
+          <UButton
+            v-if="selectedDetail?.url"
+            icon="i-line-md-external-link"
+            :to="selectedDetail?.url"
+            target="_blank"
+            variant="link"
+          />
+        </div>
+        <div class="p-5 overflow-y-auto">
           <UCarousel
             v-slot="{ item }"
             :items="
@@ -237,6 +236,13 @@ const openDetail = (item: Portfolio) => {
           />
         </UCarousel> -->
         </div>
+        <UButton
+          label="Close"
+          class="m-4 justify-center"
+          color="neutral"
+          variant="outline"
+          @click="displayModal = false"
+        />
       </template>
     </UModal>
   </div>

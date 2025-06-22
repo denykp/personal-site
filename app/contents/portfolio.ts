@@ -183,11 +183,16 @@ export const listPortfolio: Portfolio[] = [
     project_type: "company",
   },
   {
-    name: "Bayarind Company Profile",
-    images: [],
+    name: "Bayarind Payment Gateway Company Profile",
+    images: [
+      "/images/pg-bayarind/Screenshot 2025-06-22 160620.png",
+      "/images/pg-bayarind/Screenshot 2025-06-22 160735.png",
+      "/images/pg-bayarind/Screenshot 2025-06-22 160905.png",
+      "/images/pg-bayarind/Screenshot 2025-06-22 160951.png",
+    ],
     description:
       " It is a company profile site that is used to give information to merchants if they want to know about our payment gateway service or anyone who might need it. It provides information about our product and fee, job vacancies, the latest news about stuff related to the payment gateway, and many more.",
-    url: "",
+    url: "https://pgbayarind.id",
     stacks: ["Vue", "Nuxt", "JavaScript", "Axios"],
     project_type: "company",
   },

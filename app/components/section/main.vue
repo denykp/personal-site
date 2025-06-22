@@ -42,7 +42,7 @@ const listRole = [
 
 <template>
   <div
-    class="flex h-screen w-full bg-gradient-to-tr from-black to-gray-900 overflow-x-clip"
+    class="flex h-screen w-full bg-gradient-to-tr from-black to-gray-900 overflow-x-clip relative"
   >
     <UContainer class="relative">
       <div class="h-full flex items-center">
@@ -127,27 +127,27 @@ const listRole = [
       <!-- <div class="absolute right-0 bottom-0 z-[1] bg">
       <img src="/assets/images/sendiri.jpg" alt="" class="h-[100vh] bg-child" />
     </div> -->
+    </UContainer>
+    <div
+      class="absolute -left-[1750px] top-[90vh] lg:-left-[105vw] lg:top-[90vh] transition-transform z-[1] -rotate-[70deg] skew-y-[45deg]"
+    >
       <div
-        class="absolute -left-40 -top-[4%] transition-transform -translate-x-[40vw] lg:translate-x-[5vw] z-[1] rotate-[20deg] -skew-x-[45deg]"
+        class="h-[160vh] w-[160vh] bg-blue-950 absolute top-0 flex rounded-3xl shadow-lg transition-transform translate-x-[-80em] duration-300"
+        :class="mounted ? '!translate-x-0' : ''"
       >
         <div
-          class="h-[160vh] w-[160vh] bg-blue-950 absolute top-0 flex rounded-3xl shadow-lg transition-transform translate-x-[-80em] duration-300"
-          :class="mounted ? '!translate-x-0' : ''"
+          class="h-[145vh] w-[145vh] bg-sky-950 mt-12 rounded-3xl drop-shadow-[-25px_25px_25px_black] flex transition-transform translate-y-[-3em] translate-x-[-70em] duration-300 delay-150 relative"
+          :class="mounted ? '!translate-x-18' : ''"
         >
-          <div
-            class="h-[145vh] w-[145vh] bg-sky-950 mt-12 rounded-3xl drop-shadow-[35px_35px_35px_black] flex transition-transform translate-x-[-70em] duration-300 delay-150 relative"
-            :class="mounted ? '!translate-x-0' : ''"
-          >
-            <div class="absolute top-20 -right-10 rotate-270 text-neutral-600">
-              Nuxt|Vue|Next|React
-            </div>
-          </div>
-          <div class="absolute top-40 -right-30 rotate-270 text-neutral-600">
-            ExpressJS|MS SQL Server|MySQL|PostgreSQL
+          <div class="absolute bottom-5 right-5 text-neutral-600">
+            Nuxt|Vue|Next|React
           </div>
         </div>
+        <div class="absolute bottom-5 right-5 text-neutral-600">
+          ExpressJS|MS SQL Server|MySQL|PostgreSQL
+        </div>
       </div>
-    </UContainer>
+    </div>
   </div>
 </template>
 
