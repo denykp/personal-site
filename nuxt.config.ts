@@ -13,6 +13,7 @@ export default defineNuxtConfig({
     "nuxt-aos",
     "@nuxt/image",
     "@vueuse/nuxt",
+    "@nuxtjs/seo",
   ],
   future: {
     compatibilityVersion: 4,
