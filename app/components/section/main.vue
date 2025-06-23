@@ -129,7 +129,7 @@ const listRole = [
     </div> -->
     </UContainer>
     <div
-      class="absolute -left-[1750px] top-[90vh] lg:-left-[105vw] lg:top-[90vh] transition-transform z-[1] -rotate-[70deg] skew-y-[45deg]"
+      class="absolute -left-[1750px] top-[90vh] lg:-left-[105vw] lg:top-[88vh] transition-transform z-[1] -rotate-[70deg] skew-y-[45deg]"
     >
       <div
         class="h-[160vh] w-[160vh] bg-blue-950 absolute top-0 flex rounded-3xl shadow-lg transition-transform translate-x-[-80em] duration-300"
