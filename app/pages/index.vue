@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import type { Menu } from "~/types";
 
+useSeoMeta({
+  title:
+    "Deny Kristianto Pamuji | Frontend Engineer | FullStack Node.js Engineer",
+  description:
+    "Frontend Engineer with 11 years of software development experience, including 5 years in web development using Vue and Nuxt, and 6 years in desktop application development. Skilled in building responsive interfaces, integrating backend APIs, and creating reporting systems. Comfortable working across the full stack using Express.js, SQL databases, and legacy systems like VB6",
+});
+
 const mounted = ref(false);
 
 const sectionIdx = ref(0);

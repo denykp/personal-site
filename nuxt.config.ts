@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Deny Kristianto Pamuji",
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
   },
   css: ["~/assets/css/main.css"],
