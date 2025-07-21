@@ -16,9 +16,6 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/seo",
   ],
-  future: {
-    compatibilityVersion: 4,
-  },
   compatibilityDate: "2024-11-27",
   colorMode: {
     preference: "dark",
