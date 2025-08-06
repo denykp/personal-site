@@ -130,7 +130,7 @@ const screenHeight = window?.innerHeight;
   <div
     class="flex h-screen w-full bg-gradient-to-tr from-black to-gray-900 overflow-x-clip relative"
   >
-    <UContainer class="relative py-40 grid grid-cols-2 gap-16">
+    <UContainer class="relative py-[25vh] lg:grid grid-cols-2 gap-16">
       <div class="h-full flex items-center">
         <div class="text-white z-[2] w-full">
           <div
@@ -181,7 +181,9 @@ const screenHeight = window?.innerHeight;
           </div>
         </div>
       </div>
-      <div class="flex items-center justify-center inner-shadow rounded-[25%]">
+      <div
+        class="hidden lg:flex items-center justify-center inner-shadow rounded-[25%]"
+      >
         <div class="grid grid-cols-4 gap-5 gap-y-10 justify-center">
           <div
             v-for="(item, index) in listStack"

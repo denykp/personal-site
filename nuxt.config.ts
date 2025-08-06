@@ -16,7 +16,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/seo",
   ],
-  // compatibilityDate: "2024-11-27",
+  compatibilityDate: "2025-08-06",
   components: [
     "~/components",
     {
