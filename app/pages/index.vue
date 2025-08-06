@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Menu } from "~/types";
+import type { Menu } from "~~/shared/types";
 
 useSeoMeta({
   title:
@@ -14,7 +14,7 @@ const sectionIdx = ref(0);
 const isScrolled = ref(false);
 const handleScroll = (e: any) => {
   const { scrollTop, offsetHeight } = e.target;
-  if (scrollTop > 300) {
+  if (scrollTop > 10) {
     isScrolled.value = true;
   } else {
     isScrolled.value = false;
@@ -31,10 +31,10 @@ const listMenu: Menu[] = [
     name: "main",
     label: "Main",
   },
-  {
-    name: "profile",
-    label: "Brief Introduction",
-  },
+  // {
+  //   name: "profile",
+  //   label: "Brief Introduction",
+  // },
   {
     name: "portfolio",
     label: "Portfolio",
@@ -62,11 +62,11 @@ const scrollToView = (sectionId: string) => {
     @scroll="handleScroll"
   >
     <section-main id="section-main" class="" :mounted="mounted" />
-    <section-profile
+    <!-- <section-profile
       id="section-profile"
       class=""
       :is-visible="sectionIdx > 0"
-    />
+    /> -->
     <!-- <section-experience
       id="section-experience"
       class="snap-start snap-always"

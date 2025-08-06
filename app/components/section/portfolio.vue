@@ -77,7 +77,7 @@ const openDetail = (item: Portfolio) => {
 
 <template>
   <div
-    class="bg-black pb-12 w-full text-white bg-gradient-to-bl from-gray-900 to-black overflow-x-clip pt-24 lg:pt-12"
+    class="bg-black pb-12 w-full text-white bg-gradient-to-bl from-black to-gray-900 overflow-x-clip pt-24 lg:pt-12"
   >
     <UContainer>
       <div>
@@ -133,7 +133,7 @@ const openDetail = (item: Portfolio) => {
         <div class="h-[75vh] overflow-y-auto scrollable-container-inset">
           <div
             v-for="item in displayedPortfolio"
-            class="mb-5 lg:flex lg:gap-8 p-4 transition-all duration-300 hover:outline outline-gray-800 bg-gradient-to-tl from-gray-950 to-gray-800 rounded-xl lg:h-38 cursor-pointer group lg:hover:h-44"
+            class="mb-5 lg:flex lg:gap-8 p-4 transition-all duration-300 hover:outline outline-gray-800 hover:bg-gradient-to-tl from-gray-950 to-gray-800 rounded-xl lg:h-38 cursor-pointer group lg:hover:h-44"
             @click="openDetail(item)"
           >
             <div class="shrink-0 hidden lg:block">

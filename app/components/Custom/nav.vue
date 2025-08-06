@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Menu } from "~/types";
-
 const showMenu = ref(false);
 defineProps({
   listMenu: Array(Object) as PropType<Menu[]>,
@@ -18,7 +16,7 @@ const handleMobileClick = (item: Menu) => {
 </script>
 
 <template>
-  <div class="hidden fixed right-4 top-4 z-[9]">
+  <div class="fixed right-4 top-4 z-[9]">
     <!-- <div
       class="text-4xl text-white font-bold p-1 bg-gray-800 rounded-lg cursor-pointer transition-all"
       @click="showMenu = !showMenu"
@@ -74,8 +72,8 @@ const handleMobileClick = (item: Menu) => {
         class="flex justify-end gap-4 font-bold text-base text-white rounded-lg py-2 px-2"
       >
         <div
-          class="flex p-3 gap-1"
-          :class="isScrolled ? 'bg-black rounded-xl' : ''"
+          class="flex p-3 gap-1 transition-all duration-300"
+          :class="isScrolled ? 'bg-gray-900 rounded-xl' : ''"
         >
           <div
             v-for="(item, idx) in listMenu"
