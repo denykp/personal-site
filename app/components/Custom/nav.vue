@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Menu } from "~/types";
-
 const showMenu = ref(false);
 defineProps({
   listMenu: Array(Object) as PropType<Menu[]>,

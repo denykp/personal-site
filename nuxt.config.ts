@@ -17,6 +17,13 @@ export default defineNuxtConfig({
     "@nuxtjs/seo",
   ],
   compatibilityDate: "2024-11-27",
+  components: [
+    "~/components",
+    {
+      path: "~/components/Custom",
+      prefix: "C",
+    },
+  ],
   colorMode: {
     preference: "dark",
     fallback: "dark",

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Menu } from "~/types";
+import type { Menu } from "~~/shared/types";
 
 useSeoMeta({
   title:
