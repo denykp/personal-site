@@ -6,7 +6,6 @@ defineProps({
   },
 });
 // const classImage = ref("!-translate-x-[5vw]");
-const classDesc = ref("!translate-y-[0vh]");
 // const classImage2 = ref("!translate-x-[5vw]");
 const classSocial = ref("!translate-y-0");
 
@@ -128,27 +127,30 @@ const screenHeight = window?.innerHeight;
 
 <template>
   <div
-    class="flex h-screen w-full bg-gradient-to-tr from-black to-gray-900 overflow-x-clip relative"
+    class="flex h-screen w-full bg-gradient-to-br from-black to-gray-900 overflow-x-clip relative"
   >
     <UContainer class="relative py-[25vh] lg:grid grid-cols-2 gap-16">
       <div class="h-full flex items-center">
         <div class="text-white z-[2] w-full">
           <div
-            class="text-4xl font-bold -translate-y-[100vh] transition-transform duration-300"
-            :class="mounted ? classDesc : ''"
+            class="text-4xl font-bold transition-transform duration-300 opacity-0"
+            data-aos="fade-down"
           >
             Hi, I'm Deny Kristianto Pamuji
           </div>
           <div
-            class="mt-2 text-lg translate-y-[100vh] transition-transform duration-300"
-            :class="mounted ? classDesc : ''"
+            class="mt-2 text-lg transition-transform duration-300 opacity-0"
+            data-aos="fade-down"
           >
             <!-- I used to be a Desktop App Developer, now I'm merely a Frontend Web
             Developer <br />
             (cz i like it more...<span class="italic">hehe</span>) -->
             <TypingAnimation :strings="listRole" leading="I'm a" />
           </div>
-          <div class="text-xs text-gray-400">
+          <div
+            class="text-xs text-gray-400 transition-all duration-500 overflow-hidden line-clamp-4"
+            :class="mounted ? 'w-full' : 'w-0'"
+          >
             With 10+ years of software development experience, including 5 years
             in web development using Vue and Nuxt, and 6 years in desktop
             application development. Skilled in building responsive interfaces,
@@ -157,8 +159,9 @@ const screenHeight = window?.innerHeight;
             databases, and legacy systems like VB6
           </div>
           <div
-            class="mt-5 w-[fit-content] transition-opacity duration-500 delay-300 flex gap-2 p-3 bg-gray-800 rounded-xl bg-opacity-70 opacity-0"
-            :class="mounted ? 'opacity-100' : ''"
+            class="mt-5 w-[fit-content] flex gap-2 p-3 bg-gray-800 rounded-xl bg-opacity-70 opacity-0"
+            data-aos="fade-up"
+            data-aos-delay="200"
           >
             <div v-for="item in listSocialMedia" class="group">
               <nuxt-link
@@ -182,7 +185,10 @@ const screenHeight = window?.innerHeight;
         </div>
       </div>
       <div
-        class="hidden lg:flex items-center justify-center inner-shadow rounded-[25%]"
+        class="hidden items-center justify-center inner-shadow rounded-[25%] opacity-0"
+        :class="mounted ? 'lg:flex' : ''"
+        data-aos="zoom-in"
+        data-aos-delay="200"
       >
         <div class="grid grid-cols-4 gap-5 gap-y-10 justify-center">
           <div

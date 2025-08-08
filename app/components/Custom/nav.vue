@@ -16,7 +16,7 @@ const handleMobileClick = (item: Menu) => {
 </script>
 
 <template>
-  <div class="fixed right-4 top-4 z-[9]">
+  <div class="hidden fixed right-4 top-4 z-[9]">
     <!-- <div
       class="text-4xl text-white font-bold p-1 bg-gray-800 rounded-lg cursor-pointer transition-all"
       @click="showMenu = !showMenu"

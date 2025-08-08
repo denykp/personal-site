@@ -51,12 +51,12 @@ const scrollToView = (sectionId: string) => {
 </script>
 
 <template>
-  <c-nav
+  <!-- <c-nav
     :list-menu="listMenu"
     :active-menu="activeSection"
     :is-scrolled="isScrolled"
     @scroll-to="scrollToView"
-  />
+  /> -->
   <div
     class="snap-y snap-mandatory overflow-y-auto max-h-screen"
     @scroll="handleScroll"
@@ -71,8 +71,12 @@ const scrollToView = (sectionId: string) => {
       id="section-experience"
       class="snap-start snap-always"
     ></section-experience> -->
-    <section-portfolio id="section-portfolio" :active-menu="activeSection" />
-    <c-footer class=""></c-footer>
+    <section-portfolio
+      v-if="mounted"
+      id="section-portfolio"
+      :active-menu="activeSection"
+    />
+    <c-footer v-if="mounted" class=""></c-footer>
   </div>
 </template>
 
