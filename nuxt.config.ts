@@ -5,6 +5,7 @@ export default defineNuxtConfig({
       title: "Deny Kristianto Pamuji",
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
+    pageTransition: { name: "page", mode: "out-in" },
   },
   css: ["~/assets/css/main.css"],
   devtools: { enabled: true },

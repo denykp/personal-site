@@ -1,6 +1,0 @@
-.section {
-  @apply cursor-pointer hover:outline rounded-lg px-4 py-1 bg-opacity-0;
-}
-.active-section {
-  @apply bg-gradient-to-tr from-gray-800 to-gray-600 rounded-lg !outline-none transition-all duration-300;
-}
