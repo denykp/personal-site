@@ -7,12 +7,13 @@ interface Props {
   label?: string;
   placeholder?: string;
   type?: string;
-  as?: "input" | "select" | "textarea" | "color-picker";
+  as?: "input" | "select" | "textarea" | "color-picker" | "file-picker";
   items?: Array<{ label: string; value: string | number }>;
   required?: boolean;
   class?: string;
   size?: "sm" | "md" | "lg" | "xl";
   preview?: string;
+  accept?: string;
 }
 
 const props = defineProps<Props>();
@@ -65,12 +66,14 @@ const inputProps = computed(() => ({
   items: props.items,
   class: props.class,
   size: props.size ?? "lg",
+  accept: props.accept,
 }));
 
 const UInput = resolveComponent("UInput");
 const USelect = resolveComponent("USelect");
 const UTextarea = resolveComponent("UTextarea");
 const CColorPicker = resolveComponent("CColorPicker");
+const CFilePicker = resolveComponent("CFilePicker");
 const renderComponent = computed(() => {
   switch (props.as) {
     case "select":
@@ -81,6 +84,8 @@ const renderComponent = computed(() => {
       return UTextarea;
     case "color-picker":
       return CColorPicker;
+    case "file-picker":
+      return CFilePicker;
     default:
       return UInput;
   }
@@ -97,18 +102,6 @@ const parsedErrorMessage = computed(() => {
     :help="meta.touched && errorMessage ? '' : undefined"
     :required="required"
   >
-    <NuxtLink
-      v-if="as === 'input' && type === 'file' && filePreview.length > 0"
-      class="mb-2"
-      :to="filePreview[0]"
-      target="_blank"
-    >
-      <NuxtImg
-        :src="filePreview[0]"
-        class="w-[127px] h-[127px] object-cover rounded-lg mb-2"
-        @click="displayFilePreview = true"
-      />
-    </NuxtLink>
     <div class="flex gap-4">
       <component :is="renderComponent" v-bind="inputProps">
         <template v-if="isPasswordType" #trailing>

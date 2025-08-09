@@ -8,40 +8,49 @@ const props = defineProps<{
 const emit = defineEmits(["submitted"]);
 const isCreate = computed(() => !props.detailData?.id);
 
-const schema = v.object({
-  name: v.pipe(v.string(), v.nonEmpty("Name is required")),
-  url: v.pipe(v.string(), v.nonEmpty("URL is required")),
-  logo: v.optional(v.file()),
-  color: v.union([
-    v.pipe(v.string(), v.hexColor("Invalid hex color format.")),
-    v.literal(""),
-  ]),
+const schema = v.pipe(
+  v.object({
+    name: v.pipe(v.string(), v.nonEmpty("Name is required")),
+    url: v.pipe(v.string(), v.nonEmpty("URL is required")),
+    logo: v.optional(v.file()),
+    color: v.union([
+      v.pipe(v.string(), v.hexColor("Invalid hex color format.")),
+      v.literal(""),
+    ]),
+  }),
+  v.forward(
+    v.check((input) => {
+      const hasLogo = input.logo !== undefined;
+      const hasColor = input.color !== "";
+      return hasLogo || hasColor;
+    }, "Either logo or color must be provided"),
+    ["logo"] // This will attach the error to the logo field
+  )
+);
+const {
+  handleSubmit,
+  resetForm,
+  setFieldError,
+  setFieldValue,
+  errors,
+  values,
+} = useForm({
+  validationSchema: toTypedSchema(schema),
+  initialValues: {
+    name: "",
+    url: "",
+    logo: undefined as File | undefined,
+    color: "",
+  },
 });
-const { handleSubmit, resetForm, setFieldError, setFieldValue, values } =
-  useForm({
-    validationSchema: toTypedSchema(schema),
-    initialValues: {
-      name: "",
-      url: "",
-      logo: undefined as File | undefined,
-      color: "",
-    },
-  });
-const handleLogoChange = (files: FileList | null) => {
-  // console.log("handleLogoChange", files);
-  if (files && files.length > 0) {
-    const file = files[0];
-    setFieldValue("logo", file);
-  }
-};
 
-onMounted(() => {
+onMounted(async () => {
   if (props.detailData) {
     resetForm({
       values: {
         name: props.detailData.name,
         url: props.detailData.url,
-        logo: undefined as File | undefined,
+        logo: await urlToObject(props.detailData.logo),
         color: props.detailData.color,
       },
     });
@@ -51,7 +60,6 @@ onMounted(() => {
 const { submitData } = useApiStack();
 const loadingSubmit = ref(false);
 const onSubmit = handleSubmit(async (data) => {
-  console.log(data);
   loadingSubmit.value = true;
   const res = await submitData(props.detailData?.id, data);
   if (res) {
@@ -69,7 +77,7 @@ const onSubmit = handleSubmit(async (data) => {
 <template>
   <div class="p-4 max-h-[70vh] overflow-y-auto">
     <div class="flex flex-col gap-4">
-      {{ values }}
+      {{ errors }} | {{ values }}
       <VFormField
         label="Name"
         name="name"
@@ -86,12 +94,10 @@ const onSubmit = handleSubmit(async (data) => {
       />
       <VFormField
         label="Logo"
-        name="logo_temporary"
-        as="input"
-        type="file"
+        name="logo"
+        as="file-picker"
         class="w-full"
-        :preview="props.detailData?.logo as string"
-        @change="handleLogoChange"
+        accept="image/*"
       />
       <VFormField
         label="Color"
