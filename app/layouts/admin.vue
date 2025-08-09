@@ -39,7 +39,7 @@ const sidebarCollapsed = ref(false);
       >
         <div
           v-if="!sidebarCollapsed"
-          class="mb-4 text-2xl font-bold line-clamp-1"
+          class="mb-4 text-2xl font-bold line-clamp-1 text-center"
         >
           Admin Dashboard
         </div>

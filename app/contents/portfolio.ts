@@ -233,7 +233,7 @@ export const listPortfolio: Portfolio[] = [
     project_type: "company",
   },
   {
-    name: "Kosmetikatama Super Indah (Inez Cosmetics)- Purchasing",
+    name: "Purchasing at Kosmetikatama Super Indah (Inez Cosmetics)",
     images: [],
     description:
       "Added a tracking feature to find out the progress of purchasing raw materials. Starting from purchase requests, purchase orders, and purchasing, to receiving.",
@@ -242,7 +242,7 @@ export const listPortfolio: Portfolio[] = [
     project_type: "company",
   },
   {
-    name: "Kosmetikatama Super Indah (Inez Cosmetics)- Order dan Sales",
+    name: "Order and Sales at Kosmetikatama Super Indah (Inez Cosmetics)",
     images: [],
     description:
       "Developing a web service to receive and store data on orders and sales made by Beauty Advisors (BA) in various store locations. The system also records stock data and provides reports on transactions conducted by BAs",

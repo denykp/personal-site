@@ -12,7 +12,7 @@ const listProjectType = computed(() => {
   return ["All"].concat([...new Set(list)]);
 });
 const highlightTechs = ["Vue", "Nuxt", "React", "Next", "Express"] as const;
-const listTechStack = computed(() => {
+const listStack = computed(() => {
   const allStacks = listPortfolio.flatMap((p) => p.stacks);
 
   // Count frequency
@@ -36,7 +36,7 @@ const listTechStack = computed(() => {
     return freqDiff !== 0 ? freqDiff : a.localeCompare(b);
   });
 });
-// const listTechStack = computed(() => {
+// const listStack = computed(() => {
 //   const list = listPortfolio
 //     .map((val) => val.stacks)
 //     .reduce((res, val) => {
@@ -101,7 +101,7 @@ const openDetail = (item: Portfolio) => {
                 id="stacks"
                 multiple
                 v-model="filter.stacks"
-                :items="listTechStack"
+                :items="listStack"
                 class="w-36"
               />
             </div>

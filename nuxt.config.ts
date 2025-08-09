@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@vueuse/nuxt",
     "@nuxtjs/seo",
+    "@vee-validate/nuxt",
   ],
   compatibilityDate: "2025-08-06",
   components: [
