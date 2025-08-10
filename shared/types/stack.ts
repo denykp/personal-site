@@ -1,7 +1,7 @@
 export interface Stack {
   name: string;
   url: string;
-  logo?: File;
+  logo?: File | string;
   color?: string;
 }
 

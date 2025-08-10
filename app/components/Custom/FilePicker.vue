@@ -1,17 +1,20 @@
 <script setup lang="ts">
 const props = defineProps<{
-  modelValue: File | null;
+  modelValue: File | string | null;
   inputBaseClass?: string;
   placeholder?: string;
   accept?: string;
 }>();
 const emit = defineEmits(["update:modelValue"]);
-const value = computed<File | null>({
+const value = computed<File | string | null>({
   get: () => props.modelValue,
-  set: (val: File | null) => emit("update:modelValue", val),
+  set: (val: File | string | null) => emit("update:modelValue", val),
 });
 const filePreview = computed(() => {
   if (props.modelValue) {
+    if (typeof props.modelValue === "string") {
+      return props.modelValue;
+    }
     return URL.createObjectURL(props.modelValue);
   }
   return "";

@@ -12,7 +12,7 @@ const schema = v.pipe(
   v.object({
     name: v.pipe(v.string(), v.nonEmpty("Name is required")),
     url: v.pipe(v.string(), v.nonEmpty("URL is required")),
-    logo: v.optional(v.file()),
+    logo: v.optional(v.union([v.file(), v.string()])),
     color: v.union([
       v.pipe(v.string(), v.hexColor("Invalid hex color format.")),
       v.literal(""),
@@ -50,7 +50,7 @@ onMounted(async () => {
       values: {
         name: props.detailData.name,
         url: props.detailData.url,
-        logo: await urlToObject(props.detailData.logo),
+        logo: props.detailData.logo,
         color: props.detailData.color,
       },
     });

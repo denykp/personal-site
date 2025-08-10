@@ -7,12 +7,32 @@ export default function () {
 
   const submitData = async (id: string | undefined, payload: Stack) => {
     try {
-      await $fetch(id ? `/api/stacks/${id}` : `/api/stacks`, {
-        method: id ? "put" : "post",
-        body: payload,
+      const formData = new FormData();
+      Object.entries(payload).forEach(([key, value]) => {
+        if (value instanceof File) {
+          formData.append(key, value);
+        } else {
+          formData.append(key, String(value));
+        }
       });
 
-      return true;
+      const response = await $fetch(id ? `/api/stacks/${id}` : `/api/stacks`, {
+        method: id ? "put" : "post",
+        body: formData,
+        onResponseError: ({ response }) => {
+          useToast().add({
+            title: "Error",
+            description: response._data.message,
+            color: "error",
+          });
+        },
+      });
+
+      if (response) {
+        return true;
+      }
+
+      return false;
     } catch (error) {
       return false;
     }

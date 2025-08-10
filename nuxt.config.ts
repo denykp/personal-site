@@ -31,4 +31,11 @@ export default defineNuxtConfig({
     fallback: "dark",
     classSuffix: "",
   },
+  runtimeConfig: {
+    cloudinary: {
+      cloudName: "",
+      apiKey: "",
+      apiSecret: "",
+    },
+  },
 });
