@@ -75,9 +75,8 @@ const onSubmit = handleSubmit(async (data) => {
 </script>
 
 <template>
-  <div class="p-4 max-h-[70vh] overflow-y-auto">
+  <div class="p-4 max-h-[70vh] overflow-x-hidden overflow-y-auto">
     <div class="flex flex-col gap-4">
-      {{ errors }} | {{ values }}
       <VFormField
         label="Name"
         name="name"

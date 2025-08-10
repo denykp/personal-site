@@ -37,9 +37,32 @@ export default function () {
       return false;
     }
   };
+  const deleteData = async (id: string) => {
+    try {
+      const response = await $fetch(`/api/stacks/${id}`, {
+        method: "delete",
+        onResponseError: ({ response }) => {
+          useToast().add({
+            title: "Error",
+            description: response._data.message,
+            color: "error",
+          });
+        },
+      });
+
+      if (response) {
+        return true;
+      }
+
+      return false;
+    } catch (error) {
+      return false;
+    }
+  };
 
   return {
     getList,
     submitData,
+    deleteData,
   };
 }

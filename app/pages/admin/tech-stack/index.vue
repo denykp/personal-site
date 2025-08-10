@@ -2,16 +2,22 @@
 import type { TableColumn } from "@nuxt/ui";
 import useApiStack from "~/composables/api/useApiStack";
 import FormPage from "./(components)/form.vue";
+import { CDialog } from "#components";
 
 definePageMeta({
   layout: "admin",
 });
 const pageTitle = ref("Tech Stack");
 
-const { getList } = useApiStack();
+const { getList, deleteData } = useApiStack();
 const { data, status, refresh } = getList();
+
 const UButton = resolveComponent("UButton");
 const UDropdownMenu = resolveComponent("UDropdownMenu");
+const toast = useToast();
+const overlay = useOverlay();
+const modal = overlay.create(CDialog);
+
 const columns: TableColumn<StackData>[] = [
   {
     accessorKey: "name",
@@ -40,9 +46,26 @@ const columns: TableColumn<StackData>[] = [
         },
         {
           label: "Edit",
+          icon: "i-heroicons-pencil-square",
           onSelect: () => {
             selectedData.value = row.original;
             displayModal.value = "edit";
+          },
+        },
+        {
+          label: "Delete",
+          icon: "i-heroicons-trash",
+          onSelect: async () => {
+            const instance = modal.open({
+              title: "Delete Stack",
+              message: "Are you sure you want to delete this stack?",
+              type: "danger",
+              loading: false,
+            });
+            if (await instance.result) {
+              await deleteData(row.original.id);
+              await refresh();
+            }
           },
         },
       ];

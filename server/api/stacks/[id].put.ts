@@ -21,9 +21,7 @@ export default defineEventHandler(async (event) => {
         `data:${logoField.type};base64,${logoField.data.toString("base64")}`,
         {
           folder: "portfolio/stacks", // Optional: specify a folder
-          transformation: {
-            format: "webp", // Optional: specify the desired format
-          },
+          format: "webp", // Optional: specify the desired format
         }
       );
 
