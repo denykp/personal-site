@@ -53,13 +53,13 @@ const displayedData = computed(() => {
       <UInput
         v-model="search"
         placeholder="Search..."
-        leading-icon="i-heroicons-magnifying-glass-16-solid"
+        leading-icon="heroicons:magnifying-glass-16-solid"
       />
     </div>
     <div>
       <UButton
         label="Create"
-        icon="i-heroicons-plus-16-solid"
+        icon="heroicons:plus-16-solid"
         @click="emit('update:formMode', 'add')"
       />
     </div>

@@ -46,7 +46,7 @@ const columns: TableColumn<StackData>[] = [
         },
         {
           label: "Edit",
-          icon: "i-heroicons-pencil-square",
+          icon: "heroicons:pencil-square",
           onSelect: () => {
             selectedData.value = row.original;
             displayModal.value = "edit";
@@ -54,7 +54,7 @@ const columns: TableColumn<StackData>[] = [
         },
         {
           label: "Delete",
-          icon: "i-heroicons-trash",
+          icon: "heroicons:trash",
           onSelect: async () => {
             const instance = modal.open({
               title: "Delete Stack",
@@ -86,7 +86,7 @@ const columns: TableColumn<StackData>[] = [
           },
           () =>
             h(UButton, {
-              icon: "i-lucide-ellipsis-vertical",
+              icon: "heroicons:ellipsis-vertical",
               color: "neutral",
               variant: "ghost",
               class: "ml-auto",
@@ -132,7 +132,7 @@ const displayModal = computed({
             {{ formMode === "add" ? "Add New" : "Edit" }} {{ pageTitle }}
           </h1>
           <UButton
-            icon="i-heroicons-x-mark-16-solid"
+            icon="heroicons:x-mark-16-solid"
             variant="ghost"
             @click="displayModal = false"
           />

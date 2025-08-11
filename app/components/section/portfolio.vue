@@ -143,14 +143,16 @@ const openDetail = (item: Portfolio) => {
               />
             </div>
             <div class="flex flex-col gap-2">
-              <div class="font-bold flex gap-2 w-fit items-center shrink-0">
+              <div
+                class="font-bold flex gap-2 items-center shrink-0 justify-between w-full"
+              >
                 <div class="text-xl line-clamp-1">{{ item.name }}</div>
                 <UButton
                   v-if="item.url"
-                  icon="i-line-md-external-link"
+                  label="Visit"
+                  icon="heroicons:arrow-top-right-on-square"
                   :to="item.url"
                   target="_blank"
-                  variant="link"
                   @click.stop
                 />
                 <!-- <div class="text-md md:text-xl">({{ item.years }})</div> -->
@@ -166,6 +168,7 @@ const openDetail = (item: Portfolio) => {
                     :label="stack"
                     color="primary"
                     size="sm"
+                    variant="subtle"
                   />
                 </template>
               </div>
@@ -181,14 +184,16 @@ const openDetail = (item: Portfolio) => {
 
     <UModal v-model:open="displayModal">
       <template #content>
-        <div class="text-2xl font-bold mb-4 flex items-center gap-2 p-5">
+        <div
+          class="text-2xl font-bold mb-4 flex items-center gap-2 p-5 justify-between"
+        >
           <div>{{ selectedDetail?.name }}</div>
           <UButton
             v-if="selectedDetail?.url"
-            icon="i-line-md-external-link"
+            label="Visit"
+            icon="heroicons:arrow-top-right-on-square"
             :to="selectedDetail?.url"
             target="_blank"
-            variant="link"
           />
         </div>
         <div class="p-5 overflow-y-auto">
@@ -221,6 +226,7 @@ const openDetail = (item: Portfolio) => {
               :label="stack"
               color="primary"
               size="sm"
+              variant="subtle"
             />
           </div>
           <!-- <UCarousel

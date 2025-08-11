@@ -109,9 +109,7 @@ const parsedErrorMessage = computed(() => {
             variant="ghost"
             tabindex="-1"
             :icon="
-              showPassword
-                ? 'i-heroicons-eye-slash-solid'
-                : 'i-heroicons-eye-solid'
+              showPassword ? 'heroicons:eye-slash-solid' : 'heroicons:eye-solid'
             "
             @click="showPassword = !showPassword"
           />
