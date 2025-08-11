@@ -1,4 +1,3 @@
-import { cloud } from "~~/server/utils/cloudinary";
 import { dbAdmin } from "../../utils/firebase-admin";
 
 export default defineEventHandler(async (event) => {

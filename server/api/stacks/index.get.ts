@@ -7,7 +7,7 @@ export default defineEventHandler(async (event) => {
       id: doc.id,
       ...doc.data(),
     }));
-    return data;
+    return data as Stack[];
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     throw createError({ statusCode: 500, statusMessage: message });

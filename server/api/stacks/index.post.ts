@@ -1,4 +1,4 @@
-import { cloud } from "~~/server/utils/cloudinary";
+import cloudinary from "~~/server/utils/cloudinary";
 import { dbAdmin } from "../../utils/firebase-admin";
 
 export default defineEventHandler(async (event) => {
@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
     const logoField = formData.find((field) => field.name === "logo");
     let logoPath = undefined;
     if (logoField?.filename) {
-      const result = await cloud().uploader.upload(
+      const result = await cloudinary.uploader.upload(
         `data:${logoField.type};base64,${logoField.data.toString("base64")}`,
         {
           folder: "portfolio/stacks", // Optional: specify a folder
