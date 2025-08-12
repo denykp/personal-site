@@ -1,4 +1,5 @@
 export * from "./stack";
+export * from "./portfolio";
 
 export interface Menu {
   name: string;

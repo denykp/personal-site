@@ -27,6 +27,7 @@
     "cloudinary": "^2.7.0",
     "firebase": "^12.0.0",
     "firebase-admin": "^13.4.0",
-    "nuxt-aos": "^1.2.4"
+    "nuxt-aos": "^1.2.4",
+    "p-limit": "^6.2.0"
   }
 }

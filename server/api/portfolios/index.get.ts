@@ -2,7 +2,7 @@ import { dbAdmin } from "../../utils/firebase-admin";
 
 export default defineEventHandler(async () => {
   try {
-    const snapshot = await dbAdmin.collection("portfolio").get();
+    const snapshot = await dbAdmin.collection("portfolios").get();
     const data = snapshot.docs.map((doc: any) => ({
       id: doc.id,
       ...doc.data(),

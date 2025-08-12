@@ -65,11 +65,10 @@ const displayedData = computed(() => {
     </div>
   </div>
   <div class="mt-4">
-    <UTable
-      :data="displayedData"
-      :columns="columns"
-      :loading="isLoading"
-      class="flex-1"
-    />
+    <UTable :data="displayedData" :columns="columns" :loading="isLoading">
+      <template #expanded="{ row }">
+        <slot :row="row" name="expanded"></slot>
+      </template>
+    </UTable>
   </div>
 </template>
