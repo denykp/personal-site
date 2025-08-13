@@ -1,49 +1,79 @@
 <script setup lang="ts">
-const props = defineProps<{
+type DataType = File | File[] | string | string[] | null;
+interface SingleFile {
+  multiple: false;
   modelValue: File | string | null;
   inputBaseClass?: string;
   placeholder?: string;
   accept?: string;
-}>();
+}
+interface MultipleFile {
+  multiple: true;
+  modelValue: File[] | string[] | null;
+  inputBaseClass?: string;
+  placeholder?: string;
+  accept?: string;
+}
+const props = defineProps<SingleFile | MultipleFile>();
 const emit = defineEmits(["update:modelValue"]);
-const value = computed<File | string | null>({
+const value = computed<DataType>({
   get: () => props.modelValue,
-  set: (val: File | string | null) => emit("update:modelValue", val),
+  set: (val: DataType) => emit("update:modelValue", val),
 });
 const filePreview = computed(() => {
-  if (props.modelValue) {
-    if (typeof props.modelValue === "string") {
-      return props.modelValue;
+  if (props.multiple) {
+    if (props.modelValue) {
+      if (typeof props.modelValue === "string") {
+        return props.modelValue;
+      }
+      return Object.values(props.modelValue).map((file) =>
+        URL.createObjectURL(file)
+      );
     }
-    return URL.createObjectURL(props.modelValue);
+  } else {
+    if (props.modelValue) {
+      if (typeof props.modelValue === "string") {
+        return [props.modelValue];
+      }
+      return [URL.createObjectURL(props.modelValue)];
+    }
   }
   return "";
 });
 
 const filesTemporary = ref(null);
 const handleFileChange = (event: Event) => {
-  value.value = (event.target as HTMLInputElement)?.files?.[0] || null;
+  if (props.multiple) {
+    const files = (event.target as HTMLInputElement)?.files;
+    value.value = files ? Array.from(files) : null;
+  } else {
+    value.value = (event.target as HTMLInputElement)?.files?.[0] || null;
+  }
 };
 </script>
 
 <template>
-  <div class="flex gap-2 items-start">
-    <NuxtLink
+  <div class="flex gap-2" :class="multiple ? 'flex-col' : 'items-start'">
+    <UCarousel
       v-if="filePreview"
-      class="shrink-0"
-      :to="filePreview"
-      target="_blank"
+      v-slot="{ item }"
+      :items="filePreview"
+      class="w-full max-w-fit mx-auto"
+      :ui="{ item: multiple ? `basis-2/${filePreview.length}` : 'basis-1/1' }"
     >
-      <NuxtImg
-        :src="filePreview"
-        class="w-[127px] h-[127px] object-cover rounded-lg mb-2"
-      />
-    </NuxtLink>
+      <NuxtLink :to="item" target="_blank">
+        <NuxtImg
+          :src="item"
+          class="w-[127px] h-[127px] object-cover rounded-lg"
+        />
+      </NuxtLink>
+    </UCarousel>
     <UInput
       v-model="filesTemporary"
       type="file"
       class="w-full"
       :accept="accept"
+      :multiple="multiple"
       @change="handleFileChange"
     />
   </div>

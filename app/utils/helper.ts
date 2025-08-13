@@ -4,3 +4,22 @@ export const urlToObject = async (image: string) => {
   const blob = await response.blob();
   return new File([blob], "image.jpg", { type: blob.type });
 };
+
+export const builderFormData = (data: any) => {
+  const formData = new FormData();
+  Object.entries(data).forEach(([key, value]) => {
+    if (value instanceof File) {
+      formData.append(key, value);
+    } else if (
+      Array.isArray(value) &&
+      value.every((item) => item instanceof File)
+    ) {
+      value.forEach((file) => {
+        formData.append(key, file);
+      });
+    } else {
+      formData.append(key, String(value));
+    }
+  });
+  return formData;
+};

@@ -130,7 +130,9 @@ const openDetail = (item: Portfolio) => {
             </UPopover>
           </UContainer>
         </div> -->
-        <div class="h-[75vh] overflow-y-auto scrollable-container-inset">
+        <div
+          class="h-[75vh] overflow-y-auto p-[1px] scrollable-container-inset"
+        >
           <div
             v-for="item in displayedPortfolio"
             class="mb-5 lg:flex lg:gap-8 p-4 transition-all duration-300 hover:outline outline-gray-700 hover:bg-gradient-to-b from-black to-gray-900 rounded-xl lg:h-38 cursor-pointer group lg:hover:h-44"
@@ -143,13 +145,12 @@ const openDetail = (item: Portfolio) => {
               />
             </div>
             <div class="flex flex-col gap-2">
-              <div
-                class="font-bold flex gap-2 items-center shrink-0 justify-between w-full"
-              >
+              <div class="font-bold flex gap-2 items-center shrink-0">
                 <div class="text-xl line-clamp-1">{{ item.name }}</div>
                 <UButton
                   v-if="item.url"
                   label="Visit"
+                  variant="outline"
                   icon="heroicons:arrow-top-right-on-square"
                   :to="item.url"
                   target="_blank"

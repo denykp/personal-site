@@ -14,6 +14,7 @@ interface Props {
   size?: "sm" | "md" | "lg" | "xl";
   preview?: string;
   accept?: string;
+  multiple?: boolean;
 }
 
 const props = defineProps<Props>();
@@ -50,7 +51,6 @@ const filePreview = computed(() => {
   }
   return [];
 });
-const displayFilePreview = ref(false);
 
 const inputProps = computed(() => ({
   modelValue: value.value,
@@ -67,6 +67,7 @@ const inputProps = computed(() => ({
   class: props.class,
   size: props.size ?? "lg",
   accept: props.accept,
+  multiple: props.multiple,
 }));
 
 const UInput = resolveComponent("UInput");

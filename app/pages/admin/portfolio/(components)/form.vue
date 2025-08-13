@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import * as v from "valibot";
+import useApiPortfolio from "~/composables/api/useApiPortfolio";
 import useApiStack from "~/composables/api/useApiStack";
 
 const props = defineProps<{
@@ -8,25 +9,36 @@ const props = defineProps<{
 const emit = defineEmits(["submitted"]);
 const isCreate = computed(() => !props.detailData?.id);
 
-const schema = v.pipe(
-  v.object({
-    name: v.pipe(v.string(), v.nonEmpty("Name is required")),
-    url: v.pipe(v.string(), v.nonEmpty("URL is required")),
-    logo: v.optional(v.union([v.file(), v.string()])),
-    color: v.union([
-      v.pipe(v.string(), v.hexColor("Invalid hex color format.")),
-      v.literal(""),
-    ]),
-  }),
-  v.forward(
-    v.check((input) => {
-      const hasLogo = input.logo !== undefined;
-      const hasColor = input.color !== "";
-      return hasLogo || hasColor;
-    }, "Either logo or color must be provided"),
-    ["logo"] // This will attach the error to the logo field
-  )
+const { getList } = useApiStack();
+const { data: dataStack } = getList();
+const listStack = computed(
+  () =>
+    dataStack.value?.map((val) => ({
+      value: val.id,
+      label: val.name,
+    })) || []
 );
+const listProjectType = [
+  { value: "Personal", label: "Personal" },
+  { value: "Company", label: "Company" },
+];
+const listRole = [
+  { value: "Frontend", label: "Frontend" },
+  { value: "Fullstack Node.js", label: "Fullstack Node.js" },
+  { value: "Fullstack Desktop", label: "Fullstack Desktop" },
+];
+
+const schema = v.object({
+  name: v.pipe(v.string(), v.nonEmpty("Name is required")),
+  description: v.pipe(v.string(), v.nonEmpty("Description is required")),
+  url: v.pipe(v.string(), v.nonEmpty("URL is required")),
+  images: v.optional(
+    v.union([v.array(v.pipe(v.instance(File))), v.array(v.string())])
+  ),
+  stacks: v.array(v.pipe(v.string(), v.nonEmpty("Tech stack is required"))),
+  project_type: v.pipe(v.string(), v.nonEmpty("Project type is required")),
+  role: v.pipe(v.string(), v.nonEmpty("Role is required")),
+});
 const {
   handleSubmit,
   resetForm,
@@ -38,9 +50,12 @@ const {
   validationSchema: toTypedSchema(schema),
   initialValues: {
     name: "",
+    description: "",
     url: "",
-    logo: undefined as File | undefined,
-    color: "",
+    images: undefined as File[] | undefined,
+    stacks: [],
+    project_type: "",
+    role: "",
   },
 });
 
@@ -55,9 +70,10 @@ onMounted(async () => {
   }
 });
 
-const { submitData } = useApiStack();
+const { submitData } = useApiPortfolio();
 const loadingSubmit = ref(false);
 const onSubmit = handleSubmit(async (data) => {
+  console.log("data", data);
   loadingSubmit.value = true;
   const res = await submitData(props.detailData?.id, data);
   if (res) {
@@ -73,14 +89,26 @@ const onSubmit = handleSubmit(async (data) => {
 </script>
 
 <template>
-  <div class="p-4 max-h-[70vh] overflow-x-hidden overflow-y-auto">
+  <div
+    class="p-4 max-h-[70vh] overflow-x-hidden overflow-y-auto scrollable-container-inset"
+  >
+    {{ values }}
     <div class="flex flex-col gap-4">
       <VFormField
-        label="Name"
+        label="Project Name"
         name="name"
         :required="true"
         as="input"
         class="w-full"
+        placeholder="Input Project Name"
+      />
+      <VFormField
+        label="Description"
+        name="description"
+        :required="true"
+        as="textarea"
+        class="w-full"
+        placeholder="Input Description"
       />
       <VFormField
         label="URL"
@@ -88,20 +116,43 @@ const onSubmit = handleSubmit(async (data) => {
         :required="true"
         as="input"
         class="w-full"
+        placeholder="Input URL"
       />
       <VFormField
-        label="Logo"
-        name="logo"
+        label="Images"
+        name="images"
         as="file-picker"
         class="w-full"
         accept="image/*"
+        multiple
       />
       <VFormField
-        label="Color"
-        name="color"
-        as="color-picker"
+        label="Stacks"
+        name="stacks"
+        as="select"
+        :items="listStack"
+        :required="true"
+        multiple
         class="w-full"
-        placeholder="Choose color"
+        placeholder="Choose Stack"
+      />
+      <VFormField
+        label="Project Type"
+        name="project_type"
+        :required="true"
+        as="select"
+        :items="listProjectType"
+        class="w-full"
+        placeholder="Choose Project Type"
+      />
+      <VFormField
+        label="Role"
+        name="role"
+        :required="true"
+        as="select"
+        :items="listRole"
+        class="w-full"
+        placeholder="Choose Role"
       />
     </div>
 

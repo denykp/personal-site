@@ -7,14 +7,7 @@ export default function () {
 
   const submitData = async (id: string | undefined, payload: Portfolio) => {
     try {
-      const formData = new FormData();
-      Object.entries(payload).forEach(([key, value]) => {
-        if (value instanceof File) {
-          formData.append(key, value);
-        } else {
-          formData.append(key, String(value));
-        }
-      });
+      const formData = builderFormData(payload);
 
       const response = await $fetch(
         id ? `/api/portfolios/${id}` : `/api/portfolios`,
