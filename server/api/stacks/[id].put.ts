@@ -3,6 +3,9 @@ import { dbAdmin } from "../../utils/firebase-admin";
 
 export default defineEventHandler(async (event) => {
   try {
+    const id = getRouterParam(event, "id");
+    const docRef = dbAdmin.collection("stacks").doc(id!);
+
     const formData = await readMultipartFormData(event);
 
     if (!formData) {
@@ -34,8 +37,8 @@ export default defineEventHandler(async (event) => {
       logo: logoPath,
       color: formData.find((field) => field.name === "color")?.data.toString(),
     };
-    const docRef = await dbAdmin.collection("stacks").add(body);
-    return { id: docRef.id };
+    await docRef.update(body);
+    return { message: "Document updated successfully" };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     throw createError({ statusCode: 500, statusMessage: message });

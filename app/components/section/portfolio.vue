@@ -12,7 +12,7 @@ const listProjectType = computed(() => {
   return ["All"].concat([...new Set(list)]);
 });
 const highlightTechs = ["Vue", "Nuxt", "React", "Next", "Express"] as const;
-const listTechStack = computed(() => {
+const listStack = computed(() => {
   const allStacks = listPortfolio.flatMap((p) => p.stacks);
 
   // Count frequency
@@ -36,7 +36,7 @@ const listTechStack = computed(() => {
     return freqDiff !== 0 ? freqDiff : a.localeCompare(b);
   });
 });
-// const listTechStack = computed(() => {
+// const listStack = computed(() => {
 //   const list = listPortfolio
 //     .map((val) => val.stacks)
 //     .reduce((res, val) => {
@@ -101,7 +101,7 @@ const openDetail = (item: Portfolio) => {
                 id="stacks"
                 multiple
                 v-model="filter.stacks"
-                :items="listTechStack"
+                :items="listStack"
                 class="w-36"
               />
             </div>
@@ -130,7 +130,9 @@ const openDetail = (item: Portfolio) => {
             </UPopover>
           </UContainer>
         </div> -->
-        <div class="h-[75vh] overflow-y-auto scrollable-container-inset">
+        <div
+          class="h-[75vh] overflow-y-auto p-[1px] scrollable-container-inset"
+        >
           <div
             v-for="item in displayedPortfolio"
             class="mb-5 lg:flex lg:gap-8 p-4 transition-all duration-300 hover:outline outline-gray-700 hover:bg-gradient-to-b from-black to-gray-900 rounded-xl lg:h-38 cursor-pointer group lg:hover:h-44"
@@ -143,14 +145,15 @@ const openDetail = (item: Portfolio) => {
               />
             </div>
             <div class="flex flex-col gap-2">
-              <div class="font-bold flex gap-2 w-fit items-center shrink-0">
+              <div class="font-bold flex gap-2 items-center shrink-0">
                 <div class="text-xl line-clamp-1">{{ item.name }}</div>
                 <UButton
                   v-if="item.url"
-                  icon="i-line-md-external-link"
+                  label="Visit"
+                  variant="outline"
+                  icon="heroicons:arrow-top-right-on-square"
                   :to="item.url"
                   target="_blank"
-                  variant="link"
                   @click.stop
                 />
                 <!-- <div class="text-md md:text-xl">({{ item.years }})</div> -->
@@ -166,6 +169,7 @@ const openDetail = (item: Portfolio) => {
                     :label="stack"
                     color="primary"
                     size="sm"
+                    variant="subtle"
                   />
                 </template>
               </div>
@@ -181,14 +185,16 @@ const openDetail = (item: Portfolio) => {
 
     <UModal v-model:open="displayModal">
       <template #content>
-        <div class="text-2xl font-bold mb-4 flex items-center gap-2 p-5">
+        <div
+          class="text-2xl font-bold mb-4 flex items-center gap-2 p-5 justify-between"
+        >
           <div>{{ selectedDetail?.name }}</div>
           <UButton
             v-if="selectedDetail?.url"
-            icon="i-line-md-external-link"
+            label="Visit"
+            icon="heroicons:arrow-top-right-on-square"
             :to="selectedDetail?.url"
             target="_blank"
-            variant="link"
           />
         </div>
         <div class="p-5 overflow-y-auto">
@@ -221,6 +227,7 @@ const openDetail = (item: Portfolio) => {
               :label="stack"
               color="primary"
               size="sm"
+              variant="subtle"
             />
           </div>
           <!-- <UCarousel

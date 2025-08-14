@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "nuxt-app-test",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -20,10 +20,14 @@
     "@nuxt/icon": "^1.13.0",
     "@nuxt/image": "^1.10.0",
     "@nuxt/ui": "^3.3.0",
+    "@vee-validate/nuxt": "^4.15.1",
+    "@vee-validate/valibot": "^4.15.1",
     "@vueuse/nuxt": "^13.4.0",
     "aos": "^2.3.4",
+    "cloudinary": "^2.7.0",
     "firebase": "^12.0.0",
     "firebase-admin": "^13.4.0",
-    "nuxt-aos": "^1.2.4"
+    "nuxt-aos": "^1.2.4",
+    "p-limit": "^6.2.0"
   }
 }

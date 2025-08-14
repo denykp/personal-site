@@ -26,9 +26,6 @@
 }
 
 @theme {
-  --animate-fade: fadeIn 0.5s ease-in-out;
-  --animate-marquee-right: marquee-right 10s linear infinite;
-
   @keyframes fade {
     from {
       opacity: 0;
@@ -37,6 +34,8 @@
       opacity: 1;
     }
   }
+  --animate-fade: fade 0.5s ease-in-out;
+
   @keyframes marquee-right {
     0% {
       transform: translateX(0%);
@@ -45,6 +44,17 @@
       transform: translateX(100%);
     }
   }
+  --animate-marquee-right: marquee-right 10s linear infinite;
+
+  @keyframes deep-pulse {
+    25% {
+      opacity: 0.25;
+    }
+    /* 50% {
+      opacity: 0.5;
+    } */
+  }
+  --animate-deep-pulse: deep-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
 .section {
@@ -96,6 +106,9 @@
 
 .box-shadow {
   box-shadow: 3px 3px 10px 0px #000000;
+}
+.shadow-top {
+  box-shadow: -3px 3px 10px 0px #000000;
 }
 
 .page-container {

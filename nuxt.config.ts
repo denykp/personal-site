@@ -2,13 +2,14 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "Deny Kristianto Pamuji",
+      titleTemplate: "Deny Kristianto Pamuji | %s",
+      // title: "Deny Kristianto Pamuji",
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
     pageTransition: { name: "page", mode: "out-in" },
   },
   css: ["~/assets/css/main.css"],
-  devtools: { enabled: true },
+  devtools: { enabled: false },
   modules: [
     "@nuxt/ui",
     "@nuxt/icon",
@@ -16,6 +17,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@vueuse/nuxt",
     "@nuxtjs/seo",
+    "@vee-validate/nuxt",
   ],
   compatibilityDate: "2025-08-06",
   components: [
@@ -29,5 +31,18 @@ export default defineNuxtConfig({
     preference: "dark",
     fallback: "dark",
     classSuffix: "",
+  },
+  runtimeConfig: {
+    firebase: {
+      projectId: "",
+      clientEmail: "",
+      privateKey: "",
+    },
+    cloudinary: {
+      cloudName: "",
+      apiKey: "",
+      apiSecret: "",
+    },
+    secretKey: "",
   },
 });
