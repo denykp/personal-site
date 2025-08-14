@@ -5,7 +5,6 @@ import pLimit from "p-limit";
 export default defineEventHandler(async (event) => {
   try {
     const formData = await readMultipartFormData(event);
-    console.log("formData", formData);
 
     if (!formData) {
       throw createError({
@@ -14,7 +13,6 @@ export default defineEventHandler(async (event) => {
       });
     }
     const imagesField = formData.filter((field) => field.name === "images");
-    console.log("imagesField", imagesField);
     const limit = pLimit(5);
 
     const imagesToUpload = imagesField.map((image) => {

@@ -78,7 +78,6 @@ onMounted(async () => {
 const { submitData } = useApiPortfolio();
 const loadingSubmit = ref(false);
 const onSubmit = handleSubmit(async (data) => {
-  console.log("data", data);
   loadingSubmit.value = true;
   const res = await submitData(props.detailData?.id, data);
   if (res) {
