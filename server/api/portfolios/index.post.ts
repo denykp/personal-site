@@ -13,22 +13,26 @@ export default defineEventHandler(async (event) => {
         statusMessage: "No form data found.",
       });
     }
-    return false;
-    // const imagesField = formData.find((field) => field.name === "images");
-    // const limit = pLimit(5)
+    const imagesField = formData.filter((field) => field.name === "images");
+    console.log("imagesField", imagesField);
+    const limit = pLimit(5);
 
-    // const imagesToUpload = imagesField?.data.map((image: File) => {
-    //   return limit(async () => {
-    //     const result = await cloudinary.uploader.upload(
-    //       `data:${image.type};base64,${image.data.toString("base64")}`,
-    //       {
-    //         folder: "portfolio/portfolios", // Optional: specify a folder
-    //         format: "webp", // Optional: specify the desired format
-    //       }
-    //     );
-    //     return result.secure_url;
-    //   })
-    // })
+    const imagesToUpload = imagesField.map((image) => {
+      return limit(async () => {
+        if (image.filename) {
+          const result = await cloudinary.uploader.upload(
+            `data:${image.type};base64,${image.data.toString("base64")}`,
+            {
+              folder: "portfolio/portfolios", // Optional: specify a folder
+              format: "webp", // Optional: specify the desired format
+            }
+          );
+          return result.secure_url;
+        } else {
+          return image.data.toString();
+        }
+      });
+    });
     // let logoPath = undefined;
     // if (logoField?.filename) {
     //   const result = await cloudinary.uploader.upload(
@@ -45,15 +49,26 @@ export default defineEventHandler(async (event) => {
     // } else {
     //   logoPath = logoField?.data.toString();
     // }
-    // const body = {
-    //   name: formData.find((field) => field.name === "name")?.data.toString(),
-    //   description: formData.find((field) => field.name === "description")?.data.toString(),
-    //   url: formData.find((field) => field.name === "url")?.data.toString(),
-    //   stacks: formData.find((field) => field.name === "stacks")?.data.toString(),
-    //   project_type: formData.find((field) => field.name === "project_type")?.data.toString(),
-    // };
-    // const docRef = await dbAdmin.collection("portfolios").add(body);
-    // return { id: docRef.id };
+    const body = {
+      name: formData.find((field) => field.name === "name")?.data.toString(),
+      description: formData
+        .find((field) => field.name === "description")
+        ?.data.toString(),
+      url: formData.find((field) => field.name === "url")?.data.toString(),
+      images: await Promise.all(imagesToUpload),
+      stacks:
+        formData
+          .find((field) => field.name === "stacks")
+          ?.data.toString()
+          .split(",") || [],
+      project_type: formData
+        .find((field) => field.name === "project_type")
+        ?.data.toString(),
+      role: formData.find((field) => field.name === "role")?.data.toString(),
+    };
+    const docRef = await dbAdmin.collection("portfolios").add(body);
+    return { id: docRef.id };
+    // return false;
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     throw createError({ statusCode: 500, statusMessage: message });

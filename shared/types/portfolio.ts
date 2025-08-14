@@ -8,7 +8,8 @@ export interface Portfolio {
   role: string;
 }
 
-export interface PortfolioData extends Omit<Portfolio, "images"> {
+export interface PortfolioData extends Omit<Portfolio, "images" | "stacks"> {
   id: string;
   images: string[];
+  stacks: StackData[];
 }

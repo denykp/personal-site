@@ -13,6 +13,7 @@ const { getList, deleteData } = useApiPortfolio();
 const { data, status, refresh } = getList();
 
 const UButton = resolveComponent("UButton");
+const UBadge = resolveComponent("UBadge");
 const UPopover = resolveComponent("UPopover");
 const UDropdownMenu = resolveComponent("UDropdownMenu");
 const toast = useToast();
@@ -70,6 +71,20 @@ const columns: TableColumn<PortfolioData>[] = [
   {
     accessorKey: "stacks",
     header: "Tech Stacks",
+    cell: ({ row }) => {
+      return h(
+        "div",
+        { class: "flex flex-wrap gap-2" },
+        row.original.stacks.map((stack) =>
+          h(UBadge, {
+            label: stack.name,
+            color: "primary",
+            size: "sm",
+            variant: "subtle",
+          })
+        )
+      );
+    },
   },
   {
     accessorKey: "project_type",
@@ -97,8 +112,8 @@ const columns: TableColumn<PortfolioData>[] = [
           icon: "heroicons:trash",
           onSelect: async () => {
             const instance = modal.open({
-              title: "Delete Stack",
-              message: "Are you sure you want to delete this stack?",
+              title: "Delete Portfolio",
+              message: "Are you sure you want to delete this portfolio?",
               type: "danger",
               loading: false,
             });

@@ -17,6 +17,10 @@ export const builderFormData = (data: any) => {
       value.forEach((file) => {
         formData.append(key, file);
       });
+    } else if (Array.isArray(value)) {
+      value.forEach((item) => {
+        formData.append(key, String(item));
+      });
     } else {
       formData.append(key, String(value));
     }

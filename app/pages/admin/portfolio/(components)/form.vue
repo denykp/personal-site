@@ -64,7 +64,12 @@ onMounted(async () => {
     resetForm({
       values: {
         name: props.detailData.name,
+        description: props.detailData.description,
         url: props.detailData.url,
+        images: props.detailData.images,
+        stacks: props.detailData.stacks.map((stack) => stack.id),
+        project_type: props.detailData.project_type,
+        role: props.detailData.role,
       },
     });
   }
@@ -83,80 +88,78 @@ const onSubmit = handleSubmit(async (data) => {
   }
   loadingSubmit.value = false;
 });
-// onUnmounted(() => {
-//   resetForm();
-// });
 </script>
 
 <template>
-  <div
-    class="p-4 max-h-[70vh] overflow-x-hidden overflow-y-auto scrollable-container-inset"
-  >
-    {{ values }}
-    <div class="flex flex-col gap-4">
-      <VFormField
-        label="Project Name"
-        name="name"
-        :required="true"
-        as="input"
-        class="w-full"
-        placeholder="Input Project Name"
-      />
-      <VFormField
-        label="Description"
-        name="description"
-        :required="true"
-        as="textarea"
-        class="w-full"
-        placeholder="Input Description"
-      />
-      <VFormField
-        label="URL"
-        name="url"
-        :required="true"
-        as="input"
-        class="w-full"
-        placeholder="Input URL"
-      />
-      <VFormField
-        label="Images"
-        name="images"
-        as="file-picker"
-        class="w-full"
-        accept="image/*"
-        multiple
-      />
-      <VFormField
-        label="Stacks"
-        name="stacks"
-        as="select"
-        :items="listStack"
-        :required="true"
-        multiple
-        class="w-full"
-        placeholder="Choose Stack"
-      />
-      <VFormField
-        label="Project Type"
-        name="project_type"
-        :required="true"
-        as="select"
-        :items="listProjectType"
-        class="w-full"
-        placeholder="Choose Project Type"
-      />
-      <VFormField
-        label="Role"
-        name="role"
-        :required="true"
-        as="select"
-        :items="listRole"
-        class="w-full"
-        placeholder="Choose Role"
-      />
+  <div>
+    <div
+      class="p-4 max-h-[70vh] overflow-x-hidden overflow-y-auto scrollable-container-inset"
+    >
+      <div class="flex flex-col gap-4">
+        <VFormField
+          label="Project Name"
+          name="name"
+          :required="true"
+          as="input"
+          class="w-full"
+          placeholder="Input Project Name"
+        />
+        <VFormField
+          label="Description"
+          name="description"
+          :required="true"
+          as="textarea"
+          class="w-full"
+          placeholder="Input Description"
+        />
+        <VFormField
+          label="URL"
+          name="url"
+          :required="true"
+          as="input"
+          class="w-full"
+          placeholder="Input URL"
+        />
+        <VFormField
+          label="Images"
+          name="images"
+          as="file-picker"
+          class="w-full"
+          accept="image/*"
+          multiple
+        />
+        <VFormField
+          label="Stacks"
+          name="stacks"
+          as="select"
+          :items="listStack"
+          :required="true"
+          multiple
+          class="w-full"
+          placeholder="Choose Stack"
+        />
+        <VFormField
+          label="Project Type"
+          name="project_type"
+          :required="true"
+          as="select"
+          :items="listProjectType"
+          class="w-full"
+          placeholder="Choose Project Type"
+        />
+        <VFormField
+          label="Role"
+          name="role"
+          :required="true"
+          as="select"
+          :items="listRole"
+          class="w-full"
+          placeholder="Choose Role"
+        />
+      </div>
     </div>
 
-    <div class="flex justify-end mt-4">
+    <div class="p-4 flex justify-end mt-4 bg-neutral-900 w-full shadow-top">
       <UButton
         :label="isCreate ? 'Create' : 'Update'"
         class="w-32 justify-center"

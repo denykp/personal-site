@@ -97,6 +97,9 @@
 .box-shadow {
   box-shadow: 3px 3px 10px 0px #000000;
 }
+.shadow-top {
+  box-shadow: -3px 3px 10px 0px #000000;
+}
 
 .page-container {
   @apply bg-neutral-950 p-4 rounded-2xl;

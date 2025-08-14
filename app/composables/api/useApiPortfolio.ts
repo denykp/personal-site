@@ -36,7 +36,7 @@ export default function () {
   const deleteData = async (id: string) => {
     try {
       const response = await $fetch(`/api/portfolios/${id}`, {
-        // method: "delete",
+        method: "delete",
         onResponseError: ({ response }) => {
           useToast().add({
             title: "Error",

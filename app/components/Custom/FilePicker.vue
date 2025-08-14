@@ -23,7 +23,7 @@ const value = computed<DataType>({
 const filePreview = computed(() => {
   if (props.multiple) {
     if (props.modelValue) {
-      if (typeof props.modelValue === "string") {
+      if (props.modelValue.every((value) => typeof value === "string")) {
         return props.modelValue;
       }
       return Object.values(props.modelValue).map((file) =>
@@ -62,7 +62,7 @@ const handleFileChange = (event: Event) => {
       :ui="{ item: multiple ? `basis-2/${filePreview.length}` : 'basis-1/1' }"
     >
       <NuxtLink :to="item" target="_blank">
-        <NuxtImg
+        <LazyNuxtImg
           :src="item"
           class="w-[127px] h-[127px] object-cover rounded-lg"
         />
