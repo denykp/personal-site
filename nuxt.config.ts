@@ -2,7 +2,8 @@
 export default defineNuxtConfig({
   app: {
     head: {
-      title: "Deny Kristianto Pamuji",
+      titleTemplate: "Deny Kristianto Pamuji | %s",
+      // title: "Deny Kristianto Pamuji",
       link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
     pageTransition: { name: "page", mode: "out-in" },
@@ -32,10 +33,16 @@ export default defineNuxtConfig({
     classSuffix: "",
   },
   runtimeConfig: {
+    firebase: {
+      projectId: "",
+      clientEmail: "",
+      privateKey: "",
+    },
     cloudinary: {
       cloudName: "",
       apiKey: "",
       apiSecret: "",
     },
+    secretKey: "",
   },
 });

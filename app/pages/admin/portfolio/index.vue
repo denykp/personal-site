@@ -6,6 +6,7 @@ import { CDialog } from "#components";
 
 definePageMeta({
   layout: "admin",
+  middleware: ["admin"],
 });
 const pageTitle = ref("Tech Stack");
 

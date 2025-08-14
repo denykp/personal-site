@@ -27,3 +27,12 @@ export const builderFormData = (data: any) => {
   });
   return formData;
 };
+
+export const getInitial = (name: string, length: number = 2) => {
+  return name
+    ?.split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, length)
+    .toUpperCase();
+};

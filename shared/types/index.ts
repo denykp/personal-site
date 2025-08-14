@@ -6,10 +6,14 @@ export interface Menu {
   label: string;
 }
 
-export interface User {
+export interface UserData {
   name: string;
   username: string;
-  password: string;
 }
 
 export type FormMode = "add" | "edit" | null;
+
+export interface LoginData {
+  username: string;
+  password: string;
+}

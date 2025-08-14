@@ -1,11 +1,12 @@
 import { initializeApp, cert, getApps, getApp } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
+const { firebase } = useRuntimeConfig();
 const firebaseAdminConfig = {
   credential: cert({
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-    privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+    projectId: firebase.projectId,
+    clientEmail: firebase.clientEmail,
+    privateKey: firebase.privateKey?.replace(/\\n/g, "\n"),
   }),
 };
 

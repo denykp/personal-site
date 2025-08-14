@@ -1,19 +1,27 @@
 import { dbAdmin } from "../../utils/firebase-admin";
+import crypto from "node:crypto";
 
 export default defineEventHandler(async (event) => {
   try {
-    const { username, password } = await readBody(event);
+    const body = await readBody(event);
     const snapshot = await dbAdmin
       .collection("users")
-      .where("username", "==", username)
+      .where("username", "==", body.username)
+      .where("password", "==", body.password)
       .limit(1)
       .get();
     if (!snapshot.empty) {
-      const data: User[] = snapshot.docs.map((doc: any) => ({
+      const data: UserData[] = snapshot.docs.map((doc: any) => ({
         id: doc.id,
         ...doc.data(),
       }));
-      const session = await useSession<User>(event, {
+
+      const { secretKey } = useRuntimeConfig();
+      const password = crypto
+        .createHash("md5")
+        .update(String(secretKey))
+        .digest("hex");
+      const session = await useSession<UserData>(event, {
         name: "session",
         password,
         cookie: {
@@ -31,6 +39,10 @@ export default defineEventHandler(async (event) => {
 
       return session.data;
     }
+    throw createError({
+      statusCode: 401,
+      statusMessage: "Invalid credentials",
+    });
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     throw createError({ statusCode: 500, statusMessage: message });

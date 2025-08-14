@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { UButton } from "#components";
 import type { NavigationMenuItem } from "@nuxt/ui";
+import useApiAuth from "~/composables/api/useApiAuth";
 
 const menu = ref<NavigationMenuItem[][]>([
   [
@@ -25,6 +26,15 @@ const menu = ref<NavigationMenuItem[][]>([
   ],
 ]);
 const sidebarCollapsed = ref(false);
+
+const { userData, logout } = useApiAuth();
+const nameInitial = computed(() => getInitial(userData.value?.name));
+const handleLogout = async () => {
+  const response = await logout();
+  if (response) {
+    navigateTo(`/admin/login`);
+  }
+};
 </script>
 
 <template>
@@ -56,11 +66,44 @@ const sidebarCollapsed = ref(false);
       </div>
     </aside>
     <div class="col-span-4 p-4 flex flex-col gap-4 w-full">
-      <nav class="w-full bg-neutral-950 p-4 rounded-2xl box-shadow">
+      <nav
+        class="w-full bg-neutral-950 p-4 rounded-2xl box-shadow flex justify-between"
+      >
         <UButton
           icon="heroicons:bars-3-16-solid"
           @click="sidebarCollapsed = !sidebarCollapsed"
         />
+        <ClientOnly>
+          <div class="flex items-center">
+            <USkeleton v-if="!userData" class="w-52 h-6 bg-neutral-5 mr-3" />
+            <span v-else class="text-gray-700 mr-3 dark:text-neutral-200"
+              >Halo, {{ userData?.name }}!</span
+            >
+            <UPopover
+              :content="{ align: 'center', side: 'bottom', sideOffset: 14 }"
+            >
+              <img
+                v-if="userData?.name"
+                :src="`https://placehold.co/40x40/51a2ff/ffffff?text=${nameInitial}`"
+                alt="Avatar Pengguna"
+                class="w-10 h-10 rounded-full border-2 border-neutral-5 dark:border-neutral-2 cursor-pointer"
+              />
+              <template #content>
+                <div class="p-2 w-40">
+                  <UButton
+                    block
+                    variant="ghost"
+                    icon="i-heroicons-arrow-left-on-rectangle"
+                    class="justify-start font-bold"
+                    @click="handleLogout"
+                  >
+                    Logout
+                  </UButton>
+                </div>
+              </template>
+            </UPopover>
+          </div>
+        </ClientOnly>
       </nav>
       <main class="w-full">
         <slot />
