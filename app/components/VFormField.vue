@@ -81,8 +81,6 @@ const renderComponent = computed(() => {
       return USelect;
     case "textarea":
       return UTextarea;
-    case "textarea":
-      return UTextarea;
     case "color-picker":
       return CColorPicker;
     case "file-picker":

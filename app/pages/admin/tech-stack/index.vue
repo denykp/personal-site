@@ -31,6 +31,17 @@ const columns: TableColumn<StackData>[] = [
   {
     accessorKey: "logo",
     header: "Logo",
+    cell: ({ row }) => {
+      return h(
+        "a",
+        {
+          href: row.original.logo,
+          target: "_blank",
+          rel: "noopener noreferrer",
+        },
+        { default: () => row.original.logo }
+      );
+    },
   },
   {
     accessorKey: "color",

@@ -5,6 +5,7 @@ export default defineEventHandler(async (event) => {
   try {
     const id = getRouterParam(event, "id");
     const docRef = dbAdmin.collection("stacks").doc(id!);
+    const oldLogo: string = await docRef.get().then((doc) => doc.data()?.logo);
 
     const formData = await readMultipartFormData(event);
 
@@ -27,6 +28,16 @@ export default defineEventHandler(async (event) => {
 
       if (result.secure_url) {
         logoPath = result.secure_url;
+      }
+
+      if (oldLogo) {
+        const publicId = cloudinary
+          .url(oldLogo, { type: "upload" })
+          .split("/")
+          .slice(-3)
+          .join("/")
+          .split(".")[0];
+        await cloudinary.uploader.destroy(publicId);
       }
     } else {
       logoPath = logoField?.data.toString();

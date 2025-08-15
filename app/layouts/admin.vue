@@ -84,9 +84,9 @@ const handleLogout = async () => {
             >
               <img
                 v-if="userData?.name"
-                :src="`https://placehold.co/40x40/51a2ff/ffffff?text=${nameInitial}`"
+                :src="`https://placehold.co/40x40/51a2ff/020420?text=${nameInitial}`"
                 alt="Avatar Pengguna"
-                class="w-10 h-10 rounded-full border-2 border-neutral-5 dark:border-neutral-2 cursor-pointer"
+                class="w-10 h-10 rounded-full border-2 border-neutral-200 dark:border-neutral-700 cursor-pointer"
               />
               <template #content>
                 <div class="p-2 w-40">

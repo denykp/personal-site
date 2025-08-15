@@ -15,6 +15,7 @@ export default defineEventHandler(async (event) => {
     const imagesField = formData.filter((field) => field.name === "images");
     const limit = pLimit(5);
 
+    let isNewImage = false;
     const imagesToUpload = imagesField.map((image) => {
       return limit(async () => {
         if (image.filename) {
@@ -25,6 +26,7 @@ export default defineEventHandler(async (event) => {
               format: "webp", // Optional: specify the desired format
             }
           );
+          isNewImage = true;
           return result.secure_url;
         } else {
           return image.data.toString();
@@ -50,6 +52,23 @@ export default defineEventHandler(async (event) => {
 
     const id = getRouterParam(event, "id");
     const docRef = dbAdmin.collection("portfolios").doc(id!);
+
+    if (isNewImage) {
+      const oldImages: string[] = await docRef
+        .get()
+        .then((doc) => doc.data()?.images);
+      oldImages.forEach(async (image) => {
+        const publicId = cloudinary
+          .url(image, { type: "upload" })
+          .split("/")
+          .slice(-3)
+          .join("/")
+          .split(".")[0];
+        if (publicId) {
+          await cloudinary.uploader.destroy(publicId);
+        }
+      });
+    }
 
     await docRef.update(body);
     return { message: "Document updated successfully" };
