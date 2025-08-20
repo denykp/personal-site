@@ -92,6 +92,27 @@ const columns: TableColumn<PortfolioData>[] = [
     header: "Project Type",
   },
   {
+    accessorKey: "role",
+    header: "Role",
+  },
+  {
+    accessorKey: "highlight",
+    header: "Highlight",
+    cell: ({ row }) => {
+      const status = row.original.highlight ? "Highlighted" : "Not Highlighted";
+
+      return h(
+        UBadge,
+        {
+          class: "capitalize",
+          variant: "subtle",
+          color: row.original.highlight ? "primary" : "neutral",
+        },
+        () => status
+      );
+    },
+  },
+  {
     id: "actions", // A common key for action buttons or dropdowns
     enableHiding: false,
     cell: ({ row }) => {
@@ -181,9 +202,23 @@ const displayModal = computed({
       :refresh="refresh"
     >
       <template #expanded="{ row }">
-        <div class="p-4 w-full whitespace-pre-wrap">
+        <!-- <div class="p-4 w-full whitespace-pre-wrap">
           {{ row.original.description }}
-        </div>
+        </div> -->
+        <UCarousel
+          v-if="row.original.images.length"
+          v-slot="{ item }"
+          :items="row.original.images"
+          class="w-full max-w-fit mx-auto"
+          :ui="{ item: 'basis-1/2' }"
+        >
+          <NuxtLink :to="item" target="_blank">
+            <LazyNuxtImg
+              :src="item"
+              class="w-[127px] h-[127px] object-cover rounded-lg"
+            />
+          </NuxtLink>
+        </UCarousel>
       </template>
     </CTable>
 

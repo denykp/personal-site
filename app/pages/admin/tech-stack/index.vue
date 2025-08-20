@@ -78,7 +78,7 @@ const columns: TableColumn<StackData>[] = [
           class: `w-4 h-4 rounded-lg`,
           style: `background-color: ${row.original.color}`,
         }),
-        row.original.color,
+        row.original.color || "-",
       ]);
     },
   },

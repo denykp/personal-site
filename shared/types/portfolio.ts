@@ -6,6 +6,7 @@ export interface Portfolio {
   stacks: string[];
   project_type: string;
   role: string;
+  highlight?: boolean;
 }
 
 export interface PortfolioData extends Omit<Portfolio, "images" | "stacks"> {

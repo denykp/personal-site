@@ -38,6 +38,7 @@ const schema = v.object({
   stacks: v.array(v.pipe(v.string(), v.nonEmpty("Tech stack is required"))),
   project_type: v.pipe(v.string(), v.nonEmpty("Project type is required")),
   role: v.pipe(v.string(), v.nonEmpty("Role is required")),
+  highlight: v.optional(v.boolean()),
 });
 const {
   handleSubmit,
@@ -56,6 +57,7 @@ const {
     stacks: [],
     project_type: "",
     role: "",
+    highlight: false,
   },
 });
 
@@ -70,6 +72,7 @@ onMounted(async () => {
         stacks: props.detailData.stacks.map((stack) => stack.id),
         project_type: props.detailData.project_type,
         role: props.detailData.role,
+        highlight: props.detailData.highlight,
       },
     });
   }
@@ -154,6 +157,13 @@ const onSubmit = handleSubmit(async (data) => {
           :items="listRole"
           class="w-full"
           placeholder="Choose Role"
+        />
+        <VFormField
+          label="Highlight"
+          name="highlight"
+          as="switch"
+          size="xl"
+          class="w-full"
         />
       </div>
     </div>

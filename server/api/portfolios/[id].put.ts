@@ -48,6 +48,10 @@ export default defineEventHandler(async (event) => {
         .find((field) => field.name === "project_type")
         ?.data.toString(),
       role: formData.find((field) => field.name === "role")?.data.toString(),
+      highlight:
+        formData
+          .find((field) => field.name === "highlight")
+          ?.data.toString() === "true",
     };
 
     const id = getRouterParam(event, "id");
