@@ -56,13 +56,13 @@ const submitColor = computed(() => {
 const themeColor = computed(() => {
   switch (props.type) {
     case "info": {
-      return "bg-primary text-white";
+      return "text-primary";
     }
     case "danger": {
-      return "bg-error-600 text-white";
+      return " text-error";
     }
     case "warning": {
-      return "bg-warning text-white";
+      return "text-warning";
     }
     default: {
       return "";

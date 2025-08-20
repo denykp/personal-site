@@ -210,7 +210,7 @@ const displayModal = computed({
           v-slot="{ item }"
           :items="row.original.images"
           class="w-full max-w-fit mx-auto"
-          :ui="{ item: 'basis-1/2' }"
+          :ui="{ item: `basis-1/${row.original.images.length}` }"
         >
           <NuxtLink :to="item" target="_blank">
             <LazyNuxtImg

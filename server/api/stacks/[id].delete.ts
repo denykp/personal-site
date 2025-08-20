@@ -1,4 +1,5 @@
 import { dbAdmin } from "../../utils/firebase-admin";
+import cloudinary from "~~/server/utils/cloudinary";
 
 export default defineEventHandler(async (event) => {
   try {
@@ -6,7 +7,19 @@ export default defineEventHandler(async (event) => {
     dbAdmin.collection("stacks").doc(id!).delete();
     const docRef = dbAdmin.collection("stacks").doc(id!);
     if (docRef) {
+      const oldLogo: string = await docRef
+        .get()
+        .then((doc) => doc.data()?.logo);
       await docRef.delete();
+      if (oldLogo) {
+        const publicId = cloudinary
+          .url(oldLogo, { type: "upload" })
+          .split("/")
+          .slice(-3)
+          .join("/")
+          .split(".")[0];
+        await cloudinary.uploader.destroy(publicId);
+      }
       return { message: "Document deleted successfully" };
     }
     return { message: "Document not found" };
