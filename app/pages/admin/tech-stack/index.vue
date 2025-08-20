@@ -179,7 +179,6 @@ const displayModal = computed({
 
 <template>
   <div class="page-container">
-    <div class="bg-[#f5f5f5]">ABC</div>
     <CTable
       v-model:form-mode="formMode"
       :title="pageTitle"
