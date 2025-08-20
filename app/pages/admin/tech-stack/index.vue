@@ -15,6 +15,7 @@ const { data, status, refresh } = getList();
 
 const UButton = resolveComponent("UButton");
 const UDropdownMenu = resolveComponent("UDropdownMenu");
+const UBadge = resolveComponent("UBadge");
 const toast = useToast();
 const overlay = useOverlay();
 const modal = overlay.create(CDialog);
@@ -32,20 +33,71 @@ const columns: TableColumn<StackData>[] = [
     accessorKey: "logo",
     header: "Logo",
     cell: ({ row }) => {
+      // return h(
+      //   "a",
+      //   {
+      //     href: row.original.logo,
+      //     target: "_blank",
+      //     rel: "noopener noreferrer",
+      //   },
+      //   { default: () => row.original.logo }
+      // );
       return h(
-        "a",
+        "div",
         {
-          href: row.original.logo,
-          target: "_blank",
-          rel: "noopener noreferrer",
+          class: `w-8 h-8`,
+          style: `background-color: ${
+            String(row.original.logo) !== "undefined" ? row.original.color : ""
+          }`,
         },
-        { default: () => row.original.logo }
+        [
+          String(row.original.logo) !== "undefined"
+            ? h("img", {
+                src: row.original.logo,
+                alt: row.original.name,
+                class: `w-8 h-8`,
+              })
+            : h(
+                "div",
+                {
+                  class: `text-lg font-bold`,
+                  style: `color: ${row.original.color}`,
+                },
+                row.original.name
+              ),
+        ]
       );
     },
   },
   {
     accessorKey: "color",
     header: "Color",
+    cell: ({ row }) => {
+      return h("div", { class: "flex gap-2 items-center" }, [
+        h("div", {
+          class: `w-4 h-4 rounded-lg`,
+          style: `background-color: ${row.original.color}`,
+        }),
+        row.original.color,
+      ]);
+    },
+  },
+  {
+    accessorKey: "highlight",
+    header: "Highlight",
+    cell: ({ row }) => {
+      const status = row.original.highlight ? "Highlighted" : "Not Highlighted";
+
+      return h(
+        UBadge,
+        {
+          class: "capitalize",
+          variant: "subtle",
+          color: row.original.highlight ? "primary" : "neutral",
+        },
+        () => status
+      );
+    },
   },
   {
     id: "actions", // A common key for action buttons or dropdowns
@@ -85,7 +137,7 @@ const columns: TableColumn<StackData>[] = [
       return h(
         "div",
         {
-          class: "text-right",
+          class: "text-center",
         },
         h(
           UDropdownMenu,
@@ -127,6 +179,7 @@ const displayModal = computed({
 
 <template>
   <div class="page-container">
+    <div class="bg-[#f5f5f5]">ABC</div>
     <CTable
       v-model:form-mode="formMode"
       :title="pageTitle"

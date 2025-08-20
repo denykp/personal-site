@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { useField } from "vee-validate";
 
 interface Props {
@@ -7,7 +6,13 @@ interface Props {
   label?: string;
   placeholder?: string;
   type?: string;
-  as?: "input" | "select" | "textarea" | "color-picker" | "file-picker";
+  as?:
+    | "input"
+    | "select"
+    | "textarea"
+    | "color-picker"
+    | "file-picker"
+    | "switch";
   items?: Array<{ label: string; value: string | number }>;
   required?: boolean;
   class?: string;
@@ -38,19 +43,6 @@ const inputType = computed(() => {
 });
 
 const filesTemporary = ref<FileList | null>(null);
-const filePreview = computed(() => {
-  if (props.as === "input" && props.type === "file") {
-    if (filesTemporary.value) {
-      return Array.from(filesTemporary.value).map((file) =>
-        URL.createObjectURL(file)
-      );
-    } else if (props.preview) {
-      const data = props.preview;
-      return Array(1).fill(data);
-    }
-  }
-  return [];
-});
 
 const inputProps = computed(() => ({
   modelValue: value.value,
@@ -75,6 +67,7 @@ const USelect = resolveComponent("USelect");
 const UTextarea = resolveComponent("UTextarea");
 const CColorPicker = resolveComponent("CColorPicker");
 const CFilePicker = resolveComponent("CFilePicker");
+const USwitch = resolveComponent("USwitch");
 const renderComponent = computed(() => {
   switch (props.as) {
     case "select":
@@ -85,6 +78,8 @@ const renderComponent = computed(() => {
       return CColorPicker;
     case "file-picker":
       return CFilePicker;
+    case "switch":
+      return USwitch;
     default:
       return UInput;
   }

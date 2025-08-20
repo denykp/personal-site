@@ -17,6 +17,7 @@ const schema = v.pipe(
       v.pipe(v.string(), v.hexColor("Invalid hex color format.")),
       v.literal(""),
     ]),
+    highlight: v.optional(v.boolean()),
   }),
   v.forward(
     v.check((input) => {
@@ -41,6 +42,7 @@ const {
     url: "",
     logo: undefined as File | undefined,
     color: "",
+    highlight: false,
   },
 });
 
@@ -52,6 +54,7 @@ onMounted(async () => {
         url: props.detailData.url,
         logo: props.detailData.logo,
         color: props.detailData.color,
+        highlight: props.detailData.highlight,
       },
     });
   }
@@ -104,6 +107,13 @@ const onSubmit = handleSubmit(async (data) => {
         as="color-picker"
         class="w-full"
         placeholder="Choose color"
+      />
+      <VFormField
+        label="Highlight"
+        name="highlight"
+        as="switch"
+        size="xl"
+        class="w-full"
       />
     </div>
 

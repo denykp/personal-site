@@ -47,7 +47,12 @@ export default defineEventHandler(async (event) => {
       url: formData.find((field) => field.name === "url")?.data.toString(),
       logo: logoPath,
       color: formData.find((field) => field.name === "color")?.data.toString(),
+      highlight:
+        formData
+          .find((field) => field.name === "highlight")
+          ?.data.toString() === "true",
     };
+
     await docRef.update(body);
     return { message: "Document updated successfully" };
   } catch (error) {

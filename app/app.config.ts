@@ -22,5 +22,20 @@ export default defineAppConfig({
         },
       },
     },
+    table: {
+      variants: {
+        sticky: {
+          true: {
+            thead: "bg-neutral-950",
+          },
+        },
+        pinned: {
+          true: {
+            th: "bg-neutral-950",
+            td: "bg-neutral-900",
+          },
+        },
+      },
+    },
   },
 });

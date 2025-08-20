@@ -129,7 +129,7 @@ const columns: TableColumn<PortfolioData>[] = [
       return h(
         "div",
         {
-          class: "text-right",
+          class: "text-center",
         },
         h(
           UDropdownMenu,

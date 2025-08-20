@@ -47,28 +47,37 @@ const displayedData = computed(() => {
 </script>
 
 <template>
-  <div class="flex items-center justify-between">
-    <div class="flex gap-4 items-center">
-      <div class="font-bold">{{ title }}</div>
-      <UInput
-        v-model="search"
-        placeholder="Search..."
-        leading-icon="heroicons:magnifying-glass-16-solid"
-      />
+  <div class="w-full h-full">
+    <div class="flex items-center justify-between">
+      <div class="flex gap-4 items-center">
+        <div class="font-bold">{{ title }}</div>
+        <UInput
+          v-model="search"
+          placeholder="Search..."
+          leading-icon="heroicons:magnifying-glass-16-solid"
+        />
+      </div>
+      <div>
+        <UButton
+          label="Create"
+          icon="heroicons:plus-16-solid"
+          @click="emit('update:formMode', 'add')"
+        />
+      </div>
     </div>
-    <div>
-      <UButton
-        label="Create"
-        icon="heroicons:plus-16-solid"
-        @click="emit('update:formMode', 'add')"
-      />
+    <div class="mt-4 flex h-full overflow-y-auto">
+      <UTable
+        :data="displayedData"
+        :columns="columns"
+        :loading="isLoading"
+        sticky
+        class="w-full flex-1 max-h-[calc(100vh-12.5rem)] scrollable-container-inset"
+        :column-pinning="{ right: ['actions'] }"
+      >
+        <template #expanded="{ row }">
+          <slot :row="row" name="expanded"></slot>
+        </template>
+      </UTable>
     </div>
-  </div>
-  <div class="mt-4">
-    <UTable :data="displayedData" :columns="columns" :loading="isLoading">
-      <template #expanded="{ row }">
-        <slot :row="row" name="expanded"></slot>
-      </template>
-    </UTable>
   </div>
 </template>

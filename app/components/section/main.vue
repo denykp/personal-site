@@ -191,7 +191,7 @@ const screenHeight = window?.innerHeight;
         data-aos-delay="200"
       >
         <div class="grid grid-cols-4 gap-5 gap-y-10 justify-center">
-          <div
+          <!-- <div
             v-for="(item, index) in listStack"
             :key="index"
             class="flex justify-center items-center"
@@ -208,7 +208,7 @@ const screenHeight = window?.innerHeight;
             >
               {{ item.name }}
             </span>
-          </div>
+          </div> -->
         </div>
       </div>
     </UContainer>

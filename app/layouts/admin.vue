@@ -14,7 +14,7 @@ const menu = ref<NavigationMenuItem[][]>([
     {
       label: "Tech Stack",
       name: "tech-stack",
-      icon: "hugeicons:nano-technology",
+      icon: "heroicons:square-3-stack-3d",
       to: "/admin/tech-stack",
     },
     {
@@ -38,10 +38,13 @@ const handleLogout = async () => {
 </script>
 
 <template>
-  <div class="flex">
+  <div
+    class="max-w-screen max-h-screen overflow-hidden"
+    :class="sidebarCollapsed ? 'flex' : 'grid grid-cols-10'"
+  >
     <aside
-      class="col-span-1 p-4 pr-0 h-screen transition-all shrink-0 duration-400"
-      :class="sidebarCollapsed ? 'w-17 !p-0' : 'w-72'"
+      class="col-span-2 p-4 pr-0 h-screen transition-all duration-300 shrink-0 sticky top-0"
+      :class="sidebarCollapsed ? 'w-17 !p-0' : 'w-[20vw]'"
     >
       <div
         class="bg-neutral-950 p-4 h-full box-shadow w-full transition-all duration-400"
@@ -65,13 +68,16 @@ const handleLogout = async () => {
         />
       </div>
     </aside>
-    <div class="col-span-4 p-4 flex flex-col gap-4 w-full">
+    <div
+      class="col-span-8 p-4 flex flex-col gap-4 w-full duration-400 h-screen overflow-y-clip"
+    >
       <nav
         class="w-full bg-neutral-950 p-4 rounded-2xl box-shadow flex justify-between"
       >
         <UButton
           icon="heroicons:bars-3-16-solid"
           @click="sidebarCollapsed = !sidebarCollapsed"
+          size="xl"
         />
         <ClientOnly>
           <div class="flex items-center">
@@ -93,7 +99,7 @@ const handleLogout = async () => {
                   <UButton
                     block
                     variant="ghost"
-                    icon="i-heroicons-arrow-left-on-rectangle"
+                    icon="heroicons:arrow-left-on-rectangle"
                     class="justify-start font-bold"
                     @click="handleLogout"
                   >
@@ -105,7 +111,7 @@ const handleLogout = async () => {
           </div>
         </ClientOnly>
       </nav>
-      <main class="w-full">
+      <main class="w-full h-[calc(100vh-7.5rem)]">
         <slot />
       </main>
     </div>
