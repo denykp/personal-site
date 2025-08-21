@@ -1,5 +1,5 @@
 import cloudinary from "~~/server/utils/cloudinary";
-import { dbAdmin } from "../../utils/firebase-admin";
+import { dbAdmin } from "../../../utils/firebase-admin";
 import pLimit from "p-limit";
 
 export default defineEventHandler(async (event) => {

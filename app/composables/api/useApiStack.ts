@@ -1,6 +1,6 @@
 export default function () {
   const getList = () => {
-    return useFetch<StackData[]>(`/api/stacks`, {
+    return useFetch<StackData[]>(`/api/v1/stacks`, {
       watch: false,
     });
   };
@@ -16,17 +16,20 @@ export default function () {
         }
       });
 
-      const response = await $fetch(id ? `/api/stacks/${id}` : `/api/stacks`, {
-        method: id ? "put" : "post",
-        body: formData,
-        onResponseError: ({ response }) => {
-          useToast().add({
-            title: "Error",
-            description: response._data.message,
-            color: "error",
-          });
-        },
-      });
+      const response = await $fetch(
+        id ? `/api/v1/stacks/${id}` : `/api/v1/stacks`,
+        {
+          method: id ? "put" : "post",
+          body: formData,
+          onResponseError: ({ response }) => {
+            useToast().add({
+              title: "Error",
+              description: response._data.message,
+              color: "error",
+            });
+          },
+        }
+      );
 
       if (response) {
         return true;
@@ -39,7 +42,7 @@ export default function () {
   };
   const deleteData = async (id: string) => {
     try {
-      const response = await $fetch(`/api/stacks/${id}`, {
+      const response = await $fetch(`/api/v1/stacks/${id}`, {
         method: "delete",
         onResponseError: ({ response }) => {
           useToast().add({

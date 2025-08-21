@@ -1,8 +1,12 @@
 import cloudinary from "~~/server/utils/cloudinary";
-import { dbAdmin } from "../../utils/firebase-admin";
+import { dbAdmin } from "../../../utils/firebase-admin";
 
 export default defineEventHandler(async (event) => {
   try {
+    const id = getRouterParam(event, "id");
+    const docRef = dbAdmin.collection("stacks").doc(id!);
+    const oldLogo: string = await docRef.get().then((doc) => doc.data()?.logo);
+
     const formData = await readMultipartFormData(event);
 
     if (!formData) {
@@ -25,6 +29,16 @@ export default defineEventHandler(async (event) => {
       if (result.secure_url) {
         logoPath = result.secure_url;
       }
+
+      if (oldLogo) {
+        const publicId = cloudinary
+          .url(oldLogo, { type: "upload" })
+          .split("/")
+          .slice(-3)
+          .join("/")
+          .split(".")[0];
+        await cloudinary.uploader.destroy(publicId);
+      }
     } else {
       logoPath = logoField?.data.toString();
     }
@@ -39,8 +53,8 @@ export default defineEventHandler(async (event) => {
           ?.data.toString() === "true",
     };
 
-    const docRef = await dbAdmin.collection("stacks").add(body);
-    return { id: docRef.id };
+    await docRef.update(body);
+    return { message: "Document updated successfully" };
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     throw createError({ statusCode: 500, statusMessage: message });

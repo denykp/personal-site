@@ -19,11 +19,14 @@ const { handleSubmit } = useForm({
 });
 
 const { login, userData } = useApiAuth();
+const loadingSubmit = ref(false);
 const onSubmit = handleSubmit(async (values) => {
+  loadingSubmit.value = true;
   const response = await login(values as LoginData);
   if (response) {
     navigateTo("/admin");
   }
+  loadingSubmit.value = false;
 });
 </script>
 
@@ -70,6 +73,7 @@ const onSubmit = handleSubmit(async (values) => {
               label="Login"
               class="w-full justify-center"
               type="submit"
+              :loading="loadingSubmit"
             />
           </div>
         </form>

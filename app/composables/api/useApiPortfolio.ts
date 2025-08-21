@@ -1,6 +1,6 @@
 export default function () {
   const getList = () => {
-    return useFetch<PortfolioData[]>(`/api/portfolios`, {
+    return useFetch<PortfolioData[]>(`/api/v1/portfolios`, {
       watch: false,
     });
   };
@@ -10,7 +10,7 @@ export default function () {
       const formData = builderFormData(payload);
 
       const response = await $fetch(
-        id ? `/api/portfolios/${id}` : `/api/portfolios`,
+        id ? `/api/v1/portfolios/${id}` : `/api/v1/portfolios`,
         {
           method: id ? "put" : "post",
           body: formData,
@@ -35,7 +35,7 @@ export default function () {
   };
   const deleteData = async (id: string) => {
     try {
-      const response = await $fetch(`/api/portfolios/${id}`, {
+      const response = await $fetch(`/api/v1/portfolios/${id}`, {
         method: "delete",
         onResponseError: ({ response }) => {
           useToast().add({

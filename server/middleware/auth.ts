@@ -3,8 +3,9 @@ import crypto from "node:crypto";
 export default defineEventHandler(async (event) => {
   const requestURL = getRequestURL(event);
   if (
-    requestURL.pathname.startsWith("/api") &&
-    requestURL.pathname !== "/api/auth/login"
+    requestURL.pathname.startsWith("/api/v1") &&
+    requestURL.pathname !== "/api/v1/auth/login" &&
+    requestURL.pathname !== "/api/v1/auth/logout"
   ) {
     const { secretKey } = useRuntimeConfig();
     const password = crypto

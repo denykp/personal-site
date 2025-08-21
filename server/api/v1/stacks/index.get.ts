@@ -1,4 +1,4 @@
-import { dbAdmin } from "../../utils/firebase-admin";
+import { dbAdmin } from "../../../utils/firebase-admin";
 
 export default defineEventHandler(async (event) => {
   try {
