@@ -3,7 +3,7 @@ import { dbAdmin } from "../../../utils/firebase-admin";
 export default defineEventHandler(async (event) => {
   try {
     const id = getRouterParam(event, "id");
-    dbAdmin.collection("portfolios").doc(id!).delete();
+    dbAdmin.collection("portfolios").doc(id!);
     const docRef = dbAdmin.collection("portfolios").doc(id!);
     if (docRef) {
       const oldImages: string[] = JSON.parse(

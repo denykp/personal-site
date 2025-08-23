@@ -4,7 +4,7 @@ import cloudinary from "~~/server/utils/cloudinary";
 export default defineEventHandler(async (event) => {
   try {
     const id = getRouterParam(event, "id");
-    dbAdmin.collection("stacks").doc(id!).delete();
+    dbAdmin.collection("stacks").doc(id!);
     const docRef = dbAdmin.collection("stacks").doc(id!);
     if (docRef) {
       const oldLogo: string = await docRef

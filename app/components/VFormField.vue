@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { useField } from "vee-validate";
 
+interface OptionItems {
+  value: string;
+  label: string;
+}
+
 interface Props {
   name: string;
   label?: string;
@@ -9,17 +14,19 @@ interface Props {
   as?:
     | "input"
     | "select"
+    | "select-menu"
     | "textarea"
     | "color-picker"
     | "file-picker"
     | "switch";
-  items?: Array<{ label: string; value: string | number }>;
+  items?: OptionItems[];
   required?: boolean;
   class?: string;
   size?: "sm" | "md" | "lg" | "xl";
   preview?: string;
   accept?: string;
   multiple?: boolean;
+  valueKey?: keyof OptionItems;
 }
 
 const props = defineProps<Props>();
@@ -60,10 +67,12 @@ const inputProps = computed(() => ({
   size: props.size ?? "lg",
   accept: props.accept,
   multiple: props.multiple,
+  valueKey: props.valueKey,
 }));
 
 const UInput = resolveComponent("UInput");
 const USelect = resolveComponent("USelect");
+const USelectMenu = resolveComponent("USelectMenu");
 const UTextarea = resolveComponent("UTextarea");
 const CColorPicker = resolveComponent("CColorPicker");
 const CFilePicker = resolveComponent("CFilePicker");
@@ -72,6 +81,8 @@ const renderComponent = computed(() => {
   switch (props.as) {
     case "select":
       return USelect;
+    case "select-menu":
+      return USelectMenu;
     case "textarea":
       return UTextarea;
     case "color-picker":

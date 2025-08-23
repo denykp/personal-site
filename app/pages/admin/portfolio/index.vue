@@ -43,6 +43,21 @@ const columns: TableColumn<PortfolioData>[] = [
   {
     accessorKey: "name",
     header: "Stack Name",
+    cell: ({ row }) =>
+      h(
+        UPopover,
+        { mode: "hover" },
+        {
+          default: () =>
+            h(
+              "div",
+              { class: "max-w-64 whitespace-pre-wrap line-clamp-1" },
+              row.original.name
+            ),
+          content: () =>
+            h("div", { class: "max-w-96 p-2 text-xs" }, row.original.name),
+        }
+      ),
   },
   {
     accessorKey: "description",
@@ -52,16 +67,18 @@ const columns: TableColumn<PortfolioData>[] = [
         UPopover,
         { mode: "hover" },
         {
-          default: h(
-            "div",
-            { class: "max-w-72 whitespace-pre-wrap line-clamp-1" },
-            row.original.description
-          ),
-          content: h(
-            "div",
-            { class: "max-w-96 p-2 text-xs" },
-            row.original.description
-          ),
+          default: () =>
+            h(
+              "div",
+              { class: "max-w-72 whitespace-pre-wrap line-clamp-1" },
+              row.original.description
+            ),
+          content: () =>
+            h(
+              "div",
+              { class: "max-w-96 p-2 text-xs" },
+              row.original.description
+            ),
         }
       ),
   },
@@ -72,20 +89,36 @@ const columns: TableColumn<PortfolioData>[] = [
   {
     accessorKey: "stacks",
     header: "Tech Stacks",
-    cell: ({ row }) => {
-      return h(
-        "div",
-        { class: "flex flex-wrap gap-2" },
-        row.original.stacks.map((stack) =>
-          h(UBadge, {
-            label: stack.name,
-            color: "primary",
-            size: "sm",
-            variant: "subtle",
-          })
-        )
-      );
-    },
+    cell: ({ row }) =>
+      h(
+        UPopover,
+        { mode: "hover" },
+        {
+          default: () =>
+            h(
+              "div",
+              { class: "max-w-72 whitespace-pre-wrap line-clamp-1" },
+              `${row.original.stacks.length} stacks`
+            ),
+          content: () =>
+            h(
+              "div",
+              { class: "max-w-96 p-2 text-xs" },
+              h(
+                "div",
+                { class: "flex flex-wrap gap-2" },
+                row.original.stacks.map((stack) =>
+                  h(UBadge, {
+                    label: stack.name,
+                    color: "primary",
+                    size: "sm",
+                    variant: "subtle",
+                  })
+                )
+              )
+            ),
+        }
+      ),
   },
   {
     accessorKey: "project_type",
