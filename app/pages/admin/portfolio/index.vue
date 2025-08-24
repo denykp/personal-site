@@ -85,6 +85,21 @@ const columns: TableColumn<PortfolioData>[] = [
   {
     accessorKey: "url",
     header: "URL",
+    cell: ({ row }) =>
+      h(
+        UPopover,
+        { mode: "hover" },
+        {
+          default: () =>
+            h(
+              "div",
+              { class: "max-w-32 whitespace-pre-wrap line-clamp-1" },
+              row.original.url
+            ),
+          content: () =>
+            h("div", { class: "max-w-96 p-2 text-xs" }, row.original.url),
+        }
+      ),
   },
   {
     accessorKey: "stacks",
