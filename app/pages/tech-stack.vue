@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import useApiPublic from "~/composables/api/useApiPublic";
 
-const { getList } = useApiPublic();
-const { data: listStack } = getList();
+const { getListStack } = useApiPublic();
+const { data: listStack } = getListStack();
 </script>
 
 <template>
   <div class="h-full w-full flex items-center justify-center">
-    <div class="flex gap-5 gap-y-10 justify-center flex-wrap">
+    <div
+      class="flex gap-5 gap-y-10 justify-center flex-wrap p-4 lg:p-16 lg:w-3/4 inner-shadow rounded-4xl"
+    >
       <NuxtLink
         v-for="(item, index) in listStack"
         :key="index"
@@ -20,14 +22,14 @@ const { data: listStack } = getList();
         <NuxtImg
           v-if="item.logo && item.logo !== 'undefined'"
           :src="item.logo"
-          class="w-16 h-16 rounded-lg p-1 transition-transform duration-200 group-hover:scale-150 object-contain"
+          class="w-10 h-10 lg:w-16 lg:h-16 rounded-lg p-1 transition-transform duration-200 group-hover:scale-150 object-contain"
           :style="{ backgroundColor: item.color || undefined }"
           :alt="item.name"
           :aria-label="item.name"
         />
         <div
           v-else
-          class="w-16 h-16 rounded-lg flex items-center justify-center transition-transform duration-200 hover:scale-150 font-black bg-white"
+          class="w-10 h-10 lg:w-16 lg:h-16 rounded-lg flex items-center justify-center transition-transform duration-200 hover:scale-150 font-black bg-white"
           :style="{ color: item.color }"
         >
           {{ item.name }}

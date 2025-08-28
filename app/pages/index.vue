@@ -62,8 +62,7 @@ const listRole = [
         <TypingAnimation :strings="listRole" leading="I'm a" />
       </div>
       <div
-        class="text-xs text-gray-400 transition-all duration-500 overflow-hidden line-clamp-4"
-        :class="mounted ? 'w-full' : 'w-0'"
+        class="text-xs text-gray-400 transition-all duration-500 overflow-hidden line-clamp-4 lg:w-[50vw]"
       >
         With 10+ years of software development experience, including 5 years in
         web development using Vue and Nuxt, and 6 years in desktop application
