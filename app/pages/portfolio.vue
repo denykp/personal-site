@@ -84,7 +84,7 @@ const openDetail = (item: PortfolioData) => {
           <div class="shrink-0 hidden lg:block">
             <NuxtImg
               :src="item.images[0] || `/images/no-image-placeholder.svg`"
-              class="w-48 h-full object-cover rounded-lg grayscale-100 group-hover:grayscale-0"
+              class="w-48 h-full object-cover rounded-lg lg:grayscale-100 lg:group-hover:grayscale-0"
             />
           </div>
           <div class="flex flex-col gap-2">

@@ -41,7 +41,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="h-screen w-full not-even:bg-gradient-to-br from-black to-gray-900 flex flex-col overflow-auto scrollable-container-inset"
+    class="h-screen w-full bg-gradient-to-br from-black to-gray-900 flex flex-col overflow-auto scrollable-container-inset"
   >
     <div class="flex items-center justify-center sticky top-0 z-10">
       <div
@@ -49,7 +49,6 @@ onMounted(() => {
         style="backdrop-filter: blur(10px)"
         @mouseenter="enterMenu"
         @mouseleave="leaveMenu"
-        @click="enterMenu"
       >
         <NuxtLink
           v-for="menu in listMenu"
@@ -76,7 +75,7 @@ onMounted(() => {
     </div>
 
     <UContainer class="flex gap-8 grow">
-      <div class="grow">
+      <div class="grow" @mousemove="leaveMenu">
         <slot></slot>
       </div>
     </UContainer>
