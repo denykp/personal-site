@@ -22,6 +22,7 @@ onMounted(() => {
       class="animate-deep-pulse"
     />
   </div>
+  <NuxtLoadingIndicator />
   <UApp>
     <NuxtLayout>
       <NuxtPage />

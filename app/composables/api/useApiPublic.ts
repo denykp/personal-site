@@ -1,14 +1,10 @@
 export default function () {
   const getListStack = () => {
-    return useFetch<StackData[]>(`/api/public/stacks`, {
-      watch: false,
-    });
+    return useFetch<StackData[]>(`/api/public/stacks`);
   };
 
   const getListPortfolio = () => {
-    return useFetch<PortfolioData[]>(`/api/public/portfolios`, {
-      watch: false,
-    });
+    return useFetch<PortfolioData[]>(`/api/public/portfolios`);
   };
 
   return {

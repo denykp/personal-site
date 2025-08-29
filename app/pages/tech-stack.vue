@@ -2,7 +2,7 @@
 import useApiPublic from "~/composables/api/useApiPublic";
 
 const { getListStack } = useApiPublic();
-const { data: listStack } = getListStack();
+const { data: listStack } = await getListStack();
 </script>
 
 <template>

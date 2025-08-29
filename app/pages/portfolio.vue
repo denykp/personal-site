@@ -6,30 +6,32 @@ const filter = ref({
   stacks: [],
 });
 const listRole = computed(() => {
-  const list = ["Frontend", "Backend", "Fullstack", "Fullstack Desktop"];
+  const list = ["All", "Frontend", "Backend", "Fullstack", "Fullstack Desktop"];
   return list.map((val) => ({ value: val, label: val }));
 });
 const { getListStack, getListPortfolio } = useApiPublic();
-const { data: dataStack } = getListStack();
+const { data: dataStack } = await getListStack();
 const listStack = computed(
   () =>
     dataStack.value?.map((val) => ({ value: val.id, label: val.name })) || []
 );
 
 // Portfolio Data Related
-const { data: dataPortfolio } = getListPortfolio();
+const { data: dataPortfolio } = await getListPortfolio();
 const listPortfolio = computed(() => dataPortfolio.value || []);
 const displayedPortfolio = computed(() => {
   return listPortfolio.value.filter((val) => {
     let role = true;
     if (filter.value.role !== "All") {
-      role = val.role.toLowerCase() === String(filter.value.role).toLowerCase();
+      role =
+        val.role.toLowerCase() === String(filter.value.role).toLowerCase() ||
+        filter.value.role === "All";
     }
 
     return (
       role &&
       filter.value.stacks.every((filterStack) =>
-        val.stacks.includes(filterStack)
+        val.stacks.map((stack) => stack.id).includes(filterStack)
       )
     );
   });
