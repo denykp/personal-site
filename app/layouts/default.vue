@@ -75,7 +75,7 @@ onMounted(() => {
     </div>
 
     <UContainer class="flex gap-8 grow">
-      <div class="grow" @mousemove="leaveMenu">
+      <div class="grow">
         <slot></slot>
       </div>
     </UContainer>
