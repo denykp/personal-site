@@ -1,5 +1,5 @@
 import cloudinary from "~~/server/utils/cloudinary";
-import { dbAdmin } from "../../utils/firebase-admin";
+import { dbAdmin } from "../../../utils/firebase-admin";
 import pLimit from "p-limit";
 
 export default defineEventHandler(async (event) => {
@@ -15,6 +15,7 @@ export default defineEventHandler(async (event) => {
     const imagesField = formData.filter((field) => field.name === "images");
     const limit = pLimit(5);
 
+    let isNewImage = false;
     const imagesToUpload = imagesField.map((image) => {
       return limit(async () => {
         if (image.filename) {
@@ -25,6 +26,7 @@ export default defineEventHandler(async (event) => {
               format: "webp", // Optional: specify the desired format
             }
           );
+          isNewImage = true;
           return result.secure_url;
         } else {
           return image.data.toString();
@@ -46,10 +48,31 @@ export default defineEventHandler(async (event) => {
         .find((field) => field.name === "project_type")
         ?.data.toString(),
       role: formData.find((field) => field.name === "role")?.data.toString(),
+      highlight:
+        formData
+          .find((field) => field.name === "highlight")
+          ?.data.toString() === "true",
     };
 
     const id = getRouterParam(event, "id");
     const docRef = dbAdmin.collection("portfolios").doc(id!);
+
+    if (isNewImage) {
+      const oldImages: string[] = await docRef
+        .get()
+        .then((doc) => doc.data()?.images);
+      oldImages.forEach(async (image) => {
+        const publicId = cloudinary
+          .url(image, { type: "upload" })
+          .split("/")
+          .slice(-3)
+          .join("/")
+          .split(".")[0];
+        if (publicId) {
+          await cloudinary.uploader.destroy(publicId);
+        }
+      });
+    }
 
     await docRef.update(body);
     return { message: "Document updated successfully" };

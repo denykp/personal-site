@@ -1,5 +1,5 @@
 import cloudinary from "~~/server/utils/cloudinary";
-import { dbAdmin } from "../../utils/firebase-admin";
+import { dbAdmin } from "../../../utils/firebase-admin";
 import pLimit from "p-limit";
 
 export default defineEventHandler(async (event) => {
@@ -31,22 +31,7 @@ export default defineEventHandler(async (event) => {
         }
       });
     });
-    // let logoPath = undefined;
-    // if (logoField?.filename) {
-    //   const result = await cloudinary.uploader.upload(
-    //     `data:${logoField.type};base64,${logoField.data.toString("base64")}`,
-    //     {
-    //       folder: "portfolio/stacks", // Optional: specify a folder
-    //       format: "webp", // Optional: specify the desired format
-    //     }
-    //   );
 
-    //   if (result.secure_url) {
-    //     logoPath = result.secure_url;
-    //   }
-    // } else {
-    //   logoPath = logoField?.data.toString();
-    // }
     const body = {
       name: formData.find((field) => field.name === "name")?.data.toString(),
       description: formData
@@ -56,13 +41,16 @@ export default defineEventHandler(async (event) => {
       images: await Promise.all(imagesToUpload),
       stacks:
         formData
-          .find((field) => field.name === "stacks")
-          ?.data.toString()
-          .split(",") || [],
+          .filter((field) => field.name === "stacks")
+          ?.map((field) => field.data.toString()) || [],
       project_type: formData
         .find((field) => field.name === "project_type")
         ?.data.toString(),
       role: formData.find((field) => field.name === "role")?.data.toString(),
+      highlight:
+        formData
+          .find((field) => field.name === "highlight")
+          ?.data.toString() === "true",
     };
     const docRef = await dbAdmin.collection("portfolios").add(body);
     return { id: docRef.id };

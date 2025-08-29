@@ -6,7 +6,7 @@ export default function () {
 
   const login = async (payload: LoginData) => {
     try {
-      const response = await $fetch<UserData>(`/api/auth/login`, {
+      const response = await $fetch<UserData>(`/api/v1/auth/login`, {
         method: "post",
         body: payload,
         onResponseError: ({ response }) => {
@@ -32,7 +32,7 @@ export default function () {
 
   const logout = async () => {
     try {
-      const response = await $fetch(`/api/auth/logout`, {
+      const response = await $fetch(`/api/v1/auth/logout`, {
         onResponseError: ({ response }) => {
           useToast().add({
             title: "Error",
@@ -54,7 +54,7 @@ export default function () {
   };
 
   const getMe = () => {
-    return useFetch<UserData>(`/api/auth/session`, {
+    return useFetch<UserData>(`/api/v1/auth/session`, {
       onResponse: ({ response: { _data: data } }) => {
         if (data.username) {
           userData.value = data;

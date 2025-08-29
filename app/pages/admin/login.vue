@@ -19,11 +19,14 @@ const { handleSubmit } = useForm({
 });
 
 const { login, userData } = useApiAuth();
+const loadingSubmit = ref(false);
 const onSubmit = handleSubmit(async (values) => {
+  loadingSubmit.value = true;
   const response = await login(values as LoginData);
   if (response) {
     navigateTo("/admin");
   }
+  loadingSubmit.value = false;
 });
 </script>
 
@@ -42,7 +45,10 @@ const onSubmit = handleSubmit(async (values) => {
           />
         </div>
         <USeparator orientation="vertical" class="h-64 w-1 mx-6" />
-        <div class="w-full flex flex-col justify-center">
+        <form
+          class="w-full flex flex-col justify-center"
+          @submit.prevent="onSubmit"
+        >
           <div class="flex flex-col gap-4">
             <VFormField
               label="Username"
@@ -66,10 +72,11 @@ const onSubmit = handleSubmit(async (values) => {
             <UButton
               label="Login"
               class="w-full justify-center"
-              @click="onSubmit()"
+              type="submit"
+              :loading="loadingSubmit"
             />
           </div>
-        </div>
+        </form>
       </div>
     </UCard>
   </div>

@@ -76,7 +76,7 @@
 
 /* For Firefox */
 .scrollable-container-inset {
-  scrollbar-width: thin;
+  scrollbar-width: inherit;
   scrollbar-color: rgba(99, 99, 99, 0.947) transparent;
 }
 
@@ -112,6 +112,6 @@
 }
 
 .page-container {
-  @apply bg-neutral-950 p-4 rounded-2xl;
+  @apply bg-neutral-950 p-4 rounded-2xl h-full;
   box-shadow: 3px 3px 10px 0px #000000;
 }

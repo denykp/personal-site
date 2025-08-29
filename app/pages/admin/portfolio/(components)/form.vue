@@ -10,7 +10,7 @@ const emit = defineEmits(["submitted"]);
 const isCreate = computed(() => !props.detailData?.id);
 
 const { getList } = useApiStack();
-const { data: dataStack } = getList();
+const { data: dataStack, refresh: refreshStack } = getList();
 const listStack = computed(
   () =>
     dataStack.value?.map((val) => ({
@@ -18,26 +18,26 @@ const listStack = computed(
       label: val.name,
     })) || []
 );
-const listProjectType = [
-  { value: "Personal", label: "Personal" },
-  { value: "Company", label: "Company" },
-];
-const listRole = [
-  { value: "Frontend", label: "Frontend" },
-  { value: "Fullstack Node.js", label: "Fullstack Node.js" },
-  { value: "Fullstack Desktop", label: "Fullstack Desktop" },
-];
+const listProjectType = computed(() => {
+  const list = ["Personal", "Company"];
+  return list.map((val) => ({ value: val, label: val }));
+});
+const listRole = computed(() => {
+  const list = ["Frontend", "Backend", "Fullstack", "Fullstack Desktop"];
+  return list.map((val) => ({ value: val, label: val }));
+});
 
 const schema = v.object({
   name: v.pipe(v.string(), v.nonEmpty("Name is required")),
   description: v.pipe(v.string(), v.nonEmpty("Description is required")),
-  url: v.pipe(v.string(), v.nonEmpty("URL is required")),
+  url: v.optional(v.string()),
   images: v.optional(
     v.union([v.array(v.pipe(v.instance(File))), v.array(v.string())])
   ),
   stacks: v.array(v.pipe(v.string(), v.nonEmpty("Tech stack is required"))),
   project_type: v.pipe(v.string(), v.nonEmpty("Project type is required")),
   role: v.pipe(v.string(), v.nonEmpty("Role is required")),
+  highlight: v.optional(v.boolean()),
 });
 const {
   handleSubmit,
@@ -56,6 +56,7 @@ const {
     stacks: [],
     project_type: "",
     role: "",
+    highlight: false,
   },
 });
 
@@ -70,6 +71,7 @@ onMounted(async () => {
         stacks: props.detailData.stacks.map((stack) => stack.id),
         project_type: props.detailData.project_type,
         role: props.detailData.role,
+        highlight: props.detailData.highlight,
       },
     });
   }
@@ -114,7 +116,6 @@ const onSubmit = handleSubmit(async (data) => {
         <VFormField
           label="URL"
           name="url"
-          :required="true"
           as="input"
           class="w-full"
           placeholder="Input URL"
@@ -130,12 +131,14 @@ const onSubmit = handleSubmit(async (data) => {
         <VFormField
           label="Stacks"
           name="stacks"
-          as="select"
+          as="select-menu"
           :items="listStack"
+          valueKey="value"
           :required="true"
           multiple
           class="w-full"
           placeholder="Choose Stack"
+          @click="refreshStack"
         />
         <VFormField
           label="Project Type"
@@ -154,6 +157,13 @@ const onSubmit = handleSubmit(async (data) => {
           :items="listRole"
           class="w-full"
           placeholder="Choose Role"
+        />
+        <VFormField
+          label="Highlight"
+          name="highlight"
+          as="switch"
+          size="xl"
+          class="w-full"
         />
       </div>
     </div>

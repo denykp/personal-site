@@ -3,6 +3,7 @@ export interface Stack {
   url: string;
   logo?: File | string;
   color?: string;
+  highlight?: boolean;
 }
 
 export interface StackData extends Omit<Stack, "logo"> {

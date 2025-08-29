@@ -43,6 +43,21 @@ const columns: TableColumn<PortfolioData>[] = [
   {
     accessorKey: "name",
     header: "Stack Name",
+    cell: ({ row }) =>
+      h(
+        UPopover,
+        { mode: "hover" },
+        {
+          default: () =>
+            h(
+              "div",
+              { class: "max-w-64 whitespace-pre-wrap line-clamp-1" },
+              row.original.name
+            ),
+          content: () =>
+            h("div", { class: "max-w-96 p-2 text-xs" }, row.original.name),
+        }
+      ),
   },
   {
     accessorKey: "description",
@@ -52,44 +67,98 @@ const columns: TableColumn<PortfolioData>[] = [
         UPopover,
         { mode: "hover" },
         {
-          default: h(
-            "div",
-            { class: "max-w-72 whitespace-pre-wrap line-clamp-1" },
-            row.original.description
-          ),
-          content: h(
-            "div",
-            { class: "max-w-96 p-2 text-xs" },
-            row.original.description
-          ),
+          default: () =>
+            h(
+              "div",
+              { class: "max-w-72 whitespace-pre-wrap line-clamp-1" },
+              row.original.description
+            ),
+          content: () =>
+            h(
+              "div",
+              { class: "max-w-96 p-2 text-xs" },
+              row.original.description
+            ),
         }
       ),
   },
   {
     accessorKey: "url",
     header: "URL",
+    cell: ({ row }) =>
+      h(
+        UPopover,
+        { mode: "hover" },
+        {
+          default: () =>
+            h(
+              "div",
+              { class: "max-w-32 whitespace-pre-wrap line-clamp-1" },
+              row.original.url
+            ),
+          content: () =>
+            h("div", { class: "max-w-96 p-2 text-xs" }, row.original.url),
+        }
+      ),
   },
   {
     accessorKey: "stacks",
     header: "Tech Stacks",
-    cell: ({ row }) => {
-      return h(
-        "div",
-        { class: "flex flex-wrap gap-2" },
-        row.original.stacks.map((stack) =>
-          h(UBadge, {
-            label: stack.name,
-            color: "primary",
-            size: "sm",
-            variant: "subtle",
-          })
-        )
-      );
-    },
+    cell: ({ row }) =>
+      h(
+        UPopover,
+        { mode: "hover" },
+        {
+          default: () =>
+            h(
+              "div",
+              { class: "max-w-72 whitespace-pre-wrap line-clamp-1" },
+              `${row.original.stacks.length} stacks`
+            ),
+          content: () =>
+            h(
+              "div",
+              { class: "max-w-96 p-2 text-xs" },
+              h(
+                "div",
+                { class: "flex flex-wrap gap-2" },
+                row.original.stacks.map((stack) =>
+                  h(UBadge, {
+                    label: stack.name,
+                    color: "primary",
+                    size: "sm",
+                    variant: "subtle",
+                  })
+                )
+              )
+            ),
+        }
+      ),
   },
   {
     accessorKey: "project_type",
     header: "Project Type",
+  },
+  {
+    accessorKey: "role",
+    header: "Role",
+  },
+  {
+    accessorKey: "highlight",
+    header: "Highlight",
+    cell: ({ row }) => {
+      const status = row.original.highlight ? "Highlighted" : "Not Highlighted";
+
+      return h(
+        UBadge,
+        {
+          class: "capitalize",
+          variant: "subtle",
+          color: row.original.highlight ? "primary" : "neutral",
+        },
+        () => status
+      );
+    },
   },
   {
     id: "actions", // A common key for action buttons or dropdowns
@@ -129,7 +198,7 @@ const columns: TableColumn<PortfolioData>[] = [
       return h(
         "div",
         {
-          class: "text-right",
+          class: "text-center",
         },
         h(
           UDropdownMenu,
@@ -181,9 +250,23 @@ const displayModal = computed({
       :refresh="refresh"
     >
       <template #expanded="{ row }">
-        <div class="p-4 w-full whitespace-pre-wrap">
+        <!-- <div class="p-4 w-full whitespace-pre-wrap">
           {{ row.original.description }}
-        </div>
+        </div> -->
+        <UCarousel
+          v-if="row.original.images.length"
+          v-slot="{ item }"
+          :items="row.original.images"
+          class="w-full max-w-fit mx-auto"
+          :ui="{ item: `basis-1/${row.original.images.length}` }"
+        >
+          <NuxtLink :to="item" target="_blank">
+            <LazyNuxtImg
+              :src="item"
+              class="w-[127px] h-[127px] object-cover rounded-lg"
+            />
+          </NuxtLink>
+        </UCarousel>
       </template>
     </CTable>
 

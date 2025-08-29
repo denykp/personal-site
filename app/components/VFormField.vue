@@ -1,20 +1,32 @@
 <script setup lang="ts">
-import { computed } from "vue";
 import { useField } from "vee-validate";
+
+interface OptionItems {
+  value: string;
+  label: string;
+}
 
 interface Props {
   name: string;
   label?: string;
   placeholder?: string;
   type?: string;
-  as?: "input" | "select" | "textarea" | "color-picker" | "file-picker";
-  items?: Array<{ label: string; value: string | number }>;
+  as?:
+    | "input"
+    | "select"
+    | "select-menu"
+    | "textarea"
+    | "color-picker"
+    | "file-picker"
+    | "switch";
+  items?: OptionItems[];
   required?: boolean;
   class?: string;
   size?: "sm" | "md" | "lg" | "xl";
   preview?: string;
   accept?: string;
   multiple?: boolean;
+  valueKey?: keyof OptionItems;
 }
 
 const props = defineProps<Props>();
@@ -38,19 +50,6 @@ const inputType = computed(() => {
 });
 
 const filesTemporary = ref<FileList | null>(null);
-const filePreview = computed(() => {
-  if (props.as === "input" && props.type === "file") {
-    if (filesTemporary.value) {
-      return Array.from(filesTemporary.value).map((file) =>
-        URL.createObjectURL(file)
-      );
-    } else if (props.preview) {
-      const data = props.preview;
-      return Array(1).fill(data);
-    }
-  }
-  return [];
-});
 
 const inputProps = computed(() => ({
   modelValue: value.value,
@@ -68,25 +67,30 @@ const inputProps = computed(() => ({
   size: props.size ?? "lg",
   accept: props.accept,
   multiple: props.multiple,
+  valueKey: props.valueKey,
 }));
 
 const UInput = resolveComponent("UInput");
 const USelect = resolveComponent("USelect");
+const USelectMenu = resolveComponent("USelectMenu");
 const UTextarea = resolveComponent("UTextarea");
 const CColorPicker = resolveComponent("CColorPicker");
 const CFilePicker = resolveComponent("CFilePicker");
+const USwitch = resolveComponent("USwitch");
 const renderComponent = computed(() => {
   switch (props.as) {
     case "select":
       return USelect;
-    case "textarea":
-      return UTextarea;
+    case "select-menu":
+      return USelectMenu;
     case "textarea":
       return UTextarea;
     case "color-picker":
       return CColorPicker;
     case "file-picker":
       return CFilePicker;
+    case "switch":
+      return USwitch;
     default:
       return UInput;
   }

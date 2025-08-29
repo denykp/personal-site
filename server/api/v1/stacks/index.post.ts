@@ -1,5 +1,5 @@
 import cloudinary from "~~/server/utils/cloudinary";
-import { dbAdmin } from "../../utils/firebase-admin";
+import { dbAdmin } from "../../../utils/firebase-admin";
 
 export default defineEventHandler(async (event) => {
   try {
@@ -33,7 +33,12 @@ export default defineEventHandler(async (event) => {
       url: formData.find((field) => field.name === "url")?.data.toString(),
       logo: logoPath,
       color: formData.find((field) => field.name === "color")?.data.toString(),
+      highlight:
+        formData
+          .find((field) => field.name === "highlight")
+          ?.data.toString() === "true",
     };
+
     const docRef = await dbAdmin.collection("stacks").add(body);
     return { id: docRef.id };
   } catch (error) {
