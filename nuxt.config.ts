@@ -45,4 +45,7 @@ export default defineNuxtConfig({
     },
     secretKey: "",
   },
+  sitemap: {
+    exclude: ["/admin/**"],
+  },
 });
