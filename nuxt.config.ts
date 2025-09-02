@@ -18,6 +18,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/seo",
     "@vee-validate/nuxt",
+    "nuxt-gtag",
   ],
   compatibilityDate: "2025-08-06",
   components: [

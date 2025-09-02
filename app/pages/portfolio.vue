@@ -17,7 +17,7 @@ const listStack = computed(
 );
 
 // Portfolio Data Related
-const { data: dataPortfolio } = await getListPortfolio();
+const { data: dataPortfolio } = getListPortfolio();
 const listPortfolio = computed(() => dataPortfolio.value || []);
 const displayedPortfolio = computed(() => {
   return listPortfolio.value.filter((val) => {
@@ -47,9 +47,9 @@ const openDetail = (item: PortfolioData) => {
 <template>
   <div>
     <div class="mt-12">
-      <div class="text-4xl font-bold mb-10" data-aos="fade-right">
+      <h1 class="text-4xl font-bold mb-10" data-aos="fade-right">
         These are some projects I've done before.
-      </div>
+      </h1>
       <div class="mb-3 flex flex-row gap-4" data-aos="zoom-in-up">
         <div class="lg:flex grid grid-1 gap-1 lg:gap-2 items-center">
           <label for="role">Role:</label>
@@ -73,7 +73,7 @@ const openDetail = (item: PortfolioData) => {
       </div>
       <div
         class="overflow-y-auto p-[1px] scrollable-container-inset"
-        data-aos="fade-down"
+        data-aos="fade-up"
       >
         <!-- h-[75vh] -->
         <div
