@@ -46,12 +46,12 @@ const listRole = [
 <template>
   <div class="h-full flex items-center">
     <div class="text-white z-[2] w-full">
-      <div
+      <h1
         class="text-4xl font-bold transition-transform duration-300 opacity-0"
         data-aos="fade-down"
       >
         Hi, I'm Deny Kristianto Pamuji
-      </div>
+      </h1>
       <div
         class="mt-2 text-lg transition-transform duration-300 opacity-0"
         data-aos="fade-down"
@@ -62,7 +62,7 @@ const listRole = [
         <TypingAnimation :strings="listRole" leading="I'm a" />
       </div>
       <div
-        class="text-xs text-gray-400 transition-all duration-500 overflow-hidden line-clamp-4 lg:w-[50vw]"
+        class="text-xs text-gray-400 transition-all duration-500 overflow-hidden line-clamp-4 lg:w-[75%]"
       >
         With 10+ years of software development experience, including 5 years in
         web development using Vue and Nuxt, and 6 years in desktop application
