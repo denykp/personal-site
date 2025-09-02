@@ -17,7 +17,7 @@ const listStack = computed(
 );
 
 // Portfolio Data Related
-const { data: dataPortfolio } = getListPortfolio();
+const { data: dataPortfolio } = await getListPortfolio();
 const listPortfolio = computed(() => dataPortfolio.value || []);
 const displayedPortfolio = computed(() => {
   return listPortfolio.value.filter((val) => {
