@@ -40,8 +40,9 @@ const { data: listStack } = await getListStack();
           </div>
         </NuxtLink>
       </div>
+
+      <!-- Spacer -->
+      <div class="h-32"></div>
     </div>
-    <!-- Spacer -->
-    <div class="h-32"></div>
   </div>
 </template>
