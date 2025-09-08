@@ -7,6 +7,7 @@ useHead({
 });
 definePageMeta({
   middleware: ["admin"],
+  layout: "empty",
 });
 
 const schema = v.object({
