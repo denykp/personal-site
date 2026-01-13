@@ -49,4 +49,21 @@ export default defineNuxtConfig({
   sitemap: {
     exclude: ["/admin/**"],
   },
+  // 🚀 Hybrid Rendering for Performance
+  routeRules: {
+    // Pre-render homepage at build time
+    "/": { prerender: true },
+
+    // ISR for portfolio - regenerate every hour
+    "/portfolio": { isr: 3600 },
+
+    // ISR for tech stack - regenerate every hour
+    "/tech-stack": { isr: 3600 },
+
+    // Keep admin dynamic (SSR with authentication)
+    "/admin/**": { ssr: true },
+
+    // API routes
+    "/api/**": { cors: true },
+  },
 });
