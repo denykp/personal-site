@@ -66,4 +66,7 @@ export default defineNuxtConfig({
     // API routes
     "/api/**": { cors: true },
   },
+  ogImage: {
+    enabled: false,
+  },
 });
