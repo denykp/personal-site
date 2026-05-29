@@ -55,8 +55,9 @@ export default function () {
 
   const getMe = () => {
     return useFetch<UserData>(`/api/v1/auth/session`, {
-      onResponse: ({ response: { _data: data } }) => {
-        if (data.username) {
+      onResponse: ({ response }) => {
+        const data = response._data;
+        if (data && data.username) {
           userData.value = data;
           return true;
         }
