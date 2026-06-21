@@ -7,30 +7,30 @@ project_type: Company
 role: Frontend
 highlight: false
 stacks:
-  - id: GLBjNll97Ihl1nWjKd30
+  - id: vue-js
     color: ""
     url: https://vuejs.org/
     logo: /images/stacks/vue-js/1779968061005-591m02.webp
     highlight: true
     name: Vue.js
-  - id: 4tBL57yS5fpHIHqCdk09
+  - id: typescript
     name: TypeScript
     url: https://www.typescriptlang.org/
     logo: /images/stacks/typescript/1779968066548-f8lzs.webp
     color: ""
     highlight: false
-  - id: Y6hRuJVq2PwYdX2NDiaj
+  - id: axios
     name: Axios
     url: https://axios-http.com/
     logo: /images/stacks/axios/1779968071617-pwxeyq.webp
     color: ""
     highlight: false
-  - id: 7vgN6AAT3bu5Q6L9H5Jz
+  - id: vuex
     name: Vuex
     url: https://vuex.vuejs.org/
     logo: /images/stacks/vuex/1779968067436-01b2mr.webp
     color: ""
-  - id: x5hEJu8WQT8geHvkGF5B
+  - id: yup
     name: Yup
     url: https://yup.js.org/
     logo: undefined

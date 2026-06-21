@@ -9,6 +9,19 @@ export interface Portfolio {
 
 export const listPortfolio: Portfolio[] = [
   {
+    name: "Qontak Omnichannel Dashboard",
+    images: [
+      "/images/portfolios/qontak-omnichannel-dashboard/screenshot-1.webp",
+      "/images/portfolios/qontak-omnichannel-dashboard/screenshot-2.webp",
+      "/images/portfolios/qontak-omnichannel-dashboard/screenshot-3.webp",
+    ],
+    description:
+      "Qontak Omnichannel is a unified inbox platform that consolidates WhatsApp, Instagram, Email, and Telegram into one workspace for customer service and sales teams. It solves fragmented communication by centralizing conversations, automating responses with AI chatbots, and enabling proactive outreach, helping businesses improve response times and boost engagement.",
+    url: "",
+    stacks: ["Vue", "Nuxt", "TypeScript", "Pinia"],
+    project_type: "company",
+  },
+  {
     name: "AHM Loyalty Management System",
     images: [
       "/images/ahm/Screenshot 2025-06-21 082854.png",

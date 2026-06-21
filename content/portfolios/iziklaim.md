@@ -4,24 +4,24 @@ url: ""
 images:
   - /images/portfolios/iziklaim/1779968080216-95tch5.webp
 stacks:
-  - id: GLBjNll97Ihl1nWjKd30
+  - id: vue-js
     color: ""
     url: https://vuejs.org/
     logo: /images/stacks/vue-js/1779968061005-591m02.webp
     highlight: true
     name: Vue.js
-  - id: V39W2DIqOhN6swC9R5F3
+  - id: javascript
     name: Javascript
     url: https://www.javascript.com/
     logo: /images/stacks/javascript/1779968070463-vwn1q8.webp
     color: ""
-  - id: Y6hRuJVq2PwYdX2NDiaj
+  - id: axios
     name: Axios
     url: https://axios-http.com/
     logo: /images/stacks/axios/1779968071617-pwxeyq.webp
     color: ""
     highlight: false
-  - id: 7vgN6AAT3bu5Q6L9H5Jz
+  - id: vuex
     name: Vuex
     url: https://vuex.vuejs.org/
     logo: /images/stacks/vuex/1779968067436-01b2mr.webp

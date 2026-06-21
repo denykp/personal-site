@@ -11,30 +11,30 @@ project_type: Personal
 role: Frontend
 highlight: true
 stacks:
-  - id: GLBjNll97Ihl1nWjKd30
+  - id: vue-js
     color: ""
     url: https://vuejs.org/
     logo: /images/stacks/vue-js/1779968061005-591m02.webp
     highlight: true
     name: Vue.js
-  - id: orZRN8zAFI8FWIlOdiAz
+  - id: nuxt-js
     url: https://nuxt.com/
     logo: /images/stacks/nuxt-js/1779968063929-rgc3vj.webp
     color: ""
     highlight: true
     name: Nuxt.js
-  - id: 4tBL57yS5fpHIHqCdk09
+  - id: typescript
     name: TypeScript
     url: https://www.typescriptlang.org/
     logo: /images/stacks/typescript/1779968066548-f8lzs.webp
     color: ""
     highlight: false
-  - id: x5hEJu8WQT8geHvkGF5B
+  - id: yup
     name: Yup
     url: https://yup.js.org/
     logo: undefined
     color: "#e7000b"
-  - id: 1BKCqN6SsPndgbKREWR0
+  - id: tailwind-css
     name: Tailwind CSS
     url: https://tailwindcss.com/
     logo: /images/stacks/tailwind-css/1779968065622-7t8g4q.webp

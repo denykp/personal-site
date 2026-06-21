@@ -9,25 +9,25 @@ project_type: Personal
 role: Frontend
 highlight: false
 stacks:
-  - id: 2g2BqFTMggdagQNzVB4S
+  - id: android
     name: Android
     url: https://developer.android.com/develop
     logo: /images/stacks/android/1779968066100-98a72.webp
     color: ""
     highlight: false
-  - id: nzCyx4RuJxlONBBjkBfu
+  - id: react-js
     color: ""
     logo: /images/stacks/react-js/1779968063419-8sah0u.webp
     url: https://react.dev/
     highlight: true
     name: React.js
-  - id: ytx3yY8cC9mS3xi1NYvW
+  - id: nest-js
     name: Nest.js
     url: https://nestjs.com/
     logo: /images/stacks/nest-js/1779968074800-lpkiyo.webp
     color: ""
     highlight: false
-  - id: 0Nr1ESk9MQYxJZULSQm2
+  - id: postgresql
     name: PostgreSQL
     url: https://www.postgresql.org/
     logo: /images/stacks/postgresql/1779968064927-8pa7e5.webp

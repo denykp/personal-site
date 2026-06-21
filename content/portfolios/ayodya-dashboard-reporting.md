@@ -8,31 +8,31 @@ project_type: Personal
 role: Fullstack
 highlight: false
 stacks:
-  - id: GLBjNll97Ihl1nWjKd30
+  - id: vue-js
     color: ""
     url: https://vuejs.org/
     logo: /images/stacks/vue-js/1779968061005-591m02.webp
     highlight: true
     name: Vue.js
-  - id: orZRN8zAFI8FWIlOdiAz
+  - id: nuxt-js
     url: https://nuxt.com/
     logo: /images/stacks/nuxt-js/1779968063929-rgc3vj.webp
     color: ""
     highlight: true
     name: Nuxt.js
-  - id: 4tBL57yS5fpHIHqCdk09
+  - id: typescript
     name: TypeScript
     url: https://www.typescriptlang.org/
     logo: /images/stacks/typescript/1779968066548-f8lzs.webp
     color: ""
     highlight: false
-  - id: ZqmOriWOtje6MRZ7L6yh
+  - id: ms-sql-server
     name: MS SQL Server
     logo: /images/stacks/ms-sql-server/1779968072414-zvjmwh.webp
     color: ""
     highlight: false
     url: https://www.microsoft.com/en-us/sql-server/
-  - id: 1BKCqN6SsPndgbKREWR0
+  - id: tailwind-css
     name: Tailwind CSS
     url: https://tailwindcss.com/
     logo: /images/stacks/tailwind-css/1779968065622-7t8g4q.webp
