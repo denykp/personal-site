@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { toTypedSchema } from "@vee-validate/valibot";
 import * as v from "valibot";
 import useApiPortfolio from "~/composables/api/useApiPortfolio";
 import useApiStack from "~/composables/api/useApiStack";

@@ -35,6 +35,9 @@ importers:
       '@vee-validate/valibot':
         specifier: ^4.15.1
         version: 4.15.1(valibot@1.2.0(typescript@5.9.3))(vue@3.5.26(typescript@5.9.3))
+      '@vee-validate/zod':
+        specifier: ^4.15.1
+        version: 4.15.1(vue@3.5.26(typescript@5.9.3))(zod@3.25.76)
       '@vueuse/nuxt':
         specifier: ^13.4.0
         version: 13.9.0(magicast@0.5.1)(nuxt@4.2.2(@parcel/watcher@2.5.4)(@types/node@20.19.28)(@vue/compiler-sfc@3.5.26)(better-sqlite3@12.10.0)(cac@6.7.14)(db0@0.3.4(better-sqlite3@12.10.0))(ioredis@5.9.1)(lightningcss@1.30.2)(magicast@0.5.1)(rollup@4.55.1)(terser@5.44.1)(typescript@5.9.3)(vite@7.3.1(@types/node@20.19.28)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(yaml@2.9.0))(yaml@2.9.0))(vue@3.5.26(typescript@5.9.3))
@@ -1766,6 +1769,11 @@ packages:
     resolution: {integrity: sha512-4yXs8jg2UCv6ekGpH/+vsO4a9jPZXbBR6+Tge9HnmKBZReBgqhsRjkH8OuuIIWxT+Mo/bC5120FdWaWLGAVDOw==}
     peerDependencies:
       valibot: ^1.0.0-beta.7
+
+  '@vee-validate/zod@4.15.1':
+    resolution: {integrity: sha512-329Z4TDBE5Vx0FdbA8S4eR9iGCFFUNGbxjpQ20ff5b5wGueScjocUIx9JHPa79LTG06RnlUR4XogQsjN4tecKA==}
+    peerDependencies:
+      zod: ^3.24.0
 
   '@vercel/nft@1.2.0':
     resolution: {integrity: sha512-68326CAWJmd6P1cUgUmufor5d4ocPbpLxiy9TKG6U/a4aWEx9aC+NIzaDI6GmBZVpt3+MkO3OwnQ2YcgJg12Qw==}
@@ -7087,6 +7095,14 @@ snapshots:
     transitivePeerDependencies:
       - vue
 
+  '@vee-validate/zod@4.15.1(vue@3.5.26(typescript@5.9.3))(zod@3.25.76)':
+    dependencies:
+      type-fest: 4.41.0
+      vee-validate: 4.15.1(vue@3.5.26(typescript@5.9.3))
+      zod: 3.25.76
+    transitivePeerDependencies:
+      - vue
+
   '@vercel/nft@1.2.0(rollup@4.55.1)':
     dependencies:
       '@mapbox/node-pre-gyp': 2.0.3
@@ -11258,7 +11274,6 @@ snapshots:
       compress-commons: 6.0.2
       readable-stream: 4.7.0
 
-  zod@3.25.76:
-    optional: true
+  zod@3.25.76: {}
 
   zwitch@2.0.4: {}

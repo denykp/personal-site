@@ -5,7 +5,7 @@ import type { Menu } from "~~/shared/types";
 useSeoMeta({
   title: "Frontend Engineer | FullStack Node.js Engineer",
   description:
-    "Frontend Engineer with 11 years of software development experience, including 5 years in web development using Vue and Nuxt, and 6 years in desktop application development. Skilled in building responsive interfaces, integrating backend APIs, and creating reporting systems. Comfortable working across the full stack using Express.js, SQL databases, and legacy systems like VB6",
+    "Frontend Engineer with 12+ years of software development experience, including 6+ years in web development using Vue and Nuxt, and 6 years in desktop application development. Skilled in building responsive interfaces, integrating backend APIs, and creating reporting systems. Comfortable working across the full stack using Express.js, SQL databases, and legacy systems like VB6",
 });
 
 const mounted = ref(false);
@@ -45,9 +45,9 @@ const listRole = [
 
 <template>
   <div class="h-full flex items-center">
-    <div class="text-white z-[2] w-full">
+    <div class="text-white z-2 w-full">
       <h1
-        class="text-4xl font-bold transition-transform duration-300 opacity-0"
+        class="text-3xl sm:text-4xl font-bold transition-transform duration-300 opacity-0"
         data-aos="fade-down"
       >
         Hi, I'm Deny Kristianto Pamuji
@@ -62,19 +62,40 @@ const listRole = [
         <TypingAnimation :strings="listRole" leading="I'm a" />
       </div>
       <div
-        class="text-xs text-gray-400 transition-all duration-500 overflow-hidden line-clamp-4 lg:w-[75%]"
+        class="text-xs sm:text-sm text-gray-400 transition-all duration-500 overflow-hidden line-clamp-4 lg:w-[75%]"
       >
-        With 10+ years of software development experience, including 5 years in
+        With 12+ years of software development experience, including 6+ years in
         web development using Vue and Nuxt, and 6 years in desktop application
         development. Skilled in building responsive interfaces, integrating
         backend APIs, and creating reporting systems. Comfortable working across
         the full stack using Express.js, SQL databases, and legacy systems like
         VB6
       </div>
+
+      <!-- CV / Resume Download CTA -->
       <div
-        class="mt-5 w-[fit-content] flex gap-2 p-3 bg-gray-800 rounded-xl bg-opacity-70 opacity-0"
+        class="mt-6 flex flex-wrap gap-4 items-center opacity-0"
         data-aos="fade-up"
-        data-aos-delay="200"
+        data-aos-delay="150"
+      >
+        <UButton
+          to="/files/Resume - Deny Kristianto Pamuji.pdf"
+          target="_blank"
+          download="Resume - Deny Kristianto Pamuji.pdf"
+          icon="heroicons:arrow-down-tray"
+          size="lg"
+          color="primary"
+          variant="solid"
+          class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105"
+        >
+          Download CV / Resume
+        </UButton>
+      </div>
+
+      <div
+        class="mt-5 w-fit flex gap-2 p-3 bg-gray-800 rounded-xl bg-opacity-70 opacity-0"
+        data-aos="fade-up"
+        data-aos-delay="250"
       >
         <div v-for="item in listSocialMedia" class="group">
           <nuxt-link
@@ -83,7 +104,7 @@ const listRole = [
             target="_blank"
           >
             <div
-              class="text-lg w-0 group-hover:!w-20 text-right overflow-hidden transition-[width]"
+              class="text-lg w-0 group-hover:w-20! text-right overflow-hidden transition-[width]"
             >
               {{ item.name }}
             </div>

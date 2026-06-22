@@ -47,10 +47,10 @@ const openDetail = (item: PortfolioData) => {
 <template>
   <div>
     <div class="mt-12">
-      <h1 class="text-4xl font-bold mb-10" data-aos="fade-right">
+      <h1 class="text-2xl sm:text-4xl font-bold mb-10" data-aos="fade-right">
         These are some projects I've done before.
       </h1>
-      <div class="mb-3 flex flex-row gap-4" data-aos="zoom-in-up">
+      <div class="mb-3 flex flex-row gap-4" data-aos="fade-left">
         <div class="lg:flex grid grid-1 gap-1 lg:gap-2 items-center">
           <label for="role">Role:</label>
           <USelect
@@ -71,53 +71,56 @@ const openDetail = (item: PortfolioData) => {
           />
         </div>
       </div>
-      <div
-        class="overflow-y-auto p-[1px] scrollable-container-inset"
-        data-aos="fade-up"
-      >
+      <div class="p-px">
         <!-- h-[75vh] -->
         <div
-          v-for="item in displayedPortfolio"
-          class="mb-5 lg:flex lg:gap-8 p-4 transition-all duration-300 hover:outline outline-gray-700 hover:bg-gradient-to-b from-black to-gray-900 rounded-xl lg:h-38 cursor-pointer group lg:hover:h-44"
-          @click="openDetail(item)"
+          v-for="(item, index) in displayedPortfolio"
+          :key="item.id || index"
+          class="animate-fade-up"
+          :style="{ animationDelay: `${index * 50}ms` }"
         >
-          <div class="shrink-0 hidden lg:block">
-            <NuxtImg
-              :src="item.images[0] || `/images/no-image-placeholder.svg`"
-              class="w-48 h-full object-cover rounded-lg lg:grayscale-100 lg:group-hover:grayscale-0"
-            />
-          </div>
-          <div class="flex flex-col gap-2">
-            <div class="font-bold flex gap-2 items-center shrink-0">
-              <div class="text-xl line-clamp-1">{{ item.name }}</div>
-              <UButton
-                v-if="item.url"
-                label="Visit"
-                variant="outline"
-                icon="heroicons:arrow-top-right-on-square"
-                :to="item.url"
-                target="_blank"
-                @click.stop
+          <div
+            class="mb-5 lg:flex lg:gap-8 p-4 transition-all duration-300 hover:outline outline-gray-700 hover:bg-linear-to-b from-black to-gray-900 rounded-xl lg:h-38 cursor-pointer group lg:hover:h-44"
+            @click="openDetail(item)"
+          >
+            <div class="shrink-0 hidden lg:block">
+              <NuxtImg
+                :src="item.images[0] || `/images/no-image-placeholder.svg`"
+                class="w-48 h-full object-cover rounded-lg lg:grayscale-100 lg:group-hover:grayscale-0"
               />
-              <!-- <div class="text-md md:text-xl">({{ item.years }})</div> -->
             </div>
-            <div class="text-neutral-300 text-sm line-clamp-2 shrink-0">
-              {{ item.description }}
-            </div>
-            <div class="font-semibold line-clamp-2 shrink-0">
-              <!-- {{ item.stacks.join(", ") }} -->
-              <template v-for="stack in item.stacks" :key="stack">
-                <UBadge
-                  class="mt-1 mr-1"
-                  :label="stack.name"
-                  color="primary"
-                  size="sm"
-                  variant="subtle"
+            <div class="flex flex-col gap-2">
+              <div class="font-bold flex gap-2 items-center shrink-0">
+                <div class="text-xl line-clamp-1">{{ item.name }}</div>
+                <UButton
+                  v-if="item.url"
+                  label="Visit"
+                  variant="outline"
+                  icon="heroicons:arrow-top-right-on-square"
+                  :to="item.url"
+                  target="_blank"
+                  @click.stop
                 />
-              </template>
-            </div>
-            <div class="hidden lg:group-hover:flex justify-end">
-              <div class="hover:underline w-fit">View more...</div>
+                <!-- <div class="text-md md:text-xl">({{ item.years }})</div> -->
+              </div>
+              <div class="text-neutral-300 text-sm line-clamp-2 shrink-0">
+                {{ item.description }}
+              </div>
+              <div class="font-semibold line-clamp-2 shrink-0">
+                <!-- {{ item.stacks.join(", ") }} -->
+                <template v-for="stack in item.stacks" :key="stack">
+                  <UBadge
+                    class="mt-1 mr-1"
+                    :label="stack.name"
+                    color="primary"
+                    size="sm"
+                    variant="subtle"
+                  />
+                </template>
+              </div>
+              <div class="hidden lg:group-hover:flex justify-end">
+                <div class="hover:underline w-fit">View more...</div>
+              </div>
             </div>
           </div>
         </div>

@@ -25,6 +25,7 @@
     "@nuxt/ui": "^3.3.0",
     "@vee-validate/nuxt": "^4.15.1",
     "@vee-validate/valibot": "^4.15.1",
+    "@vee-validate/zod": "^4.15.1",
     "@vueuse/nuxt": "^13.4.0",
     "aos": "^2.3.4",
     "nuxt-aos": "^1.2.4",
