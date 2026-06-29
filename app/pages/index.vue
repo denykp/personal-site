@@ -16,6 +16,14 @@ onMounted(() => {
 
 const { getListStack, getListPortfolio } = useApiPublic();
 const { data: listStack } = await getListStack();
+
+const coreStacks = computed(() => {
+  return listStack.value?.filter((s) => s.highlight) || [];
+});
+
+const otherStacks = computed(() => {
+  return listStack.value?.filter((s) => !s.highlight) || [];
+});
 const { data: dataPortfolio } = await getListPortfolio();
 
 const featuredPortfolios = computed(() => {
@@ -183,6 +191,10 @@ const getBrandColor = (name: string): string => {
   return colors[n] || "#60a5fa";
 };
 
+const hasLogo = (logo: string | undefined): boolean => {
+  return !!logo && logo !== "undefined" && logo.trim() !== "";
+};
+
 const isCopied = ref(false);
 const copyEmail = async () => {
   try {
@@ -238,7 +250,7 @@ const listRole = [
       <div
         class="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none z-0" />
       <div
-        class="absolute bottom-1/4 left-1/4 w-[350px] h-[350px] bg-green-500/5 rounded-full blur-[100px] pointer-events-none z-0" />
+        class="absolute bottom-1/4 left-1/4 w-[350px] h-[350px] bg-purple-500/5 rounded-full blur-[100px] pointer-events-none z-0" />
 
       <!-- Interactive Spotlight Layer -->
       <div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-750 ease-out hidden md:block"
@@ -252,7 +264,7 @@ const listRole = [
           <div class="lg:col-span-7 text-white flex flex-col gap-5">
             <h1 class="text-3xl sm:text-5xl font-extrabold transition-transform duration-300 opacity-0 leading-tight"
               data-aos="fade-down">
-              Hi, I'm <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-green-400">Deny
+              Hi, I'm <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400">Deny
                 Kristianto Pamuji</span>
             </h1>
             <div class="text-lg sm:text-xl font-medium text-gray-200 transition-transform duration-300 opacity-0"
@@ -299,7 +311,7 @@ const listRole = [
               <UButton :icon="isCopied ? 'heroicons:check' : 'heroicons:envelope'"
                 :trailing-icon="isCopied ? undefined : 'heroicons:document-duplicate'" size="lg" color="neutral"
                 variant="outline" class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105"
-                :class="{ 'text-green-500!': isCopied }" @click="copyEmail">
+                :class="{ 'text-purple-500!': isCopied }" @click="copyEmail">
                 {{ isCopied ? 'Copied!' : 'deny@pamuji.id' }}
               </UButton>
             </div>
@@ -310,7 +322,7 @@ const listRole = [
             <div class="relative group hover:scale-[1.02] hover:-rotate-1 transition-all duration-500 ease-out">
               <!-- Background Ambient Glow -->
               <div
-                class="absolute -inset-1.5 bg-gradient-to-tr from-primary to-green-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none" />
+                class="absolute -inset-1.5 bg-gradient-to-tr from-primary to-purple-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none" />
 
               <!-- Card Wrapper -->
               <div
@@ -322,7 +334,7 @@ const listRole = [
               <!-- Overlapping Float Badge 1 (Top-Left): Status -->
               <div
                 class="absolute -top-3 -left-3 bg-neutral-950/90 border border-gray-800 rounded-full px-3 py-1 text-[10px] sm:text-xs font-semibold text-gray-200 flex items-center gap-1.5 shadow-xl backdrop-blur-md">
-                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
                 <span>Let's Collaborate</span>
               </div>
 
@@ -347,20 +359,56 @@ const listRole = [
     </div>
 
     <!-- Tech Stack Section -->
-    <div id="tech-stack-section" class="py-16 border-t border-gray-800/40" data-aos="fade-up">
-      <h2 class="text-xs font-bold uppercase tracking-widest text-primary mb-8 text-center">
+    <div id="tech-stack-section" class="py-20" data-aos="fade-up">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-primary mb-10 text-center">
         Technologies I Work With
       </h2>
-      <div
-        class="flex flex-wrap items-center justify-center gap-x-6 gap-y-4 max-w-4xl mx-auto text-center px-4 leading-relaxed">
-        <template v-for="(item, index) in listStack" :key="item.id">
-          <span v-if="index > 0" class="text-gray-700 select-none text-xl sm:text-2xl font-light">•</span>
-          <NuxtLink :to="item.url" target="_blank"
-            class="text-xl sm:text-3xl lg:text-4xl font-bold text-gray-500 hover:text-white transition-all duration-300 relative py-1"
-            @mouseenter="hoverItem(item, $event)" @mouseleave="leaveItem">
-            {{ item.name }}
+
+      <!-- Core Tech Stacks -->
+      <div class="max-w-6xl mx-auto px-4 w-full mb-16">
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <NuxtLink v-for="item in coreStacks" :key="item.id" :to="item.url" target="_blank"
+            class="w-[calc(50%-8px)] sm:w-44 flex flex-col items-center justify-center gap-3 text-center transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl group relative overflow-hidden bg-neutral-900/20 hover:bg-neutral-900/60 border border-gray-800/40 hover:border-gray-700/60 rounded-2xl p-5">
+            <!-- Background Glow on Hover -->
+            <div
+              class="absolute -inset-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+              :style="{
+                background: `radial-gradient(120px circle at center, ${item.color}0d, transparent)`
+              }" />
+
+            <div v-if="hasLogo(item.logo)"
+              class="w-12 h-12 flex items-center justify-center p-1 rounded-xl bg-neutral-950/40 border border-gray-850/60 group-hover:scale-105 transition-transform duration-300">
+              <NuxtImg :src="item.logo" :alt="item.name" class="w-10 h-10 object-contain" />
+            </div>
+            <div v-else
+              class="w-12 h-12 flex items-center justify-center p-1.5 rounded-xl bg-neutral-950/40 border border-gray-850/60 font-black text-[10px] tracking-tight group-hover:scale-105 transition-transform duration-300 select-none leading-none text-center"
+              :style="{ color: item.color || '#4b5563', borderColor: (item.color || '#4b5563') + '33' }">
+              {{ item.name }}
+            </div>
+            <span class="text-xs sm:text-sm font-bold text-gray-300 group-hover:text-white transition-colors">
+              {{ item.name }}
+            </span>
           </NuxtLink>
-        </template>
+        </div>
+      </div>
+
+      <!-- Other Tech Stacks (Badges) -->
+      <div class="max-w-4xl mx-auto px-4 w-full">
+        <h3 class="text-[10px] font-mono tracking-widest text-gray-500 uppercase text-center mb-6">
+          Other Libraries & Tools
+        </h3>
+        <div class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-3.5">
+          <NuxtLink v-for="item in otherStacks" :key="item.id" :to="item.url" target="_blank"
+            class="px-3.5 py-1.5 bg-neutral-900/25 hover:bg-neutral-900/70 border border-gray-850/60 hover:border-gray-750 rounded-full text-xs transition-all duration-200 hover:scale-105 flex items-center gap-1.5 font-medium shadow-sm hover:brightness-110 cursor-pointer">
+            <NuxtImg v-if="hasLogo(item.logo)" :src="item.logo" :alt="item.name" class="w-3.5 h-3.5 object-contain" />
+            <span :style="{ color: hasLogo(item.logo) ? undefined : item.color }" :class="{
+              'text-gray-400 hover:text-white': hasLogo(item.logo),
+              'font-bold': !hasLogo(item.logo)
+            }">
+              {{ item.name }}
+            </span>
+          </NuxtLink>
+        </div>
       </div>
     </div>
 
