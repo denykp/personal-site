@@ -11,21 +11,16 @@ onMounted(() => {
 
 <template>
   <!-- <NuxtWelcome /> -->
-  <div
-    v-if="!isMounted"
-    class="h-screen w-screen flex justify-center items-center overflow-hidden absolute top-0 left-0 bg-neutral-900 z-50"
-  >
-    <NuxtImg
-      src="/android-chrome-512x512.png"
-      alt="logo"
-      width="125px"
-      class="animate-deep-pulse"
-    />
+  <div v-if="!isMounted"
+    class="h-screen w-screen flex justify-center items-center overflow-hidden absolute top-0 left-0 bg-neutral-900 z-50">
+    <NuxtImg src="/android-chrome-512x512.png" alt="logo" width="125px" class="animate-deep-pulse" />
   </div>
-  <NuxtLoadingIndicator />
-  <UApp>
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
-  </UApp>
+  <template v-else>
+    <NuxtLoadingIndicator />
+    <UApp>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </UApp>
+  </template>
 </template>

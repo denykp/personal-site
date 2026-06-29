@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { toTypedSchema } from "@vee-validate/valibot";
 import * as v from "valibot";
 import useApiAuth from "~/composables/api/useApiAuth";
 
@@ -33,7 +34,7 @@ const onSubmit = handleSubmit(async (values) => {
 
 <template>
   <div
-    class="w-screen h-screen flex justify-center items-center bg-gradient-to-br from-primary-400"
+    class="w-screen h-screen flex justify-center items-center bg-linear-to-br from-primary-400"
   >
     <UCard>
       <div class="flex">

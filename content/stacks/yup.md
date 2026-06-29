@@ -1,6 +1,6 @@
 ---
 name: Yup
-url: https://yup.js.org/
+url: https://yup-docs.vercel.app/
 logo: undefined
 color: "#e7000b"
 ---

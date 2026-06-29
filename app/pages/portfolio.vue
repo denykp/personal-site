@@ -3,7 +3,7 @@ import useApiPublic from "~/composables/api/useApiPublic";
 
 const filter = ref({
   role: "All",
-  stacks: [],
+  stacks: ["All"],
 });
 const listRole = computed(() => {
   const list = ["All", "Frontend", "Backend", "Fullstack", "Fullstack Desktop"];
@@ -11,10 +11,11 @@ const listRole = computed(() => {
 });
 const { getListStack, getListPortfolio } = useApiPublic();
 const { data: dataStack } = await getListStack();
-const listStack = computed(
-  () =>
-    dataStack.value?.map((val) => ({ value: val.id, label: val.name })) || []
-);
+const listStack = computed(() => {
+  const base = [{ value: "All", label: "All" }];
+  const stacks = dataStack.value?.map((val) => ({ value: val.id, label: val.name })) || [];
+  return [...base, ...stacks];
+});
 
 // Portfolio Data Related
 const { data: dataPortfolio } = await getListPortfolio();
@@ -24,18 +25,38 @@ const displayedPortfolio = computed(() => {
     let role = true;
     if (filter.value.role !== "All") {
       role =
-        val.role.toLowerCase() === String(filter.value.role).toLowerCase() ||
-        filter.value.role === "All";
+        val.role.toLowerCase() === String(filter.value.role).toLowerCase();
     }
 
-    return (
-      role &&
-      filter.value.stacks.every((filterStack) =>
+    let stackMatch = true;
+    if (filter.value.stacks.length > 0 && !filter.value.stacks.includes("All")) {
+      stackMatch = filter.value.stacks.every((filterStack) =>
         val.stacks.map((stack) => stack.id).includes(filterStack)
-      )
-    );
+      );
+    }
+
+    return role && stackMatch;
   });
 });
+
+watch(
+  () => filter.value.stacks,
+  (newVal, oldVal) => {
+    if (newVal.length === 0) {
+      filter.value.stacks = ["All"];
+      return;
+    }
+    if (newVal.includes("All") && !oldVal.includes("All")) {
+      filter.value.stacks = ["All"];
+      return;
+    }
+    if (newVal.includes("All") && newVal.length > 1) {
+      filter.value.stacks = newVal.filter((item) => item !== "All");
+    }
+  },
+  { deep: true }
+);
+
 const displayModal = ref(false);
 const selectedDetail = ref<PortfolioData>();
 const openDetail = (item: PortfolioData) => {
@@ -45,79 +66,51 @@ const openDetail = (item: PortfolioData) => {
 </script>
 
 <template>
-  <div>
-    <div class="mt-12">
-      <h1 class="text-4xl font-bold mb-10" data-aos="fade-right">
+  <UContainer class="pt-28 pb-12">
+    <div>
+      <h1 class="text-2xl sm:text-4xl font-bold mb-10" data-aos="fade-right">
         These are some projects I've done before.
       </h1>
-      <div class="mb-3 flex flex-row gap-4" data-aos="zoom-in-up">
+      <div class="mb-3 flex flex-row gap-4" data-aos="fade-left">
         <div class="lg:flex grid grid-1 gap-1 lg:gap-2 items-center">
           <label for="role">Role:</label>
-          <USelect
-            id="role"
-            v-model="filter.role"
-            :items="listRole"
-            class="w-36"
-          />
+          <USelect id="role" v-model="filter.role" :items="listRole" class="w-36" />
         </div>
         <div class="lg:flex grid grid-1 gap-1 lg:gap-2 items-center">
           <label for="stacks">Tech Stack:</label>
-          <USelect
-            id="stacks"
-            multiple
-            v-model="filter.stacks"
-            :items="listStack"
-            class="w-36"
-          />
+          <USelect id="stacks" multiple v-model="filter.stacks" :items="listStack" class="w-36" />
         </div>
       </div>
-      <div
-        class="overflow-y-auto p-[1px] scrollable-container-inset"
-        data-aos="fade-up"
-      >
+      <div class="p-px">
         <!-- h-[75vh] -->
-        <div
-          v-for="item in displayedPortfolio"
-          class="mb-5 lg:flex lg:gap-8 p-4 transition-all duration-300 hover:outline outline-gray-700 hover:bg-gradient-to-b from-black to-gray-900 rounded-xl lg:h-38 cursor-pointer group lg:hover:h-44"
-          @click="openDetail(item)"
-        >
-          <div class="shrink-0 hidden lg:block">
-            <NuxtImg
-              :src="item.images[0] || `/images/no-image-placeholder.svg`"
-              class="w-48 h-full object-cover rounded-lg lg:grayscale-100 lg:group-hover:grayscale-0"
-            />
-          </div>
-          <div class="flex flex-col gap-2">
-            <div class="font-bold flex gap-2 items-center shrink-0">
-              <div class="text-xl line-clamp-1">{{ item.name }}</div>
-              <UButton
-                v-if="item.url"
-                label="Visit"
-                variant="outline"
-                icon="heroicons:arrow-top-right-on-square"
-                :to="item.url"
-                target="_blank"
-                @click.stop
-              />
-              <!-- <div class="text-md md:text-xl">({{ item.years }})</div> -->
+        <div v-for="(item, index) in displayedPortfolio" :key="item.id || index" class="animate-fade-up"
+          :style="{ animationDelay: `${index * 50}ms` }">
+          <div
+            class="mb-5 lg:flex lg:gap-8 p-4 transition-all duration-300 hover:outline outline-gray-700 hover:bg-linear-to-b from-black to-gray-900 rounded-xl lg:h-38 cursor-pointer group lg:hover:h-44"
+            @click="openDetail(item)">
+            <div class="shrink-0 hidden lg:block">
+              <NuxtImg :src="item.images[0] || `/images/no-image-placeholder.svg`"
+                class="w-48 h-full object-cover rounded-lg lg:grayscale-100 lg:group-hover:grayscale-0" />
             </div>
-            <div class="text-neutral-300 text-sm line-clamp-2 shrink-0">
-              {{ item.description }}
-            </div>
-            <div class="font-semibold line-clamp-2 shrink-0">
-              <!-- {{ item.stacks.join(", ") }} -->
-              <template v-for="stack in item.stacks" :key="stack">
-                <UBadge
-                  class="mt-1 mr-1"
-                  :label="stack.name"
-                  color="primary"
-                  size="sm"
-                  variant="subtle"
-                />
-              </template>
-            </div>
-            <div class="hidden lg:group-hover:flex justify-end">
-              <div class="hover:underline w-fit">View more...</div>
+            <div class="flex flex-col gap-2">
+              <div class="font-bold flex gap-2 items-center shrink-0">
+                <div class="text-xl line-clamp-1">{{ item.name }}</div>
+                <UButton v-if="item.url" label="Visit" variant="outline" icon="heroicons:arrow-top-right-on-square"
+                  :to="item.url" target="_blank" @click.stop />
+                <!-- <div class="text-md md:text-xl">({{ item.years }})</div> -->
+              </div>
+              <div class="text-neutral-300 text-sm line-clamp-2 shrink-0">
+                {{ item.description }}
+              </div>
+              <div class="font-semibold line-clamp-2 shrink-0">
+                <!-- {{ item.stacks.join(", ") }} -->
+                <template v-for="stack in item.stacks" :key="stack">
+                  <UBadge class="mt-1 mr-1" :label="stack.name" color="primary" size="sm" variant="subtle" />
+                </template>
+              </div>
+              <div class="hidden lg:group-hover:flex justify-end">
+                <div class="hover:underline w-fit">View more...</div>
+              </div>
             </div>
           </div>
         </div>
@@ -125,50 +118,27 @@ const openDetail = (item: PortfolioData) => {
     </div>
     <UModal v-model:open="displayModal">
       <template #content>
-        <div
-          class="text-2xl font-bold mb-4 flex items-center gap-2 p-5 justify-between"
-        >
+        <div class="text-2xl font-bold mb-4 flex items-center gap-2 p-5 justify-between">
           <div>{{ selectedDetail?.name }}</div>
-          <UButton
-            v-if="selectedDetail?.url"
-            label="Visit"
-            icon="heroicons:arrow-top-right-on-square"
-            :to="selectedDetail?.url"
-            target="_blank"
-          />
+          <UButton v-if="selectedDetail?.url" label="Visit" icon="heroicons:arrow-top-right-on-square"
+            :to="selectedDetail?.url" target="_blank" />
         </div>
         <div class="p-5 overflow-y-auto">
-          <UCarousel
-            v-slot="{ item }"
-            :items="
-              selectedDetail?.images.length
-                ? selectedDetail?.images
-                : [`/images/no-image-placeholder.svg`]
-            "
-            class="w-full max-w-xs mx-auto"
-            arrows
-          >
+          <UCarousel v-slot="{ item }" :items="selectedDetail?.images.length
+              ? selectedDetail?.images
+              : [`/images/no-image-placeholder.svg`]
+            " class="w-full max-w-xs mx-auto" arrows>
             <div class="flex justify-center items-center min-h-64">
-              <NuxtImg
-                :src="item"
-                class="max-w-full max-h-64 object-contain rounded-lg"
-                style="height: auto; width: auto"
-              />
+              <NuxtImg :src="item" class="max-w-full max-h-64 object-contain rounded-lg"
+                style="height: auto; width: auto" />
             </div>
           </UCarousel>
           <div class="text-neutral-300 mb-4">
             {{ selectedDetail?.description }}
           </div>
           <div class="flex flex-wrap gap-2 mb-4">
-            <UBadge
-              v-for="stack in selectedDetail?.stacks"
-              :key="stack.id"
-              class="mt-2 mr-1"
-              :label="stack.name"
-              color="primary"
-              size="sm"
-              variant="subtle"
-            />
+            <UBadge v-for="stack in selectedDetail?.stacks" :key="stack.id" class="mt-2 mr-1" :label="stack.name"
+              color="primary" size="sm" variant="subtle" />
           </div>
           <!-- <UCarousel
           v-slot="{ item }"
@@ -183,14 +153,9 @@ const openDetail = (item: PortfolioData) => {
           />
         </UCarousel> -->
         </div>
-        <UButton
-          label="Close"
-          class="m-4 justify-center"
-          color="neutral"
-          variant="outline"
-          @click="displayModal = false"
-        />
+        <UButton label="Close" class="m-4 justify-center" color="neutral" variant="outline"
+          @click="displayModal = false" />
       </template>
     </UModal>
-  </div>
+  </UContainer>
 </template>

@@ -19,46 +19,13 @@ images:
   - /images/portfolios/bni-credit-card/1779968080583-ggzs6j.webp
   - /images/portfolios/bni-credit-card/1779968080583-48tsp.webp
 stacks:
-  - id: GLBjNll97Ihl1nWjKd30
-    color: ""
-    url: https://vuejs.org/
-    logo: /images/stacks/vue-js/1779968061005-591m02.webp
-    highlight: true
-    name: Vue.js
-  - id: orZRN8zAFI8FWIlOdiAz
-    url: https://nuxt.com/
-    logo: /images/stacks/nuxt-js/1779968063929-rgc3vj.webp
-    color: ""
-    highlight: true
-    name: Nuxt.js
-  - id: 4tBL57yS5fpHIHqCdk09
-    name: TypeScript
-    url: https://www.typescriptlang.org/
-    logo: /images/stacks/typescript/1779968066548-f8lzs.webp
-    color: ""
-    highlight: false
-  - id: 1BKCqN6SsPndgbKREWR0
-    name: Tailwind CSS
-    url: https://tailwindcss.com/
-    logo: /images/stacks/tailwind-css/1779968065622-7t8g4q.webp
-    color: ""
-    highlight: false
-  - id: Y6hRuJVq2PwYdX2NDiaj
-    name: Axios
-    url: https://axios-http.com/
-    logo: /images/stacks/axios/1779968071617-pwxeyq.webp
-    color: ""
-    highlight: false
-  - id: 7vgN6AAT3bu5Q6L9H5Jz
-    name: Vuex
-    url: https://vuex.vuejs.org/
-    logo: /images/stacks/vuex/1779968067436-01b2mr.webp
-    color: ""
-  - id: NBzG4Qj7OEv6UyzIskHf
-    name: Pinia
-    url: https://pinia.vuejs.org/
-    logo: /images/stacks/pinia/1779968068628-aer6q6.webp
-    color: ""
+  - vue-js
+  - nuxt-js
+  - typescript
+  - tailwind-css
+  - axios
+  - vuex
+  - pinia
 project_type: Company
 role: Frontend
 highlight: false

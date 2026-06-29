@@ -4,12 +4,7 @@ url: ""
 images:
   - /images/portfolios/hm-sampoerna-modist-project/1779968082215-9ylcnyn.webp
 stacks:
-  - id: WmQL56jLmJR8m3IeNOg4
-    name: Angular
-    url: https://angular.dev/
-    logo: /images/stacks/angular/1779968070854-8zpdku.webp
-    color: "#FFFFFF"
-    highlight: false
+  - angular
 project_type: Company
 role: Frontend
 highlight: false
