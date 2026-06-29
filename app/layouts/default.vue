@@ -57,9 +57,9 @@ watch(
   <div
     class="min-h-screen w-full bg-linear-to-br from-black to-gray-900 flex flex-col overflow-x-hidden"
   >
-    <div class="flex items-center justify-center sticky top-0 z-10">
+    <div class="flex items-center justify-center fixed top-0 left-0 right-0 z-30 pointer-events-none">
       <div
-        class="flex gap-2 sm:gap-4 border-b border-x border-gray-700 -mt-4.5 px-3 sm:px-4 pb-3 sm:pb-4 pt-8 rounded-3xl transition-all duration-300"
+        class="pointer-events-auto flex gap-2 sm:gap-4 border-b border-x border-gray-700 -mt-4.5 px-3 sm:px-4 pb-3 sm:pb-4 pt-8 rounded-3xl transition-all duration-300"
         style="backdrop-filter: blur(10px)"
         @mouseenter="enterMenu"
         @mouseleave="leaveMenu"
@@ -88,11 +88,9 @@ watch(
       </div>
     </div>
 
-    <UContainer class="flex gap-8 grow w-full">
-      <div class="grow">
-        <slot></slot>
-      </div>
-    </UContainer>
+    <div class="grow w-full flex flex-col">
+      <slot></slot>
+    </div>
     <c-footer />
   </div>
 </template>

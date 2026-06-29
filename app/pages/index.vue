@@ -114,6 +114,20 @@ onUnmounted(() => {
   if (animationFrameId) cancelAnimationFrame(animationFrameId);
 });
 
+// Hero Spotlight mouse tracking
+const heroRef = ref<HTMLElement | null>(null);
+const heroMouseX = ref(0);
+const heroMouseY = ref(0);
+const isHoveringHero = ref(false);
+
+const onHeroMouseMove = (e: MouseEvent) => {
+  if (heroRef.value) {
+    const rect = heroRef.value.getBoundingClientRect();
+    heroMouseX.value = e.clientX - rect.left;
+    heroMouseY.value = e.clientY - rect.top;
+  }
+};
+
 const scrollToTechStack = () => {
   const el = document.getElementById("tech-stack-section");
   if (el) {
@@ -213,62 +227,119 @@ const listRole = [
 <template>
   <div class="flex flex-col gap-12 sm:gap-16 pb-20" @mousemove="onMouseMove">
     <!-- Hero Section -->
-    <div class="min-h-[85vh] flex flex-col justify-center relative">
-      <div class="text-white z-2 w-full">
-        <h1 class="text-3xl sm:text-4xl font-bold transition-transform duration-300 opacity-0" data-aos="fade-down">
-          Hi, I'm Deny Kristianto Pamuji
-        </h1>
-        <div class="mt-2 text-lg transition-transform duration-300 opacity-0" data-aos="fade-down">
-          <TypingAnimation :strings="listRole" leading="I'm a" />
-        </div>
-        <div class="text-xs sm:text-sm text-gray-400 transition-all duration-500 lg:w-[75%] leading-relaxed">
-          Frontend & Fullstack Node.js Engineer with 10+ years of software engineering experience,
-          specializing in building high-performance web applications with Vue/Nuxt and React/Next.js.
-          Experienced in collaborating with cross-functional teams to build clean, modular UI components,
-          contribute to framework migrations, and optimize page performance for a smooth user experience.
-          Comfortable working across the stack using Node.js, Express, and SQL, and bridging modern web
-          architectures with legacy systems.
-        </div>
+    <div ref="heroRef"
+      class="min-h-screen flex flex-col justify-center relative overflow-hidden border-b border-gray-900/50 bg-neutral-950/20 py-16 md:py-24"
+      @mousemove="onHeroMouseMove" @mouseenter="isHoveringHero = true" @mouseleave="isHoveringHero = false">
+      <!-- Background Grid Overlay -->
+      <div
+        class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
 
-        <div class="mt-6 flex flex-wrap gap-4 items-center opacity-0" data-aos="fade-up" data-aos-delay="150">
-          <!-- Connect / Social Media Popover -->
-          <UPopover :content="{ align: 'start', side: 'bottom', sideOffset: 8 }">
-            <UButton icon="heroicons:sparkles" size="lg" color="neutral" variant="outline"
-              class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105">
-              Find Me
-            </UButton>
+      <!-- Background Ambient Glows -->
+      <div
+        class="absolute top-1/4 right-1/4 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[120px] pointer-events-none z-0" />
+      <div
+        class="absolute bottom-1/4 left-1/4 w-[350px] h-[350px] bg-green-500/5 rounded-full blur-[100px] pointer-events-none z-0" />
 
-            <template #content>
-              <div class="p-1 flex flex-col gap-1 min-w-36">
-                <NuxtLink v-for="item in listSocialMedia" :key="item.name" :to="item.url" target="_blank"
-                  class="flex items-center gap-3 px-3 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-850 rounded-lg transition-all duration-200">
-                  <UIcon :name="item.icon" size="20" class="text-primary" />
-                  <span class="font-medium">{{ item.name }}</span>
-                </NuxtLink>
+      <!-- Interactive Spotlight Layer -->
+      <div class="absolute inset-0 z-0 pointer-events-none transition-opacity duration-750 ease-out hidden md:block"
+        :class="isHoveringHero ? 'opacity-100' : 'opacity-0'" :style="{
+          background: `radial-gradient(600px circle at ${heroMouseX}px ${heroMouseY}px, rgba(96, 165, 250, 0.08), transparent 75%)`
+        }" />
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 w-full z-2 pt-28 pb-12 lg:pt-36 lg:pb-16">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-center w-full">
+          <!-- Hero Details (Left Column) -->
+          <div class="lg:col-span-7 text-white flex flex-col gap-5">
+            <h1 class="text-3xl sm:text-5xl font-extrabold transition-transform duration-300 opacity-0 leading-tight"
+              data-aos="fade-down">
+              Hi, I'm <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-green-400">Deny
+                Kristianto Pamuji</span>
+            </h1>
+            <div class="text-lg sm:text-xl font-medium text-gray-200 transition-transform duration-300 opacity-0"
+              data-aos="fade-down">
+              <TypingAnimation :strings="listRole" leading="I'm a" />
+            </div>
+            <div class="text-xs sm:text-sm text-gray-400 transition-all duration-500 leading-relaxed max-w-[90%]">
+              Frontend & Fullstack Node.js Engineer with 10+ years of software engineering experience,
+              specializing in building high-performance web applications with Vue/Nuxt and React/Next.js.
+              Experienced in collaborating with cross-functional teams to build clean, modular UI components,
+              contribute to framework migrations, and optimize page performance for a smooth user experience.
+              Comfortable working across the stack using Node.js, Express, and SQL, and bridging modern web
+              architectures with legacy systems.
+            </div>
+
+            <div class="mt-4 flex flex-wrap gap-4 items-center opacity-0" data-aos="fade-up" data-aos-delay="150">
+              <!-- Connect / Social Media Popover -->
+              <UPopover :content="{ align: 'start', side: 'bottom', sideOffset: 8 }">
+                <UButton icon="heroicons:sparkles" size="lg" color="neutral" variant="outline"
+                  class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105">
+                  Find Me
+                </UButton>
+
+                <template #content>
+                  <div class="p-1 flex flex-col gap-1 min-w-36">
+                    <NuxtLink v-for="item in listSocialMedia" :key="item.name" :to="item.url" target="_blank"
+                      class="flex items-center gap-3 px-3 py-2 text-sm text-gray-400 hover:text-white hover:bg-gray-850 rounded-lg transition-all duration-200">
+                      <UIcon :name="item.icon" size="20" class="text-primary" />
+                      <span class="font-medium">{{ item.name }}</span>
+                    </NuxtLink>
+                  </div>
+                </template>
+              </UPopover>
+
+              <!-- CV / Resume Download CTA -->
+              <UButton to="/files/Resume - Deny Kristianto Pamuji.pdf" target="_blank"
+                download="Resume - Deny Kristianto Pamuji.pdf" icon="heroicons:arrow-down-tray" size="lg"
+                color="neutral" variant="outline"
+                class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105">
+                Download Resume
+              </UButton>
+
+              <!-- Copy Email Button -->
+              <UButton :icon="isCopied ? 'heroicons:check' : 'heroicons:envelope'"
+                :trailing-icon="isCopied ? undefined : 'heroicons:document-duplicate'" size="lg" color="neutral"
+                variant="outline" class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105"
+                :class="{ 'text-green-500!': isCopied }" @click="copyEmail">
+                {{ isCopied ? 'Copied!' : 'deny@pamuji.id' }}
+              </UButton>
+            </div>
+          </div>
+
+          <!-- Profile Picture Widget (Right Column) -->
+          <div class="lg:col-span-5 flex justify-center opacity-0 w-full" data-aos="fade-left" data-aos-delay="200">
+            <div class="relative group hover:scale-[1.02] hover:-rotate-1 transition-all duration-500 ease-out">
+              <!-- Background Ambient Glow -->
+              <div
+                class="absolute -inset-1.5 bg-gradient-to-tr from-primary to-green-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none" />
+
+              <!-- Card Wrapper -->
+              <div
+                class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-neutral-900/50 backdrop-blur-md border border-gray-800/80 rounded-3xl p-3.5 shadow-2xl flex items-center justify-center overflow-hidden">
+                <NuxtImg src="/images/Profile Picture Compressed.webp" alt="Deny Kristianto Pamuji"
+                  class="w-full h-full object-cover rounded-2xl shadow-xl transition-all duration-500 ease-out group-hover:scale-105 transform-[scale(1.5)_translate(0px,35px)]" />
               </div>
-            </template>
-          </UPopover>
 
-          <!-- CV / Resume Download CTA -->
-          <UButton to="/files/Resume - Deny Kristianto Pamuji.pdf" target="_blank"
-            download="Resume - Deny Kristianto Pamuji.pdf" icon="heroicons:arrow-down-tray" size="lg" color="neutral"
-            variant="outline" class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105">
-            Download Resume
-          </UButton>
+              <!-- Overlapping Float Badge 1 (Top-Left): Status -->
+              <div
+                class="absolute -top-3 -left-3 bg-neutral-950/90 border border-gray-800 rounded-full px-3 py-1 text-[10px] sm:text-xs font-semibold text-gray-200 flex items-center gap-1.5 shadow-xl backdrop-blur-md">
+                <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <span>Let's Collaborate</span>
+              </div>
 
-          <!-- Copy Email Button -->
-          <UButton :icon="isCopied ? 'heroicons:check' : 'heroicons:envelope'"
-            :trailing-icon="isCopied ? undefined : 'heroicons:document-duplicate'" size="lg" color="neutral"
-            variant="outline" class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105"
-            :class="{ 'text-green-500!': isCopied }" @click="copyEmail">
-            {{ isCopied ? 'Copied!' : 'deny@pamuji.id' }}
-          </UButton>
+              <!-- Overlapping Float Badge 2 (Bottom-Right): Location -->
+              <div
+                class="absolute -bottom-3 -right-3 bg-neutral-950/90 border border-gray-800 rounded-full px-3 py-1 text-[10px] sm:text-xs font-semibold text-gray-200 flex items-center gap-1.5 shadow-xl backdrop-blur-md">
+                <UIcon name="heroicons:map-pin-20-solid" class="text-primary text-sm" />
+                <span>Yogyakarta, ID</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- Animated Scroll Indicator -->
       <div
-        class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-50 hover:opacity-90 transition-opacity duration-300 cursor-pointer"
+        class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-50 hover:opacity-90 transition-opacity duration-300 cursor-pointer z-2"
         @click="scrollToTechStack">
         <span class="text-[10px] font-mono tracking-widest text-gray-500 uppercase">Technologies</span>
         <UIcon name="heroicons:chevron-down-20-solid" class="text-lg animate-bounce text-primary" />

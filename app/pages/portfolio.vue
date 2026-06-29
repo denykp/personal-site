@@ -66,7 +66,7 @@ const openDetail = (item: PortfolioData) => {
 </script>
 
 <template>
-  <div>
+  <UContainer class="pt-28 pb-12">
     <div class="mt-12">
       <h1 class="text-2xl sm:text-4xl font-bold mb-10" data-aos="fade-right">
         These are some projects I've done before.
@@ -216,5 +216,5 @@ const openDetail = (item: PortfolioData) => {
         />
       </template>
     </UModal>
-  </div>
+  </UContainer>
 </template>

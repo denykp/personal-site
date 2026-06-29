@@ -89,40 +89,30 @@ const listCompany: CompanyExperience[] = [
         <h1 class="text-3xl sm:text-4xl font-bold text-center sm:text-left">
           Professional Experience
         </h1>
-        <UButton
-          to="/files/Resume - Deny Kristianto Pamuji.pdf"
-          target="_blank"
-          download="Resume - Deny Kristianto Pamuji.pdf"
-          icon="heroicons:arrow-down-tray"
-          size="md"
-          color="primary"
+        <UButton to="/files/Resume - Deny Kristianto Pamuji.pdf" target="_blank"
+          download="Resume - Deny Kristianto Pamuji.pdf" icon="heroicons:arrow-down-tray" size="md" color="primary"
           variant="outline"
-          class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105 shrink-0 self-center sm:self-auto"
-        >
-          Download CV / Resume
+          class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105 shrink-0 self-center sm:self-auto">
+          Download Resume
         </UButton>
       </div>
 
       <!-- Timeline wrapper -->
       <div class="relative border-l border-gray-700 ml-4 sm:ml-6 space-y-12">
-        <div 
-          v-for="(item, index) in listCompany" 
-          :key="index" 
-          class="relative pl-8 group animate-fade-up"
-          :style="{ animationDelay: `${index * 100}ms` }"
-        >
+        <div v-for="(item, index) in listCompany" :key="index" class="relative pl-8 group animate-fade-up"
+          :style="{ animationDelay: `${index * 100}ms` }">
           <!-- Timeline dot -->
-          <div class="absolute -left-[7.5px] top-1.5 bg-gray-900 border-2 border-primary rounded-full w-3.5 h-3.5 group-hover:bg-primary transition-all duration-300"></div>
+          <div
+            class="absolute -left-[7.5px] top-1.5 bg-gray-900 border-2 border-primary rounded-full w-3.5 h-3.5 group-hover:bg-primary transition-all duration-300">
+          </div>
 
           <!-- Card content -->
-          <div class="p-6 bg-linear-to-br from-neutral-900 to-black hover:outline outline-gray-800 rounded-2xl transition-all duration-300">
+          <div
+            class="p-6 bg-linear-to-br from-neutral-900 to-black hover:outline outline-gray-800 rounded-2xl transition-all duration-300">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-3">
               <div>
-                <nuxt-link 
-                  :to="item.url" 
-                  target="_blank"
-                  class="text-xl font-bold hover:underline hover:text-primary transition-colors flex items-center gap-1.5"
-                >
+                <nuxt-link :to="item.url" target="_blank"
+                  class="text-xl font-bold hover:underline hover:text-primary transition-colors flex items-center gap-1.5">
                   {{ item.name }}
                   <UIcon name="heroicons:arrow-top-right-on-square" class="text-sm text-gray-500 shrink-0" />
                 </nuxt-link>
@@ -131,7 +121,8 @@ const listCompany: CompanyExperience[] = [
                 </div>
               </div>
               <div class="text-right sm:text-right">
-                <span class="inline-block px-3 py-1 bg-gray-800 bg-opacity-50 text-xs text-gray-300 font-mono rounded-full">
+                <span
+                  class="inline-block px-3 py-1 bg-gray-800 bg-opacity-50 text-xs text-gray-300 font-mono rounded-full">
                   {{ item.years }}
                 </span>
                 <div class="text-xs text-gray-500 mt-1">
@@ -142,14 +133,8 @@ const listCompany: CompanyExperience[] = [
 
             <!-- Stacks badges -->
             <div class="flex flex-wrap gap-1.5 mb-4">
-              <UBadge 
-                v-for="stack in item.stacks" 
-                :key="stack"
-                :label="stack"
-                size="sm"
-                color="primary"
-                variant="subtle"
-              />
+              <UBadge v-for="stack in item.stacks" :key="stack" :label="stack" size="sm" color="primary"
+                variant="subtle" />
             </div>
 
             <!-- Achievements list -->
@@ -165,5 +150,4 @@ const listCompany: CompanyExperience[] = [
   </div>
 </template>
 
-<style lang="postcss" scoped>
-</style>
+<style lang="postcss" scoped></style>

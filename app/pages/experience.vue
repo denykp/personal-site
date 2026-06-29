@@ -6,9 +6,9 @@ useSeoMeta({
 </script>
 
 <template>
-  <div class="py-12">
+  <UContainer class="pt-28 pb-12">
     <SectionExperience />
-  </div>
+  </UContainer>
 </template>
 
 <style lang="postcss" scoped>
