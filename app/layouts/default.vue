@@ -11,11 +11,6 @@ const listMenu = [
     icon: "heroicons:briefcase",
   },
   {
-    label: "Tech Stack",
-    path: "/tech-stack",
-    icon: "heroicons:square-3-stack-3d",
-  },
-  {
     label: "Portfolio",
     path: "/portfolio",
     icon: "heroicons:folder",

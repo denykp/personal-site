@@ -3,7 +3,7 @@ import useApiPublic from "~/composables/api/useApiPublic";
 
 const filter = ref({
   role: "All",
-  stacks: [],
+  stacks: ["All"],
 });
 const listRole = computed(() => {
   const list = ["All", "Frontend", "Backend", "Fullstack", "Fullstack Desktop"];
@@ -11,10 +11,11 @@ const listRole = computed(() => {
 });
 const { getListStack, getListPortfolio } = useApiPublic();
 const { data: dataStack } = await getListStack();
-const listStack = computed(
-  () =>
-    dataStack.value?.map((val) => ({ value: val.id, label: val.name })) || []
-);
+const listStack = computed(() => {
+  const base = [{ value: "All", label: "All" }];
+  const stacks = dataStack.value?.map((val) => ({ value: val.id, label: val.name })) || [];
+  return [...base, ...stacks];
+});
 
 // Portfolio Data Related
 const { data: dataPortfolio } = await getListPortfolio();
@@ -24,18 +25,38 @@ const displayedPortfolio = computed(() => {
     let role = true;
     if (filter.value.role !== "All") {
       role =
-        val.role.toLowerCase() === String(filter.value.role).toLowerCase() ||
-        filter.value.role === "All";
+        val.role.toLowerCase() === String(filter.value.role).toLowerCase();
     }
 
-    return (
-      role &&
-      filter.value.stacks.every((filterStack) =>
+    let stackMatch = true;
+    if (filter.value.stacks.length > 0 && !filter.value.stacks.includes("All")) {
+      stackMatch = filter.value.stacks.every((filterStack) =>
         val.stacks.map((stack) => stack.id).includes(filterStack)
-      )
-    );
+      );
+    }
+
+    return role && stackMatch;
   });
 });
+
+watch(
+  () => filter.value.stacks,
+  (newVal, oldVal) => {
+    if (newVal.length === 0) {
+      filter.value.stacks = ["All"];
+      return;
+    }
+    if (newVal.includes("All") && !oldVal.includes("All")) {
+      filter.value.stacks = ["All"];
+      return;
+    }
+    if (newVal.includes("All") && newVal.length > 1) {
+      filter.value.stacks = newVal.filter((item) => item !== "All");
+    }
+  },
+  { deep: true }
+);
+
 const displayModal = ref(false);
 const selectedDetail = ref<PortfolioData>();
 const openDetail = (item: PortfolioData) => {

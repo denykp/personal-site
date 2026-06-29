@@ -12,34 +12,11 @@ images:
   - /images/portfolios/cimb-niaga-mortgage/1779968079103-7b5xpq.webp
   - /images/portfolios/cimb-niaga-mortgage/1779968079103-o0551b.webp
 stacks:
-  - id: vue-js
-    color: ""
-    url: https://vuejs.org/
-    logo: /images/stacks/vue-js/1779968061005-591m02.webp
-    highlight: true
-    name: Vue.js
-  - id: nuxt-js
-    url: https://nuxt.com/
-    logo: /images/stacks/nuxt-js/1779968063929-rgc3vj.webp
-    color: ""
-    highlight: true
-    name: Nuxt.js
-  - id: javascript
-    name: Javascript
-    url: https://www.javascript.com/
-    logo: /images/stacks/javascript/1779968070463-vwn1q8.webp
-    color: ""
-  - id: axios
-    name: Axios
-    url: https://axios-http.com/
-    logo: /images/stacks/axios/1779968071617-pwxeyq.webp
-    color: ""
-    highlight: false
-  - id: vuex
-    name: Vuex
-    url: https://vuex.vuejs.org/
-    logo: /images/stacks/vuex/1779968067436-01b2mr.webp
-    color: ""
+  - vue-js
+  - nuxt-js
+  - javascript
+  - axios
+  - vuex
 project_type: Company
 role: Frontend
 highlight: false

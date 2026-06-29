@@ -84,9 +84,24 @@ const listCompany: CompanyExperience[] = [
 <template>
   <div class="w-full text-white min-h-screen relative pb-16">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <h1 class="text-3xl sm:text-4xl font-bold mb-12 text-center lg:text-left" data-aos="fade-right">
-        Professional Experience
-      </h1>
+      <!-- Header with Resume Download -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12" data-aos="fade-down">
+        <h1 class="text-3xl sm:text-4xl font-bold text-center sm:text-left">
+          Professional Experience
+        </h1>
+        <UButton
+          to="/files/Resume - Deny Kristianto Pamuji.pdf"
+          target="_blank"
+          download="Resume - Deny Kristianto Pamuji.pdf"
+          icon="heroicons:arrow-down-tray"
+          size="md"
+          color="primary"
+          variant="outline"
+          class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105 shrink-0 self-center sm:self-auto"
+        >
+          Download CV / Resume
+        </UButton>
+      </div>
 
       <!-- Timeline wrapper -->
       <div class="relative border-l border-gray-700 ml-4 sm:ml-6 space-y-12">

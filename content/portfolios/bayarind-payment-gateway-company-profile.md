@@ -7,29 +7,10 @@ images:
   - /images/portfolios/bayarind-payment-gateway-company-profile/1779968078475-vyd6kb.webp
   - /images/portfolios/bayarind-payment-gateway-company-profile/1779968078475-32isg.webp
 stacks:
-  - id: vue-js
-    color: ""
-    url: https://vuejs.org/
-    logo: /images/stacks/vue-js/1779968061005-591m02.webp
-    highlight: true
-    name: Vue.js
-  - id: nuxt-js
-    url: https://nuxt.com/
-    logo: /images/stacks/nuxt-js/1779968063929-rgc3vj.webp
-    color: ""
-    highlight: true
-    name: Nuxt.js
-  - id: javascript
-    name: Javascript
-    url: https://www.javascript.com/
-    logo: /images/stacks/javascript/1779968070463-vwn1q8.webp
-    color: ""
-  - id: axios
-    name: Axios
-    url: https://axios-http.com/
-    logo: /images/stacks/axios/1779968071617-pwxeyq.webp
-    color: ""
-    highlight: false
+  - vue-js
+  - nuxt-js
+  - javascript
+  - axios
 project_type: Company
 role: Frontend
 highlight: false
