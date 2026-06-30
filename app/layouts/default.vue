@@ -69,6 +69,7 @@ watch(
           :key="menu.path"
           :to="menu.path"
           class="flex items-center gap-2"
+          :aria-label="menu.label"
           :class="{
             'text-primary': menu.path === route.path,
           }"
@@ -88,9 +89,9 @@ watch(
       </div>
     </div>
 
-    <div class="grow w-full flex flex-col">
+    <main class="grow w-full flex flex-col">
       <slot></slot>
-    </div>
+    </main>
     <c-footer />
   </div>
 </template>

@@ -244,7 +244,7 @@ const listRole = [
       @mousemove="onHeroMouseMove" @mouseenter="isHoveringHero = true" @mouseleave="isHoveringHero = false">
       <!-- Background Grid Overlay -->
       <div
-        class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+        class="absolute inset-0 z-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-size-[24px_24px] pointer-events-none" />
 
       <!-- Background Ambient Glows -->
       <div
@@ -262,16 +262,14 @@ const listRole = [
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-center w-full">
           <!-- Hero Details (Left Column) -->
           <div class="lg:col-span-7 text-white flex flex-col gap-5">
-            <h1 class="text-3xl sm:text-5xl font-extrabold transition-transform duration-300 opacity-0 leading-tight"
-              data-aos="fade-down">
-              Hi, I'm <span class="bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-400">Deny
+            <h1 class="text-3xl sm:text-5xl font-extrabold leading-tight animate-fade-up">
+              Hi, I'm <span class="bg-clip-text text-transparent bg-linear-to-r from-primary to-purple-400">Deny
                 Kristianto Pamuji</span>
             </h1>
-            <div class="text-lg sm:text-xl font-medium text-gray-200 transition-transform duration-300 opacity-0"
-              data-aos="fade-down">
+            <div class="text-lg sm:text-xl font-medium text-gray-200 animate-fade-up" style="animation-delay: 150ms;">
               <TypingAnimation :strings="listRole" leading="I'm a" />
             </div>
-            <div class="text-xs sm:text-sm text-gray-400 transition-all duration-500 leading-relaxed max-w-[90%]">
+            <div class="text-xs sm:text-sm text-gray-400 leading-relaxed max-w-[90%] animate-fade-up" style="animation-delay: 300ms;">
               Frontend & Fullstack Node.js Engineer with 10+ years of software engineering experience,
               specializing in building high-performance web applications with Vue/Nuxt and React/Next.js.
               Experienced in collaborating with cross-functional teams to build clean, modular UI components,
@@ -280,7 +278,7 @@ const listRole = [
               architectures with legacy systems.
             </div>
 
-            <div class="mt-4 flex flex-wrap gap-4 items-center opacity-0" data-aos="fade-up" data-aos-delay="150">
+            <div class="mt-4 flex flex-wrap gap-4 items-center animate-fade-up" style="animation-delay: 450ms;">
               <!-- Connect / Social Media Popover -->
               <UPopover :content="{ align: 'start', side: 'bottom', sideOffset: 8 }">
                 <UButton icon="heroicons:sparkles" size="lg" color="neutral" variant="outline"
@@ -318,16 +316,16 @@ const listRole = [
           </div>
 
           <!-- Profile Picture Widget (Right Column) -->
-          <div class="lg:col-span-5 flex justify-center opacity-0 w-full" data-aos="fade-left" data-aos-delay="200">
-            <div class="relative group hover:scale-[1.02] hover:-rotate-1 transition-all duration-500 ease-out">
+          <div class="lg:col-span-5 flex justify-center w-full">
+            <div class="relative group hover:scale-[1.02] hover:-rotate-1 transition-all duration-500 ease-out animate-fade-up" style="animation-delay: 200ms;">
               <!-- Background Ambient Glow -->
               <div
-                class="absolute -inset-1.5 bg-gradient-to-tr from-primary to-purple-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none" />
+                class="absolute -inset-1.5 bg-linear-to-tr from-primary to-purple-500 rounded-3xl blur-lg opacity-30 group-hover:opacity-50 transition-opacity duration-500 pointer-events-none" />
 
               <!-- Card Wrapper -->
               <div
                 class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-neutral-900/50 backdrop-blur-md border border-gray-800/80 rounded-3xl p-3.5 shadow-2xl flex items-center justify-center overflow-hidden">
-                <NuxtImg src="/images/Profile Picture Compressed.webp" alt="Deny Kristianto Pamuji"
+                <NuxtImg src="/images/Profile Picture Compressed.webp" alt="Deny Kristianto Pamuji" width="640" height="640" priority
                   class="w-full h-full object-cover rounded-2xl shadow-xl transition-all duration-500 ease-out group-hover:scale-105 transform-[scale(1.5)_translate(0px,35px)]" />
               </div>
 
@@ -378,7 +376,7 @@ const listRole = [
 
             <div v-if="hasLogo(item.logo)"
               class="w-12 h-12 flex items-center justify-center p-1 rounded-xl bg-neutral-950/40 border border-gray-850/60 group-hover:scale-105 transition-transform duration-300">
-              <NuxtImg :src="item.logo" :alt="item.name" class="w-10 h-10 object-contain" />
+              <NuxtImg :src="item.logo" :alt="item.name" width="40" height="40" loading="lazy" class="w-10 h-10 object-contain" />
             </div>
             <div v-else
               class="w-12 h-12 flex items-center justify-center p-1.5 rounded-xl bg-neutral-950/40 border border-gray-850/60 font-black text-[10px] tracking-tight group-hover:scale-105 transition-transform duration-300 select-none leading-none text-center"
@@ -400,7 +398,7 @@ const listRole = [
         <div class="flex flex-wrap items-center justify-center gap-x-2.5 gap-y-3.5">
           <NuxtLink v-for="item in otherStacks" :key="item.id" :to="item.url" target="_blank"
             class="px-3.5 py-1.5 bg-neutral-900/25 hover:bg-neutral-900/70 border border-gray-850/60 hover:border-gray-750 rounded-full text-xs transition-all duration-200 hover:scale-105 flex items-center gap-1.5 font-medium shadow-sm hover:brightness-110 cursor-pointer">
-            <NuxtImg v-if="hasLogo(item.logo)" :src="item.logo" :alt="item.name" class="w-3.5 h-3.5 object-contain" />
+            <NuxtImg v-if="hasLogo(item.logo)" :src="item.logo" :alt="item.name" width="16" height="16" loading="lazy" class="w-3.5 h-3.5 object-contain" />
             <span :style="{ color: hasLogo(item.logo) ? undefined : item.color }" :class="{
               'text-gray-400 hover:text-white': hasLogo(item.logo),
               'font-bold': !hasLogo(item.logo)
@@ -429,10 +427,11 @@ const listRole = [
             <!-- Card Image -->
             <div class="aspect-video overflow-hidden shrink-0 relative bg-neutral-950">
               <NuxtImg :src="item.images[0] || `/images/no-image-placeholder.svg`"
+                width="400" height="225" loading="lazy"
                 class="w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
                 :alt="item.name" />
               <div
-                class="absolute inset-0 bg-gradient-to-t from-neutral-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
+                class="absolute inset-0 bg-linear-to-t from-neutral-950/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
                 <span class="text-xs font-medium text-white flex items-center gap-1">
                   View Project Details
                   <UIcon name="heroicons:arrow-right-20-solid" class="text-sm" />
@@ -495,7 +494,7 @@ const listRole = [
             : [`/images/no-image-placeholder.svg`]
             " class="w-full max-w-xs mx-auto" arrows>
             <div class="flex justify-center items-center min-h-64">
-              <NuxtImg :src="item" class="max-w-full max-h-64 object-contain rounded-lg"
+              <NuxtImg :src="item" :alt="selectedDetail?.name || 'Project screenshot'" class="max-w-full max-h-64 object-contain rounded-lg"
                 style="height: auto; width: auto" />
             </div>
           </UCarousel>
