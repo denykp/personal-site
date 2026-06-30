@@ -13,7 +13,8 @@
     "@nuxtjs/seo": "3.0.3",
     "@types/aos": "^3.0.7",
     "@types/node": "^20.12.12",
-    "nuxt": "^4.2.2"
+    "nuxt": "^4.2.2",
+    "sharp": "^0.35.2"
   },
   "dependencies": {
     "@iconify-json/heroicons": "^1.2.2",
