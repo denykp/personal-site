@@ -27,14 +27,14 @@ const props = withDefaults(
 );
 
 // Reactive state
-const displayText = ref("");
+const displayText = ref(props.strings[0] || "");
 const isRunning = ref(false);
 const showCursor = ref(true);
 
 // Internal state
 const currentStringIndex = ref(0);
-const currentCharIndex = ref(0);
-const isTyping = ref(true);
+const currentCharIndex = ref((props.strings[0] || "").length);
+const isTyping = ref(false);
 const timeoutId = ref<NodeJS.Timeout | null>(null);
 
 // Computed options with defaults
@@ -115,9 +115,9 @@ const stopAnimation = () => {
 const resetAnimation = () => {
   stopAnimation();
   currentStringIndex.value = 0;
-  currentCharIndex.value = 0;
-  isTyping.value = true;
-  displayText.value = "";
+  currentCharIndex.value = (props.strings[0] || "").length;
+  isTyping.value = false;
+  displayText.value = props.strings[0] || "";
 };
 
 // Lifecycle
@@ -143,7 +143,7 @@ watch(
 
 <template>
   <div class="space-y-0">
-    <div class="min-h-[2rem] flex items-center">
+    <div class="min-h-8 flex items-center">
       <span class="text-base lg:text-2xl font-mono flex items-center">
         <div class="flex gap-2">
           <span v-if="leading">{{ leading }}</span>

@@ -90,6 +90,7 @@ const openDetail = (item: PortfolioData) => {
             @click="openDetail(item)">
             <div class="shrink-0 hidden lg:block">
               <NuxtImg :src="item.images[0] || `/images/no-image-placeholder.svg`"
+                :alt="item.name"
                 class="w-48 h-full object-cover rounded-lg lg:grayscale-100 lg:group-hover:grayscale-0" />
             </div>
             <div class="flex flex-col gap-2">
@@ -129,7 +130,7 @@ const openDetail = (item: PortfolioData) => {
               : [`/images/no-image-placeholder.svg`]
             " class="w-full max-w-xs mx-auto" arrows>
             <div class="flex justify-center items-center min-h-64">
-              <NuxtImg :src="item" class="max-w-full max-h-64 object-contain rounded-lg"
+              <NuxtImg :src="item" :alt="selectedDetail?.name || 'Project screenshot'" class="max-w-full max-h-64 object-contain rounded-lg"
                 style="height: auto; width: auto" />
             </div>
           </UCarousel>
