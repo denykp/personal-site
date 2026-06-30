@@ -282,7 +282,7 @@ const listRole = [
               <!-- Connect / Social Media Popover -->
               <UPopover :content="{ align: 'start', side: 'bottom', sideOffset: 8 }">
                 <UButton icon="heroicons:sparkles" size="lg" color="neutral" variant="outline"
-                  class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105">
+                  class="font-bold cursor-pointer transition-transform duration-200 hover:scale-105 data-[state=open]:scale-105">
                   Find Me
                 </UButton>
 
