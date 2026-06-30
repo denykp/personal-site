@@ -325,7 +325,7 @@ const listRole = [
               <!-- Card Wrapper -->
               <div
                 class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 bg-neutral-900/50 backdrop-blur-md border border-gray-800/80 rounded-3xl p-3.5 shadow-2xl flex items-center justify-center overflow-hidden">
-                <NuxtImg src="/images/Profile Picture Compressed.webp" alt="Deny Kristianto Pamuji" width="640" height="640" priority
+                <NuxtImg src="/images/profile-picture-compressed.webp" alt="Deny Kristianto Pamuji" width="640" height="640" priority
                   class="w-full h-full object-cover rounded-2xl shadow-xl transition-all duration-500 ease-out group-hover:scale-105 transform-[scale(1.5)_translate(0px,35px)]" />
               </div>
 
